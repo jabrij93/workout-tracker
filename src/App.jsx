@@ -36,14 +36,6 @@ function App() {
       
       <h1> Workout Tracker !</h1>
         <button onClick={()=> {
-          setWorkout(
-            workout.map((workout, index) => index === 0 ? {...workout, likes : Number(workout.likes + 1) } : workout ))
-        }}
-          > 
-          WORKOUT VOTE 
-        </button>
-        
-        <button onClick={()=> {
           setCount(0)
         }}
           > 
@@ -62,7 +54,6 @@ function App() {
           </button> </span>
         </div>
       ))}
-      <p>COUNT : {count} </p>
     </div>
   );
 }
