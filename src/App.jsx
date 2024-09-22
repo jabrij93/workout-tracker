@@ -3,8 +3,23 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
+  let workoutData = [
+  {
+    workouts: 'pull-ups',
+    likes: '5',
+  },
+  {
+    workouts: 'dips',
+    likes: '3',
+  },
+  {
+    workouts: 'push-up',
+    likes: '2',
+  },
+]
+
   const [count, setCount] = useState(0);
-  const [workout, setWorkout] = useState([{ workouts: 'pull-ups', likes: '0' }])
+  const [workout, setWorkout] = useState(workoutData)
   
   return (
     
@@ -40,9 +55,12 @@ function App() {
           Reset
         </button>
       <br/>
-      <p>WORKOUT : {workout.map(workout => workout.workouts)} </p>
-      <p>LIKES : {workout.map(workout => workout.likes)}</p>
-
+      {workout.map((workout, index) => (
+        <div key={index} >
+          <p>WORKOUT : {workout.workouts} </p>
+          <p>LIKES : {workout.likes} </p>
+        </div>
+      ))}
       <p>COUNT : {count} </p>
     </div>
   );
