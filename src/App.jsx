@@ -42,12 +42,7 @@ function App() {
           > 
           WORKOUT VOTE 
         </button>
-        <button onClick={()=> {
-          setCount(count + 1)
-        }}
-          > 
-          LIKE 
-        </button>
+        
         <button onClick={()=> {
           setCount(0)
         }}
@@ -55,10 +50,16 @@ function App() {
           Reset
         </button>
       <br/>
-      {workout.map((workout, index) => (
+      {workout.map((workoutItem, index) => (
         <div key={index} >
-          <p>WORKOUT : {workout.workouts} </p>
-          <p>LIKES : {workout.likes} </p>
+          <p>WORKOUT : {workoutItem.workouts} </p>
+          <p>LIKES : {workoutItem.likes} </p> <span> <button onClick={() => { 
+            const updatedWorkout = workout.map((item, i) => i === index ? {...item, likes:Number(item.likes) + 1 } : item);
+            setWorkout(updatedWorkout)
+          }}
+            > 
+            LIKE 
+          </button> </span>
         </div>
       ))}
       <p>COUNT : {count} </p>
