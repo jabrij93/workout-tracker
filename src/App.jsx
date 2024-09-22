@@ -13,7 +13,13 @@ function App() {
       }}
         > 
         LIKE 
-      </button> 
+      </button>
+      <button onClick={()=> {
+        setCount(0)
+      }}
+        > 
+        Reset
+      </button>
       <br/>
       <p>LIKES : {count} </p>
     </div>
