@@ -3,10 +3,19 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
+  const [count, setCount] = useState(0);
+  
   return (
     <div className="App">
       <h1> Workout Tracker !</h1>
-      <button onClick={()=> console.log('clicked')}> CLICK </button>
+      <button onClick={()=> {
+        setCount(count + 1)
+      }}
+        > 
+        LIKE 
+      </button> 
+      <br/>
+      <p>LIKES : {count} </p>
     </div>
   );
 }
