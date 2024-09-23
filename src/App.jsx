@@ -3,20 +3,7 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  let workoutData = [ 
-  {
-    workouts: 'pull-ups',
-    likes: '5',
-  },
-  {
-    workouts: 'dips',
-    likes: '3',
-  },
-  {
-    workouts: 'push-up',
-    likes: '2'
-  }
-]
+  
 
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState(workoutData)
