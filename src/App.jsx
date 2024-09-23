@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  let workoutData =[
+  let workoutData = [ 
   {
     workouts: 'pull-ups',
     likes: '5',
@@ -20,6 +20,13 @@ function App() {
 
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState(workoutData)
+  const [newWorkout, setNewWorkout] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWorkout([...workout, {workouts: newWorkout, likes: 0}])
+    setNewWorkout('')
+  }
   
   return (
     
@@ -32,6 +39,18 @@ function App() {
           Reset
         </button>
       <br/>
+
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          value={newWorkout} 
+          onChange={(e)=>setNewWorkout(e.target.value)} 
+          placeholder='Insert your workout'
+        />
+        <button type="submit"> Add Workout </button>
+      </form>
+
+
       {workout.map((workoutItem, index) => (
         <div key={index} >
           <p>WORKOUT : {workoutItem.workouts} </p>
