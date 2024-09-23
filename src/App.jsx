@@ -21,34 +21,9 @@ function App() {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState(workoutData)
   
-  const [newWorkout, setNewWorkout] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setWorkout([...workout, {workouts: newWorkout , likes: 0}])
-    setNewWorkout('')
-  }
-  
   return (
     
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input 
-          type='text' 
-          placeholder='Insert your type of workout' 
-          value={newWorkout} 
-          onChange={(e)=>setNewWorkout(e.target.value)}
-        />
-        <button type="submit">Add workout</button>
-      </form>
-      
-      {/* <button onClick={(event)=> {
-          setWorkout({workout: event})
-        }}
-          > 
-          ADD 
-        </button> */}
-      
       <h1> Workout Tracker !</h1>
         <button onClick={()=> {
           setCount(0)
