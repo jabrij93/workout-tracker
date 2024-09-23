@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  let workoutData = [
+  let workoutData =[
   {
     workouts: 'pull-ups',
     likes: '5',
@@ -14,19 +14,34 @@ function App() {
   },
   {
     workouts: 'push-up',
-    likes: '2',
-  },
+    likes: '2'
+  }
 ]
 
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState(workoutData)
   
+  const [newWorkout, setNewWorkout] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWorkout([...workout, {workouts: newWorkout , likes: 0}])
+    setNewWorkout('')
+  }
+  
   return (
     
     <div className="App">
+      <form onSubmit={handleSubmit}>
+        <input 
+          type='text' 
+          placeholder='Insert your type of workout' 
+          value={newWorkout} 
+          onChange={(e)=>setNewWorkout(e.target.value)}
+        />
+        <button type="submit">Add workout</button>
+      </form>
       
-      <input type='text' placeholder='Insert your type of workout' onChange={()=>setWorkout({workouts: 'dips'})}/>
-
       {/* <button onClick={(event)=> {
           setWorkout({workout: event})
         }}
@@ -46,7 +61,10 @@ function App() {
         <div key={index} >
           <p>WORKOUT : {workoutItem.workouts} </p>
           <p>LIKES : {workoutItem.likes} </p> <span> <button onClick={() => { 
-            const updatedWorkout = workout.map((item, i) => i === index ? {...item, likes:Number(item.likes) + 1 } : item);
+            const updatedWorkout = workout.map((item, i) => 
+                i === index ? 
+              {...item, likes:Number(item.likes) + 1 } 
+              : item);
             setWorkout(updatedWorkout)
           }}
             > 
