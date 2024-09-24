@@ -4,13 +4,9 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  
-
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([])
   const [newWorkout, setNewWorkout] = useState('')
-
-  
 
   useEffect( () => {
     axios.get(`http://localhost:3001/workoutData`)
@@ -34,16 +30,20 @@ function App() {
     }
 
   const handleLike = (id) => {
-    const updatedWorkout = workout.map((item)=> 
-      item.id === id ? {...item, likes: Number(item.likes+1)} : item
-    )
+    // Find and update the specific item directly
+    const updatedItem = workout.find((item) => item.id === id);
+      if (updatedItem) {
+        const updatedItemWithLike = {...updatedItem, likes:Number(updatedItem.likes + 1)};
 
-    const updatedItem = updatedWorkout.find((item)=> item.id === id)
-
-    axios.put(`http://localhost:3001/workoutData/${id}`, updatedItem)
-      .then(response => {
-        setWorkout(updatedWorkout)
+      axios.put(`http://localhost:3001/workoutData/${id}`, updatedItemWithLike)
+        .then(response => {
+          // Update the workout array by replacing the liked item
+          const updatedWorkout = workout.map((item) => 
+            item.id === id ? updatedItemWithLike : item
+          );
+          setWorkout(updatedWorkout);
       })
+    }
   }
   
   return (
@@ -82,7 +82,7 @@ function App() {
         </div>
       )})}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
