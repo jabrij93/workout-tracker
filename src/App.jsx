@@ -10,17 +10,28 @@ function App() {
   const [workout, setWorkout] = useState([])
   const [newWorkout, setNewWorkout] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setWorkout([...workout, {workouts: newWorkout, likes: 0}])
-    setNewWorkout('')
-  }
+  
 
   useEffect( () => {
     axios.get(`http://localhost:3001/workoutData`)
     .then(response=>
       setWorkout(response.data));
     }, [])
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const newWorkoutData = {
+        workouts: newWorkout,
+        likes: 0,
+      }
+
+      axios.post(`http://localhost:3001/workoutData`, newWorkoutData)
+        .then(response => {
+          setWorkout([...workout, response.data])
+        })
+      setNewWorkout('')
+    }
   
   return (
 
@@ -45,7 +56,8 @@ function App() {
       </form>
 
 
-      {workout.map((workoutItem, index) => (
+      {workout.map((workoutItem, index) => {
+      return (  
         <div key={index} >
           <p>WORKOUT : {workoutItem.workouts} </p>
           <p>LIKES : {workoutItem.likes} </p> <span> <button onClick={() => { 
@@ -59,7 +71,7 @@ function App() {
             LIKE 
           </button> </span>
         </div>
-      ))}
+      )})}
     </div>
   );
 }
