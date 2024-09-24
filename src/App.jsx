@@ -18,7 +18,7 @@ function App() {
       setWorkout(response.data));
     }, [])
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
       e.preventDefault();
 
       const newWorkoutData = {
@@ -32,6 +32,19 @@ function App() {
         })
       setNewWorkout('')
     }
+
+  const handleLike = (id) => {
+    const updatedWorkout = workout.map((item)=> 
+      item.id === id ? {...item, likes: Number(item.likes+1)} : item
+    )
+
+    const updatedItem = updatedWorkout.find((item)=> item.id === id)
+
+    axios.put(`http://localhost:3001/workoutData/${id}`, updatedItem)
+      .then(response => {
+        setWorkout(updatedWorkout)
+      })
+  }
   
   return (
 
@@ -60,16 +73,12 @@ function App() {
       return (  
         <div key={index} >
           <p>WORKOUT : {workoutItem.workouts} </p>
-          <p>LIKES : {workoutItem.likes} </p> <span> <button onClick={() => { 
-            const updatedWorkout = workout.map((item, i) => 
-                i === index ? 
-              {...item, likes:Number(item.likes) + 1 } 
-              : item);
-            setWorkout(updatedWorkout)
-          }}
-            > 
-            LIKE 
-          </button> </span>
+          <p>LIKES : {workoutItem.likes} </p> 
+            <span> 
+              <button onClick={()=>handleLike(workoutItem.id)}> 
+                LIKE 
+              </button> 
+            </span>
         </div>
       )})}
     </div>
