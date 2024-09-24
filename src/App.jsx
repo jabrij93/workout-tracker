@@ -17,6 +17,8 @@ function App() {
   const handleSubmit = (e) => {
       e.preventDefault();
 
+      if (newWorkout.trim() === '') return;
+
       const newWorkoutData = {
         workouts: newWorkout,
         likes: 0,
