@@ -3,11 +3,11 @@ import React from 'react';
 const CalendarGrid = ({ calendarData }) => {
   const today = new Date();
   const startOfLastYear = new Date(today);
-  startOfLastYear.setDate(today.getDate() - 360); // Go back 360 days from today
+  startOfLastYear.setDate(today.getDate() - 364); // Go back 360 days from today
   const days = [];
 
   // Generate 360 days
-  for (let i = 0; i < 360; i++) {
+  for (let i = 0; i < 364; i++) {
     const currentDate = new Date(startOfLastYear);
     currentDate.setDate(startOfLastYear.getDate() + i);
     const dateString = currentDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
