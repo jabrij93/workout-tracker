@@ -1,8 +1,11 @@
-// Helper to generate the calendar grid
-const renderCalendar = () => {
+// CalendarGrid.js
+import React from 'react';
+
+const CalendarGrid = ({ calendarData }) => {
     const today = new Date();
     const startOfYear = new Date(today.getFullYear(), 0, 1);
     const days = [];
+
     for (let i = 0; i < 365; i++) {
       const currentDate = new Date(startOfYear);
       currentDate.setDate(startOfYear.getDate() + i);
@@ -24,5 +27,7 @@ const renderCalendar = () => {
         />
       );
     }
-    return days;
-  };
+    return <div style={{ display: 'flex', flexWrap: 'wrap', width: '450px' }}>{days}</div>;
+};
+
+export default CalendarGrid;

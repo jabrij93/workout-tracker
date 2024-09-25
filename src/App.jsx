@@ -2,17 +2,27 @@ import logo from './logo.svg';
 import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import CalendarGrid from './CalendarGrid.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [workout, setWorkout] = useState([])
-  const [newWorkout, setNewWorkout] = useState('')
+  const [workout, setWorkout] = useState([]);
+  const [newWorkout, setNewWorkout] = useState('');
+  const [workoutDate, setWorkoutDate] = useState('');
+  const [calendarData, setCalendarData] = useState({}); // Store workout dates
+
 
   useEffect( () => {
-    axios.get(`http://localhost:3001/workoutData`)
-    .then(response=>
-      setWorkout(response.data));
-    }, [])
+    axios.get(`http://localhost:3001/workoutData`).then(response=> {
+      setWorkout(response.data);
+      // Build calendar data from the workout dates
+      const workoutByDate = {};
+      response.data.forEach(item => {
+        const date = item.date; // Assuming each item has a 'date' field
+        workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count how many workouts were logged for each date
+      });
+      setCalendarData(workoutByDate);
+  })}, []);
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -52,12 +62,8 @@ function App() {
 
     <div className="App">
       <h1> Workout Tracker !</h1>
-        <button onClick={()=> {
-          setCount(0)
-        }}
-          > 
-          Reset
-        </button>
+        {/* Render the calendar and pass the calendarData as a prop */}
+      <CalendarGrid calendarData={calendarData} />
       <br/>
 
       <form onSubmit={handleSubmit}>
