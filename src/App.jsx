@@ -13,7 +13,7 @@ function App() {
 
 
   useEffect( () => {
-    axios.get(`http://localhost:3001/workoutData`).then(response=> {
+    axios.get(`http://localhost:3000/workoutData`).then(response=> {
       setWorkout(response.data);
       // Build calendar data from the workout dates
       const workoutByDate = {};
