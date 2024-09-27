@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CalendarGrid2 = ({calendarData2}) => {
+const GridCalendar = ({calendarData}) => {
     const today = new Date()
     const startFromLastYear = new Date(today)
     startFromLastYear.setDate(today.getDate() - 364)
@@ -13,7 +13,7 @@ const CalendarGrid2 = ({calendarData2}) => {
         const toISOString = formatDate.toISOString().split('T')[0]
         console.log("format Date", toISOString)
 
-        const progressLevel = calendarData2[toISOString]
+        const progressLevel = calendarData[toISOString]
 
         days.push(
             <div 
@@ -37,11 +37,11 @@ const CalendarGrid2 = ({calendarData2}) => {
             gridTemplateColumns: 'repeat(52, 20px)',
             justifyContent: 'start',
             gridGap: '2px',
-            margin: '20px 0',
             border: 'solid black 2px',
             borderRadius: '5px',
+            padding: '3px 3px',
         }}> {days} </div>
     )
 }
 
-export default CalendarGrid2;
+export default GridCalendar;
