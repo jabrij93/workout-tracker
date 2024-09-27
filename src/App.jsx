@@ -3,6 +3,7 @@ import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import CalendarGrid from './CalendarGrid.jsx';
+import CalendarGrid2 from './CalendarGrid2.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,7 +14,7 @@ function App() {
 
 
   useEffect( () => {
-    axios.get(`http://localhost:3000/workoutData`).then(response=> {
+    axios.get(`http://localhost:3001/workoutData`).then(response=> {
       setWorkout(response.data);
       // Build calendar data from the workout dates
       const workoutByDate = {};
@@ -63,7 +64,8 @@ function App() {
     <div className="App">
       <h1> Workout Tracker !</h1>
         {/* Render the calendar and pass the calendarData as a prop */}
-      <CalendarGrid calendarData={calendarData} />
+      {/* <CalendarGrid calendarData={calendarData} /> */}
+      <CalendarGrid2 />
       <br/>
 
       <form onSubmit={handleSubmit}>
