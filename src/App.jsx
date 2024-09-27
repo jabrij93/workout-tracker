@@ -2,16 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import CalendarGrid from './CalendarGrid.jsx';
-import CalendarGrid2 from './CalendarGrid2.jsx';
+import GridCalendar from './GridCalendar.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
   const [newWorkout, setNewWorkout] = useState('');
   const [workoutDate, setWorkoutDate] = useState('');
-  const [calendarData, setCalendarData] = useState({}); // Store workout dates
-  const [calendarData2, setCalendarData2] = useState({});
+  const [calendarData, setCalendarData] = useState({});
 
 
   useEffect( () => {
@@ -66,7 +64,7 @@ function App() {
       <h1> Workout Tracker !</h1>
         {/* Render the calendar and pass the calendarData as a prop */}
       {/* <CalendarGrid calendarData={calendarData} /> */}
-      <CalendarGrid2 calendarData2={calendarData2} />
+      <GridCalendar calendarData={calendarData} />
       <br/>
 
       <form onSubmit={handleSubmit}>
