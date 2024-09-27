@@ -11,6 +11,7 @@ function App() {
   const [newWorkout, setNewWorkout] = useState('');
   const [workoutDate, setWorkoutDate] = useState('');
   const [calendarData, setCalendarData] = useState({}); // Store workout dates
+  const [calendarData2, setCalendarData2] = useState({});
 
 
   useEffect( () => {
@@ -65,7 +66,7 @@ function App() {
       <h1> Workout Tracker !</h1>
         {/* Render the calendar and pass the calendarData as a prop */}
       {/* <CalendarGrid calendarData={calendarData} /> */}
-      <CalendarGrid2 />
+      <CalendarGrid2 calendarData2={calendarData2} />
       <br/>
 
       <form onSubmit={handleSubmit}>
