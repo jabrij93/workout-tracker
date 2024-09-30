@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import GridCalendar from './GridCalendar.jsx';
+import GridCalendar from '../components/GridCalendar.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
