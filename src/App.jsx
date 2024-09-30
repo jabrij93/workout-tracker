@@ -77,7 +77,6 @@ function App() {
         <button type="submit"> Add Workout </button>
       </form>
 
-
       {workout.map((workoutItem, index) => {
       return (  
         <div key={index} >
