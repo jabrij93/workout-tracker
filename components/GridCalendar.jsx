@@ -14,6 +14,7 @@ const GridCalendar = ({calendarData}) => {
         console.log("format Date", toISOString)
 
         const progressLevel = calendarData[toISOString]
+        console.log("Checking date:", toISOString, "Progress level:", progressLevel);
 
         days.push(
             <div 
@@ -22,7 +23,7 @@ const GridCalendar = ({calendarData}) => {
                     height:'20px',
                     width:'20px',
                     border: 'solid grey 2px',
-                    color: progressLevel>0 ? 'green' : '#ddd',
+                    backgroundColor: progressLevel > 0 ? 'green' : '#ddd',
                     display:'inline-block',
                 }}
                 title={toISOString}

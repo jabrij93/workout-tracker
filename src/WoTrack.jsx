@@ -6,20 +6,25 @@ import GridCalendar from '../components/GridCalendar.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [workout, setWorkout] = useState([]);
+  const [workout, setWorkout] = useState([]); 
   const [newWorkout, setNewWorkout] = useState('');
   const [workoutDate, setWorkoutDate] = useState('');
   const [calendarData, setCalendarData] = useState({});
 
 
   useEffect( () => {
-    axios.get(`http://localhost:3001/workoutData`).then(response=> {
+    axios.get(`http://localhost:3001/api/workout`).then(response=> {
+      console.log("backend response", response.data)
       setWorkout(response.data);
-      // Build calendar data from the workout dates
+
       const workoutByDate = {};
-      response.data.forEach(item => {
+      response.data.forEach((item) => {
         const date = item.date; // Assuming each item has a 'date' field
-        workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count how many workouts were logged for each date
+        if (date) {
+          workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
+        } else {
+          console.warn("Workout missing date:", item);
+        }
       });
       setCalendarData(workoutByDate);
   })}, []);

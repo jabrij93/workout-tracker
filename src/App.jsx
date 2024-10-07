@@ -5,7 +5,7 @@ import WoTrack from './WoTrack';  // Renaming original App content for clarity
 import Login from '../components/Login';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
@@ -13,7 +13,7 @@ function App() {
         {/* If logged in, show the main timezone app, otherwise show login */}
         <Route
           path="/"
-          element={isLoggedIn ? <WoTrack /> : <Navigate to="/login" />}
+          element={isLoggedIn ? <WoTrack  /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* Add more routes if needed */}
