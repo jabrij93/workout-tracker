@@ -43,7 +43,7 @@ function App() {
       }
 
       workoutService
-        .create(workoutObject)
+        .create(newWorkoutData)
         .then(response => {
           setWorkout([...workout, response.data])
         })
