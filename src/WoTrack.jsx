@@ -42,7 +42,8 @@ function App() {
         likes: 0,
       }
 
-      axios.post(`http://localhost:3001/workoutData`, newWorkoutData)
+      workoutService
+        .create(workoutObject)
         .then(response => {
           setWorkout([...workout, response.data])
         })
