@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
 
 
   useEffect( () => {
-    axios.get(`http://localhost:3001/api/workout`).then(response=> {
+    workoutService
+      .getAll()
+      .then(response=> {
       console.log("backend response", response.data)
       setWorkout(response.data);
 
