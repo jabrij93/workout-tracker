@@ -88,7 +88,7 @@ function App() {
           type="text" 
           value={newWorkoutDate} 
           onChange={(e)=>setNewWorkoutDate(e.target.value)} 
-          placeholder='Date'
+          placeholder='Date(optional. If empty, date will default by today)'
         />
         <input 
           type="text" 
