@@ -9,7 +9,8 @@ function App() {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]); 
   const [newWorkout, setNewWorkout] = useState('');
-  const [workoutDate, setWorkoutDate] = useState('');
+  const [newWorkoutDate, setNewWorkoutDate] = useState('');
+  const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
 
 
@@ -82,6 +83,18 @@ function App() {
           value={newWorkout} 
           onChange={(e)=>setNewWorkout(e.target.value)} 
           placeholder='Insert your workout'
+        />
+        <input 
+          type="text" 
+          value={newWorkoutDate} 
+          onChange={(e)=>setNewWorkoutDate(e.target.value)} 
+          placeholder='Date'
+        />
+        <input 
+          type="text" 
+          value={newWorkoutDetail} 
+          onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
+          placeholder='Details(optional)'
         />
         <button type="submit"> Add Workout </button>
       </form>
