@@ -72,7 +72,7 @@ function App() {
 
     <div className="App">
       <h1> Workout Tracker !</h1>
-        {/* Render the calendar and pass the calendarData as a prop */}
+      
       {/* <CalendarGrid calendarData={calendarData} /> */}
       <GridCalendar calendarData={calendarData} />
       <br/>
