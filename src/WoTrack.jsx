@@ -14,7 +14,7 @@ function App() {
   const [calendarData, setCalendarData] = useState({});
 
 
-  useEffect( () => {
+  useEffect(() => {
     workoutService
       .getAll()
       .then(response=> {
@@ -40,6 +40,8 @@ function App() {
 
       const newWorkoutData = {
         workouts: newWorkout,
+        date: newWorkoutDate,
+        detail: newWorkoutDetail,
         likes: 0,
       }
 
