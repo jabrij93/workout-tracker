@@ -13,6 +13,25 @@ function App() {
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
 
+  // Generate id for every new data workout 
+  const generateId = () => {
+    // Generate two random lowercase letters (a-z)
+    const letter1 = String.fromCharCode(
+      Math.floor(Math.random() * 26) + 97 // First random letter
+    );
+  
+    const letter2 = String.fromCharCode(
+      Math.floor(Math.random() * 26) + 97 // First random letter
+    );
+  
+    // Generate two random digits (0-9)
+    const number1 = Math.floor(Math.random() * 9).toString()
+    const number2 = Math.floor(Math.random() * 9).toString()
+  
+    // Combine the two letters and two digits
+    return letter1 + number1 + letter2 + number2
+  };
+
 
   useEffect(() => {
     workoutService
@@ -39,6 +58,7 @@ function App() {
       if (newWorkout.trim() === '') return;
 
       const newWorkoutData = {
+        id: generateId(),
         workouts: newWorkout,
         date: newWorkoutDate,
         detail: newWorkoutDetail,
