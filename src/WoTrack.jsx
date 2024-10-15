@@ -51,6 +51,8 @@ function App() {
           setWorkout([...workout, response.data])
         })
       setNewWorkout('')
+      setNewWorkoutDate('')
+      setNewWorkoutDetail('')
     }
 
   const handleLike = (id) => {
