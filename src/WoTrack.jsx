@@ -14,6 +14,7 @@ function App() {
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
+  const [notificationType, setNotificationType] = useState('');
 
   // Generate id for every new data workout 
   const generateId = () => {
@@ -72,10 +73,12 @@ function App() {
         .then(response => {
           setWorkout([...workout, response.data])
           setNotification(`added ${newWorkout} !`)
+          setNotificationType('success')
         })
         .catch(error => {
           // Set error notification
           setNotification(`Error: ${error.response.data.error}`);
+          setNotificationType('error')
           
           // Optional: Log the error for debugging purposes
           console.log("Error creating workout:", error.response.data.error);
@@ -116,7 +119,7 @@ function App() {
   return (
 
     <div className="App">
-      {notification && <Notification notification={notification}/> }
+      {notification && <Notification notification={notification} type={notificationType}/> }
       <h1> Workout Tracker !</h1>
       
       {/* <CalendarGrid calendarData={calendarData} /> */}
