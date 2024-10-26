@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
+import { Notification } from '../components/Notification';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,6 +13,7 @@ function App() {
   const [newWorkoutDate, setNewWorkoutDate] = useState('');
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
+  const [notification, setNotification] = useState('');
 
   // Generate id for every new data workout 
   const generateId = () => {
@@ -95,6 +97,7 @@ function App() {
   return (
 
     <div className="App">
+      <Notification />
       <h1> Workout Tracker !</h1>
       
       {/* <CalendarGrid calendarData={calendarData} /> */}
