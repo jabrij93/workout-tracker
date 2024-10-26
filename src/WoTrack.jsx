@@ -71,11 +71,24 @@ function App() {
         .create(newWorkoutData)
         .then(response => {
           setWorkout([...workout, response.data])
+          setNotification(`added ${newWorkout} !`)
         })
+        .catch(error => {
+          // Set error notification
+          setNotification(`Error: ${error.response.data.error}`);
+          
+          // Optional: Log the error for debugging purposes
+          console.log("Error creating workout:", error.response.data.error);
+
+          // Clear error notification after 5 seconds
+          setTimeout(() => {
+              setNotification('');
+          }, 5000);
+      });
+
       setNewWorkout('')
       setNewWorkoutDate('')
       setNewWorkoutDetail('')
-      setNotification(`added ${newWorkout} !`)
 
       // Clear notification after 5 seconds
       setTimeout(() => {
