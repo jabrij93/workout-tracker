@@ -1,7 +1,7 @@
-export const Notification = () => {
+export const Notification = ({ notification }) => {
     return (
         <div className="notification" style={{ border:'2px solid black', borderRadius:'6px' }}>
-            <p>TEST NOTI</p>
+            <p> { notification } </p>
         </div>
     )
 }

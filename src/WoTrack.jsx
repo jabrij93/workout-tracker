@@ -75,6 +75,7 @@ function App() {
       setNewWorkout('')
       setNewWorkoutDate('')
       setNewWorkoutDetail('')
+      setNotification(`added ${newWorkout} !`)
     }
 
   const handleLike = (id) => {
@@ -97,7 +98,7 @@ function App() {
   return (
 
     <div className="App">
-      <Notification />
+      <Notification notification={notification}/>
       <h1> Workout Tracker !</h1>
       
       {/* <CalendarGrid calendarData={calendarData} /> */}
@@ -108,7 +109,7 @@ function App() {
         <input 
           type="text" 
           value={newWorkout} 
-          onChange={(e)=>setNewWorkout(e.target.value)} 
+          onChange={(e)=>setNewWorkout(e.target.value)}   
           placeholder='Insert your workout'
         />
         <input 
