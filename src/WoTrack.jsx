@@ -76,6 +76,11 @@ function App() {
       setNewWorkoutDate('')
       setNewWorkoutDetail('')
       setNotification(`added ${newWorkout} !`)
+
+      // Clear notification after 5 seconds
+      setTimeout(() => {
+          setNotification('');
+      }, 5000);
     }
 
   const handleLike = (id) => {
@@ -98,7 +103,7 @@ function App() {
   return (
 
     <div className="App">
-      <Notification notification={notification}/>
+      {notification && <Notification notification={notification}/> }
       <h1> Workout Tracker !</h1>
       
       {/* <CalendarGrid calendarData={calendarData} /> */}
