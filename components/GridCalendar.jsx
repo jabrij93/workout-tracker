@@ -7,29 +7,31 @@ const GridCalendar = ({calendarData}) => {
     console.log("CalendarGrid2", startFromLastYear)
     let days = []
 
-    for (let i=0; i<364; i++) {
+    for (let i = 0; i < 364; i++) {
         const formatDate = new Date(startFromLastYear);
-        formatDate.setDate(startFromLastYear.getDate()+i);
-        const toISOString = formatDate.toISOString().split('T')[0]
-        console.log("format Date", toISOString)
-
-        const progressLevel = calendarData[toISOString]
-        console.log("Checking date:", toISOString, "Progress level:", progressLevel);
-
+        formatDate.setDate(startFromLastYear.getDate() + i);
+    
+        const day = String(formatDate.getDate()).padStart(2, '0');
+        const month = String(formatDate.getMonth() + 1).padStart(2, '0');
+        const year = formatDate.getFullYear();
+        const formattedDate = `${day}-${month}-${year}`;
+    
+        const progressLevel = calendarData[formattedDate];
+        console.log("Checking date:", formattedDate, "Progress level:", progressLevel);
+    
         days.push(
-            <div 
-                key={toISOString}
+            <div
+                key={formattedDate}
                 style={{
-                    height:'20px',
-                    width:'20px',
+                    height: '20px',
+                    width: '20px',
                     border: 'solid grey 2px',
                     backgroundColor: progressLevel > 0 ? 'green' : '#ddd',
-                    display:'inline-block',
+                    display: 'inline-block',
                 }}
-                title={toISOString}
-            >
-            </div>
-        )
+                title={formattedDate}
+            />
+        );
     }
 
     return (
