@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/workout'
+const baseUrl = '/api/workouts'
 
 const getAll = () => {
   return axios.get(baseUrl)

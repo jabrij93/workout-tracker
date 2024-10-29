@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/workout
+GET http://localhost:3001/api/workouts
