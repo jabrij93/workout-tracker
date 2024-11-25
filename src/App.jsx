@@ -7,15 +7,22 @@ import Login from '../components/Login';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Function to render the login form
+  const loginForm = () => (
+    <Login setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn to handle login
+  );
+
+  // Function to render the main app (WoTrack)
+  const mainApp = () => (
+    <WoTrack /> // Render your WoTrack component
+  );
+
   return (
-    <Router>
-      <Routes>
-        {/* If logged in, show the main timezone app, otherwise show login */}
-        <Route path="/" element={isLoggedIn ? <WoTrack /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        {/* Add more routes if needed */}
-      </Routes>
-    </Router>
+    <div>
+      <h1>Workout Tracker</h1>
+      {/* Conditionally render the login or main app based on login state */}
+      {isLoggedIn ? mainApp() : loginForm()}
+    </div>
   );
 }
 
