@@ -11,10 +11,7 @@ function App() {
     <Router>
       <Routes>
         {/* If logged in, show the main timezone app, otherwise show login */}
-        <Route
-          path="/"
-          element={isLoggedIn ? <WoTrack /> : <Navigate to="/login" />}
-        />
+        <Route path="/" element={isLoggedIn ? <WoTrack /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         {/* Add more routes if needed */}
       </Routes>

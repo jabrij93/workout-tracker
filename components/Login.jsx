@@ -1,13 +1,18 @@
 // src/Login.jsx
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 
 const Login = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
 
   const [formData, setFormData] = useState({ username: '', password: '' });
-  const [errors, setErrors] = useState({ username: "", password: "" });
+  const [errors, setErrors] = useState({ username: '', password: '' });
 
   const validateField = (name, value) => {
     if (name === "username" && value.trim() === "") {
@@ -28,7 +33,7 @@ const Login = ({ setIsLoggedIn }) => {
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Validate all fields before submission
@@ -40,11 +45,33 @@ const Login = ({ setIsLoggedIn }) => {
 
     // Check if there are no errors
     if (!Object.values(newErrors).some((error) => error)) {
-      console.log("Form submitted:", formData);
+      
+      try {
+        // Make an API call to your backend
+        const response = await axios.post('http://localhost:3002/api/login', {
+          username: formData.username,
+          password: formData.password,
+        });
+  
+        if (response.data.token) {
+          console.log("Login successful:", response.data);
+          
+          // Save token in local storage or state management
+          localStorage.setItem('authToken', response.data.token);
+          
+          // Set user as logged in
+          setIsLoggedIn(true);
+        } else {
+          console.error("Unexpected response format:", response.data);
+        }
+      } catch (error) {
+        console.error("Login failed:", error.response?.data || error.message);
+      }
     }
-
+    console.log("Form submitted:", formData);
     // Authentication logic here (for now just mock login)
     setIsLoggedIn(true);
+    navigate('/');
   };
 
   return (
