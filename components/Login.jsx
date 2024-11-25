@@ -22,9 +22,11 @@ const Login = ({ setIsLoggedIn }) => {
       const user = await loginService.login({
         username, password,
       })
+      console.log("user33", user)
       setUser(user)
       setUsername('')
       setPassword('')
+      setIsLoggedIn(true)
     } catch (exception) {
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
@@ -70,7 +72,7 @@ const Login = ({ setIsLoggedIn }) => {
               <input
                 type="text"
                 name="username"
-                value={formData.username}
+                value={username}
                 onChange={({ target }) => setUsername(target.value)}
                 required
               />
@@ -81,7 +83,7 @@ const Login = ({ setIsLoggedIn }) => {
               <input
                 type="password"
                 name="password"
-                value={formData.password}
+                value={password}
                 onChange={({ target }) => setPassword(target.value)}
                 required
               />
