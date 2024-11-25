@@ -6,28 +6,43 @@ const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
 
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [errors, setErrors] = useState({ username: "", password: "" });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+  const validateField = (name, value) => {
+    if (name === "username" && value.trim() === "") {
+      return "Username is required.";
+    }
+    if (name === "password" && value.length < 4) {
+      return "Password must be at least 4 characters.";
+    }
+    return "";
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Validate the field as the user types
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Simple validation (you can improve this)
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
+    // Validate all fields before submission
+    const newErrors = {
+      username: validateField("username", formData.username),
+      password: validateField("password", formData.password),
+    };
+    setErrors(newErrors);
 
+    // Check if there are no errors
+    if (!Object.values(newErrors).some((error) => error)) {
+      console.log("Form submitted:", formData);
+    }
+    
     // Authentication logic here (for now just mock login)
     setIsLoggedIn(true);
   };
@@ -65,23 +80,23 @@ const Login = ({ setIsLoggedIn }) => {
           <h1>Let's do this!</h1>
           <ul className="required-user-info">
             <div className="input-box">
-              <label htmlFor="first-name">USERNAME</label>
+              <label htmlFor="username">USERNAME</label>
               <input
                 type="text"
-                id="first-name"
-                name="firstName"
-                value={formData.firstName}
+                id="username"
+                name="username"
+                value={formData.username}
                 onChange={handleInputChange}
                 required
               />
             </div>
             <div className="input-box">
-              <label htmlFor="email">PASSWORD</label>
+              <label htmlFor="password">PASSWORD</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
                 onChange={handleInputChange}
                 required
               />
