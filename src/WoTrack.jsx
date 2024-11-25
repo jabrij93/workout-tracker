@@ -5,7 +5,7 @@ import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 import { Notification } from '../components/Notification';
 
-const WoTrack = ({ user }) => {
+const WoTrack = ({ user, isLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]); 
   const [newWorkout, setNewWorkout] = useState('');
@@ -119,36 +119,39 @@ const WoTrack = ({ user }) => {
 
     <div className="App">
       {notification && <Notification notification={notification} type={notificationType}/> }
-      <div> {user.name} is logged-in </div>
+      <div className="wo-track-container">
+        { isLoggedIn && <div className="user-loggedIn"> {user.name} is logged-in </div> }
+      </div>
 
+      <div className="wo-track-main">
+        <h1> Workout Tracker !</h1>
+        
+        {/* <CalendarGrid calendarData={calendarData} /> */}
+        <GridCalendar calendarData={calendarData} />
+        <br/>
 
-      <h1> Workout Tracker !</h1>
-      
-      {/* <CalendarGrid calendarData={calendarData} /> */}
-      <GridCalendar calendarData={calendarData} />
-      <br/>
-
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          value={newWorkout} 
-          onChange={(e)=>setNewWorkout(e.target.value)}   
-          placeholder='Insert your workout'
-        />
-        <input 
-          type="text" 
-          value={newWorkoutDate} 
-          onChange={(e)=>setNewWorkoutDate(e.target.value)} 
-          placeholder='Date(optional. If empty, date will default by today)'
-        />
-        <input 
-          type="text" 
-          value={newWorkoutDetail} 
-          onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
-          placeholder='Details(optional)'
-        />
-        <button type="submit"> Add Workout </button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            value={newWorkout} 
+            onChange={(e)=>setNewWorkout(e.target.value)}   
+            placeholder='Insert your workout'
+          />
+          <input 
+            type="text" 
+            value={newWorkoutDate} 
+            onChange={(e)=>setNewWorkoutDate(e.target.value)} 
+            placeholder='Date(optional. If empty, date will default by today)'
+          />
+          <input 
+            type="text" 
+            value={newWorkoutDetail} 
+            onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
+            placeholder='Details(optional)'
+          />
+          <button type="submit"> Add Workout </button>
+        </form>
+      </div>
 
       {workout.map((workoutItem, index) => {
       return (  
