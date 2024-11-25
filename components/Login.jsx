@@ -42,7 +42,7 @@ const Login = ({ setIsLoggedIn }) => {
     if (!Object.values(newErrors).some((error) => error)) {
       console.log("Form submitted:", formData);
     }
-    
+
     // Authentication logic here (for now just mock login)
     setIsLoggedIn(true);
   };
@@ -87,8 +87,10 @@ const Login = ({ setIsLoggedIn }) => {
                 name="username"
                 value={formData.username}
                 onChange={handleInputChange}
+                className={errors.username ? "error" : formData.username ? "success" : ""}
                 required
               />
+              <span className="error-message">{errors.username}</span>
             </div>
             <div className="input-box">
               <label htmlFor="password">PASSWORD</label>
@@ -98,16 +100,18 @@ const Login = ({ setIsLoggedIn }) => {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
+                className={errors.password ? "error" : formData.password ? "success" : ""}
                 required
               />
+              <span className="error-message">{errors.password}</span>
             </div>
           </ul>
         </div>
   
         <div className="third-content">
           <div className="submit-button">
-            <button type="submit">Create Account</button>
-            <p>Already have an account? <span>Log in</span></p>
+            <button type="submit">Submit</button>
+            <p>Don't have an account? <span>Register</span></p>
           </div>
         </div>
       </form>

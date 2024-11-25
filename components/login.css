@@ -156,50 +156,34 @@ p span {
     color: #a96b25
 }
 
-.error-message, .error-message2, .error-message3, .error-message4 {
+/* Default state */
+input {
+    border: 1px solid gray;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+  
+/* Error state (applied via a class) */
+input.error {
+    border-color: var(--color-invalid);
+}
+  
+/* Success state (applied via a class) */
+  input.success {
+    border-color: var(--color-valid);
+  }
+  
+  /* Error message (hidden by default) */
+  .error-message {
     display: none;
-    font-size: 12px ;
+    font-size: 12px;
     font-weight: bold;
     color: var(--color-invalid);
     margin-top: 5px;
-}
-
-/* To demonstrate that the validations only happen on blur, we apply this malpractice */
-input:focus {
-    outline: none;
   }
-
-  /* Only show invalid ring while not focused */
-input:not(:focus):not(:placeholder-shown):invalid {
-    border-color: var(--color-invalid);
-  }
-
- /* input#first-name:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
-    display: block; 
-  }
-
- input#last-name:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
-    display: block; 
-  } */
-
- input#email:not(:focus):not(:placeholder-shown):invalid ~ .error-message2 {
-    display: block; 
-  }
-
-/* input#phone-number:not(:focus):not(:placeholder-shown):invalid ~ .error-message3 {
-    display: block; 
-  } */
   
- input#password:not(:focus):not(:placeholder-shown):invalid ~ .error-message4 {
-    display: block; 
+  /* Show error message when the input has an error */
+  input.error ~ .error-message {
+    display: block;
   }
-
-/* input#password2:not(:focus):not(:placeholder-shown):invalid ~ .error-message4 {
-    display: block; 
-  } */
-
-  /* Only show valid ring while not focused and if a value is entered */
-  /* :empty won't work here as that targets elements that have no childeren. Therefore we abuse :placeholder-shown */
-  input:not(:focus):not(:placeholder-shown):valid {
-    border-color: var(--color-valid);
-  }
+  
