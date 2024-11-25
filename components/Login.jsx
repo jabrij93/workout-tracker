@@ -7,12 +7,8 @@ const Login = ({ setIsLoggedIn }) => {
   const [password, setPassword] = useState('')
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
+    username: '',
     password: '',
-    confirmPassword: ''
   });
 
   const handleInputChange = (event) => {

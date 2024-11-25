@@ -5,7 +5,7 @@ import WoTrack from './WoTrack';  // Renaming original App content for clarity
 import Login from '../components/Login';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
