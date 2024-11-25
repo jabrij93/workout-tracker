@@ -98,6 +98,7 @@ h1 {
 
 .required-user-info {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -173,29 +174,29 @@ input:not(:focus):not(:placeholder-shown):invalid {
     border-color: var(--color-invalid);
   }
 
- input#first-name:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
+ /* input#first-name:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
     display: block; 
   }
 
  input#last-name:not(:focus):not(:placeholder-shown):invalid ~ .error-message {
     display: block; 
-  }
+  } */
 
  input#email:not(:focus):not(:placeholder-shown):invalid ~ .error-message2 {
     display: block; 
   }
 
-input#phone-number:not(:focus):not(:placeholder-shown):invalid ~ .error-message3 {
+/* input#phone-number:not(:focus):not(:placeholder-shown):invalid ~ .error-message3 {
     display: block; 
-  }
+  } */
   
  input#password:not(:focus):not(:placeholder-shown):invalid ~ .error-message4 {
     display: block; 
   }
 
-input#password2:not(:focus):not(:placeholder-shown):invalid ~ .error-message4 {
+/* input#password2:not(:focus):not(:placeholder-shown):invalid ~ .error-message4 {
     display: block; 
-  }
+  } */
 
   /* Only show valid ring while not focused and if a value is entered */
   /* :empty won't work here as that targets elements that have no childeren. Therefore we abuse :placeholder-shown */

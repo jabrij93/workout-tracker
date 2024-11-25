@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 
 const Login = ({ setIsLoggedIn }) => {
+  const [username, setUsername] = useState('') 
+  const [password, setPassword] = useState('')
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -65,8 +68,8 @@ const Login = ({ setIsLoggedIn }) => {
         <div className="second-content">
           <h1>Let's do this!</h1>
           <ul className="required-user-info">
-            <li className="input-box">
-              <label htmlFor="first-name">FIRST NAME</label>
+            <div className="input-box">
+              <label htmlFor="first-name">USERNAME</label>
               <input
                 type="text"
                 id="first-name"
@@ -75,20 +78,9 @@ const Login = ({ setIsLoggedIn }) => {
                 onChange={handleInputChange}
                 required
               />
-            </li>
-            <li className="input-box">
-              <label htmlFor="last-name">LAST NAME</label>
-              <input
-                type="text"
-                id="last-name"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleInputChange}
-                required
-              />
-            </li>
-            <li className="input-box">
-              <label htmlFor="email">EMAIL</label>
+            </div>
+            <div className="input-box">
+              <label htmlFor="email">PASSWORD</label>
               <input
                 type="email"
                 id="email"
@@ -97,40 +89,7 @@ const Login = ({ setIsLoggedIn }) => {
                 onChange={handleInputChange}
                 required
               />
-            </li>
-            <li className="input-box">
-              <label htmlFor="phone-number">PHONE NUMBER</label>
-              <input
-                type="text"
-                id="phone-number"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                required
-              />
-            </li>
-            <li className="input-box">
-              <label htmlFor="password">PASSWORD</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-            </li>
-            <li className="input-box">
-              <label htmlFor="confirm-password">CONFIRM PASSWORD</label>
-              <input
-                type="password"
-                id="confirm-password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-              />
-            </li>
+            </div>
           </ul>
         </div>
   
