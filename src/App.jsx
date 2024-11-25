@@ -15,7 +15,7 @@ function App() {
 
   // Function to render the main app (WoTrack)
   const mainApp = () => (
-    <WoTrack user={user} /> // Render your WoTrack component
+    <WoTrack user={user} isLoggedIn={isLoggedIn} /> // Render your WoTrack component
   );
 
   return (
