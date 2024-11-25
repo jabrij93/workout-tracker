@@ -6,15 +6,16 @@ import Login from '../components/Login';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null)
 
   // Function to render the login form
   const loginForm = () => (
-    <Login setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn to handle login
+    <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} /> // Pass setIsLoggedIn to handle login
   );
 
   // Function to render the main app (WoTrack)
   const mainApp = () => (
-    <WoTrack /> // Render your WoTrack component
+    <WoTrack user={user} /> // Render your WoTrack component
   );
 
   return (

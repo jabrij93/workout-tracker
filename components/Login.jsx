@@ -1,15 +1,11 @@
 // src/Login.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 import loginService from '../src/services/login.js'
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setUser }) => {
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
-
   const [errorMessage, setErrorMessage] = useState({ username: '', password: '' });
 
   const [formData, setFormData] = useState({ username: '', password: '' });

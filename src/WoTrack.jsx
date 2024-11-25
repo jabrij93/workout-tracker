@@ -1,12 +1,11 @@
 import logo from './logo.svg';
-import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 import { Notification } from '../components/Notification';
 
-function App() {
+const WoTrack = ({ user }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]); 
   const [newWorkout, setNewWorkout] = useState('');
@@ -49,7 +48,7 @@ function App() {
         if (date) {
           workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
         } else {
-          console.warn("Workout missing date:", item);
+          console.warn('Workout missing date:' , item)
         }
       });
       setCalendarData(workoutByDate);
@@ -120,6 +119,9 @@ function App() {
 
     <div className="App">
       {notification && <Notification notification={notification} type={notificationType}/> }
+      <div> {user.name} is logged-in </div>
+
+
       <h1> Workout Tracker !</h1>
       
       {/* <CalendarGrid calendarData={calendarData} /> */}
@@ -164,4 +166,4 @@ function App() {
   )
 }
 
-export default App
+export default WoTrack;
