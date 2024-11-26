@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 import loginService from '../src/services/login.js'
+import workoutService from '../src/services/workouts.js'
 
 const Login = ({ setIsLoggedIn, setUser }) => {
   const [username, setUsername] = useState('') 
@@ -18,6 +19,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       const user = await loginService.login({
         username, password,
       })
+      workoutService.setToken(user.token)
       console.log("user33", user)
       setUser(user)
       setUsername('')

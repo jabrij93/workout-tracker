@@ -7,7 +7,8 @@ import { Notification } from '../components/Notification';
 
 const WoTrack = ({ user, isLoggedIn }) => {
   const [count, setCount] = useState(0);
-  const [workout, setWorkout] = useState([]); 
+  const [workout, setWorkout] = useState([]);
+  console.log("workout", workout); 
   const [newWorkout, setNewWorkout] = useState('');
   const [newWorkoutDate, setNewWorkoutDate] = useState('');
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
