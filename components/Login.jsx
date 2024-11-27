@@ -19,6 +19,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       const user = await loginService.login({
         username, password,
       })
+      window.localStorage.setItem('loggedInUser', JSON.stringify(user))
       workoutService.setToken(user.token)
       console.log("user33", user)
       setUser(user)
@@ -32,6 +33,8 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       }, 5000)
     }
   }
+
+  
 
   return (
     <div className="login-container">
