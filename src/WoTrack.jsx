@@ -5,7 +5,7 @@ import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 import { Notification } from '../components/Notification';
 
-const WoTrack = ({ user, isLoggedIn }) => {
+const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
   console.log("workout", workout); 
@@ -115,6 +115,12 @@ const WoTrack = ({ user, isLoggedIn }) => {
       })
     }
   }
+
+  const handleLogout = async (event) => {
+    event.preventDefault()
+    console.log('logged-out')
+    setIsLoggedIn(false)
+  }
   
   return (
 
@@ -122,7 +128,11 @@ const WoTrack = ({ user, isLoggedIn }) => {
       {notification && <Notification notification={notification} type={notificationType}/> }
       <div className="wo-track-container">
         { isLoggedIn && <div className="user-loggedIn"> {user.name} is logged-in </div> }
+        <div>
+          <button onClick={handleLogout}>Log out</button>
+        </div>
       </div>
+      
 
       <div className="wo-track-main">
         <h1> Workout Tracker !</h1>

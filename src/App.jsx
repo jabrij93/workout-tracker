@@ -14,7 +14,7 @@ function App() {
   );
 
   const mainApp = () => (
-    <WoTrack user={user} isLoggedIn={isLoggedIn} /> 
+    <WoTrack user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
   );
 
   return (
