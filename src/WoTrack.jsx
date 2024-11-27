@@ -8,7 +8,6 @@ import { Notification } from '../components/Notification';
 const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
-  console.log("workout", workout); 
   const [newWorkout, setNewWorkout] = useState('');
   const [newWorkoutDate, setNewWorkoutDate] = useState('');
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
@@ -54,6 +53,8 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
       });
       setCalendarData(workoutByDate);
   })}, []);
+
+  
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -118,7 +119,9 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = async (event) => {
     event.preventDefault()
+    
     console.log('logged-out')
+    window.localStorage.removeItem('loggedInUser');
     setIsLoggedIn(false)
   }
   
