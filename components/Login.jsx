@@ -1,5 +1,5 @@
 // src/Login.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 import loginService from '../src/services/login.js'
 import workoutService from '../src/services/workouts.js'
@@ -8,7 +8,6 @@ const Login = ({ setIsLoggedIn, setUser }) => {
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState({ username: '', password: '' });
-
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [errors, setErrors] = useState({ username: '', password: '' });
 
@@ -34,7 +33,20 @@ const Login = ({ setIsLoggedIn, setUser }) => {
     }
   }
 
-  
+  useEffect(() => {
+    const loggedInUserJSON = window.localStorage.getItem('loggedInUser')
+    if (loggedInUserJSON) {
+      try {
+        const user = JSON.parse(loggedInUserJSON);
+        setUser(user);
+        workoutService.setToken(user.token);
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("Failed to parse user from localStorage:", error);
+        window.localStorage.removeItem('loggedInUser'); // Cleanup invalid data
+      }
+    }
+  },[])
 
   return (
     <div className="login-container">
