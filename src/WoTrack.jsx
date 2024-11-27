@@ -4,6 +4,7 @@ import axios from 'axios';
 import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 import { Notification } from '../components/Notification';
+import dayjs from 'dayjs';
 
 const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   // Generate id for every new data workout 
   const generateId = () => {
@@ -54,51 +56,57 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
       setCalendarData(workoutByDate);
   })}, []);
 
-  
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-
-      if (newWorkout.trim() === '') return;
-
-      const newWorkoutData = {
-        id: generateId(),
-        workouts: newWorkout,
-        date: newWorkoutDate,
-        detail: newWorkoutDetail,
-        likes: 0,
-      }
-
-      workoutService
-        .create(newWorkoutData)
-        .then(response => {
-          setWorkout([...workout, response.data])
-          setNotification(`added ${newWorkout} !`)
-          setNotificationType('success')
-        })
-        .catch(error => {
-          // Set error notification
-          setNotification(`Error: ${error.response.data.error}`);
-          setNotificationType('error')
-          
-          // Optional: Log the error for debugging purposes
-          console.log("Error creating workout:", error.response.data.error);
-
-          // Clear error notification after 5 seconds
-          setTimeout(() => {
-              setNotification('');
-          }, 5000);
-      });
-
-      setNewWorkout('')
-      setNewWorkoutDate('')
-      setNewWorkoutDetail('')
-
-      // Clear notification after 5 seconds
-      setTimeout(() => {
-          setNotification('');
-      }, 5000);
+    e.preventDefault();
+  
+    if (newWorkout.trim() === '') return;
+  
+    const formattedDate = newWorkoutDate
+      ? dayjs(newWorkoutDate).format('D-M-YYYY') // Ensure the date is in 'd-m-yyyy' format
+      : dayjs().format('D-M-YYYY'); // Default to today's date
+  
+    const newWorkoutData = {
+      id: generateId(),
+      workouts: newWorkout,
+      date: formattedDate,
+      detail: newWorkoutDetail,
+      likes: 0,
     }
+  
+    // Optimistic UI update: Immediately update the workout state with the new data
+    setWorkout(prevWorkouts => [...prevWorkouts, newWorkoutData]);
+  
+    // Start loading state
+    setIsLoading(true);
+  
+    workoutService
+      .create(newWorkoutData)
+      .then(response => {
+        // After the successful creation of a workout, replace the local workout state with the real data
+        setWorkout(prevWorkouts =>
+          prevWorkouts.map(item => item.id === newWorkoutData.id ? response.data : item)
+        );
+        setNotification(`added ${newWorkout} !`)
+        setNotificationType('success');
+      })
+      .catch(error => {
+        setNotification(`Error: ${error.response.data.error}`);
+        setNotificationType('error');
+        console.log("Error creating workout:", error.response.data.error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setNewWorkout('');
+        setNewWorkoutDate('');
+        setNewWorkoutDetail('');
+      });
+  
+    // Clear notification after 5 seconds
+    setTimeout(() => {
+      setNotification('');
+    }, 5000);
+  }
 
   const handleLike = (id) => {
     // Find and update the specific item directly
@@ -129,6 +137,9 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
 
     <div className="App">
       {notification && <Notification notification={notification} type={notificationType}/> }
+
+      {isLoading && <p>Loading...</p>}
+
       <div className="wo-track-container">
         { isLoggedIn && <div className="user-loggedIn"> {user.name} is logged-in </div> }
         <div>
@@ -168,10 +179,11 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
       </div>
 
       {workout.map((workoutItem, index) => {
+
       return (  
         <div key={index} >
-          <p>WORKOUT : {workoutItem.workouts} </p>
-          <p>LIKES : {workoutItem.likes} </p> 
+          <p>WORKOUT : {workoutItem?.workouts } </p>
+          <p>LIKES : {workoutItem?.likes} </p> 
             <span> 
               <button onClick={()=>handleLike(workoutItem.id)}> 
                 LIKE 
