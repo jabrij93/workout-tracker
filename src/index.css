@@ -39,6 +39,16 @@ code {
   z-index: 1; /* Ensure it stays above other content */
 }
 
+.user-logout {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.8); /* Optional styling */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 1; 
+}
+
 .wo-track-main {
   width: 100%;
   display: flex;

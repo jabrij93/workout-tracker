@@ -19,6 +19,8 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log('userinWotrack', user)
+
   // Generate id for every new data workout 
   const generateId = () => {
     // Generate two random lowercase letters (a-z)
@@ -142,10 +144,11 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
 
       <div className="wo-track-container">
         { isLoggedIn && <div className="user-loggedIn"> {user.name} is logged-in </div> }
-        <div>
+        <div className='user-logout'>
           <button onClick={handleLogout}>Log out</button>
         </div>
       </div>
+      
       
 
       <div className="wo-track-main">
