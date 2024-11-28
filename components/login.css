@@ -156,34 +156,24 @@ p span {
     color: #a96b25
 }
 
-/* Default state */
-input {
-    border: 1px solid gray;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-  
-/* Error state (applied via a class) */
-input.error {
-    border-color: var(--color-invalid);
-}
-  
-/* Success state (applied via a class) */
-  input.success {
-    border-color: var(--color-valid);
-  }
-  
-  /* Error message (hidden by default) */
-  .error-message {
-    display: none;
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--color-invalid);
-    margin-top: 5px;
-  }
-  
   /* Show error message when the input has an error */
   input.error ~ .error-message {
     display: block;
   }
+
+  .error-container {
+    background-color: #ffe6e6; /* Light red background */
+    color: #ff0000; /* Red text */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .error-text {
+    margin: 0;
+    font-weight: bold;
+  }
+  
   

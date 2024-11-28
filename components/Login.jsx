@@ -26,7 +26,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       setPassword('')
       setIsLoggedIn(true)
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage('Username or password is incorrect')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -91,6 +91,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
               />
               <span className="error-message">{errors.username}</span>
             </div>
+            
             <div className="input-box">
               PASSWORD
               <input
@@ -102,6 +103,12 @@ const Login = ({ setIsLoggedIn, setUser }) => {
               />
               <span className="error-message">{errors.password}</span>
             </div>
+
+            {errorMessage && typeof errorMessage === 'string' && (
+              <div className="error-container">
+                <p className="error-text">{errorMessage}</p>
+              </div>
+            )}            
           </ul>
         </div>
   
