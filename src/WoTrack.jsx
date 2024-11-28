@@ -4,13 +4,15 @@ import axios from 'axios';
 import workoutService from './services/workouts'
 import GridCalendar from '../components/GridCalendar.jsx';
 import { Notification } from '../components/Notification';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
 
 const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
   const [newWorkout, setNewWorkout] = useState('');
-  const [newWorkoutDate, setNewWorkoutDate] = useState('');
+  const [newWorkoutDate, setNewWorkoutDate] = useState(''); // Default to today's date
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
@@ -62,9 +64,7 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   
     if (newWorkout.trim() === '') return;
   
-    const formattedDate = newWorkoutDate
-      ? dayjs(newWorkoutDate).format('D-M-YYYY') // Ensure the date is in 'd-m-yyyy' format
-      : dayjs().format('D-M-YYYY'); // Default to today's date
+    const formattedDate = dayjs(newWorkoutDate).format('DD-MM-YYYY'); // Matches GridCalendar
   
     const newWorkoutData = {
       id: generateId(),
@@ -162,11 +162,11 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
             onChange={(e)=>setNewWorkout(e.target.value)}   
             placeholder='Insert your workout'
           />
-          <input 
-            type="text" 
-            value={newWorkoutDate} 
-            onChange={(e)=>setNewWorkoutDate(e.target.value)} 
-            placeholder='Date(optional. If empty, date will default by today)'
+          <ReactDatePicker 
+            selected={newWorkoutDate} 
+            onChange={(date) => setNewWorkoutDate(date)} 
+            dateFormat="dd-MM-yyyy" // Ensure consistent date format
+            placeholderText="Select a date" 
           />
           <input 
             type="text" 
