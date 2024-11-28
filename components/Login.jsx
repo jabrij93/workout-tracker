@@ -89,7 +89,6 @@ const Login = ({ setIsLoggedIn, setUser }) => {
                 onChange={({ target }) => setUsername(target.value)}
                 required
               />
-              <span className="error-message">{errors.username}</span>
             </div>
             
             <div className="input-box">
@@ -101,14 +100,13 @@ const Login = ({ setIsLoggedIn, setUser }) => {
                 onChange={({ target }) => setPassword(target.value)}
                 required
               />
-              <span className="error-message">{errors.password}</span>
-            </div>
 
             {errorMessage && typeof errorMessage === 'string' && (
               <div className="error-container">
                 <p className="error-text">{errorMessage}</p>
               </div>
-            )}            
+            )}     
+            </div>                     
           </ul>
         </div>
   
