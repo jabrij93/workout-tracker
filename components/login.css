@@ -156,24 +156,21 @@ p span {
     color: #a96b25
 }
 
-  /* Show error message when the input has an error */
-  input.error ~ .error-message {
+input.error ~ .error-message {
     display: block;
-  }
+}
 
-  .error-container {
-    background-color: #ffe6e6; /* Light red background */
-    color: #ff0000; /* Red text */
+.error-container {
+    background-color: #ffe6e6;
+    color: #ff0000;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ff0000;
     border-radius: 5px;
     text-align: center;
-  }
+}
   
-  .error-text {
+.error-text {
     margin: 0;
     font-weight: bold;
-  }
-  
-  
+}  

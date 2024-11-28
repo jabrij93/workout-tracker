@@ -43,7 +43,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         setIsLoggedIn(true);
       } catch (error) {
         console.error("Failed to parse user from localStorage:", error);
-        window.localStorage.removeItem('loggedInUser'); // Cleanup invalid data
+        window.localStorage.removeItem('loggedInUser');
       }
     }
   },[])
@@ -52,7 +52,6 @@ const Login = ({ setIsLoggedIn, setUser }) => {
     <div className="login-container">
       <div className="left-container">
         <div className="image">
-          {/* Ensure image tags are self-closing */}
           <img src="./laptopncoffeebymeghanmosser.jpg" alt="laptop and coffee" />
           <div className="caption">
             Photo by <span>Meghan Mosser</span> on <span>Unsplash</span>
@@ -63,10 +62,8 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         </div>
       </div>
   
-      {/* Form element */}
       <form className="content-1" onSubmit={handleLogin}>
         <div className="first-content">
-          {/* Use self-closing tags for <br /> and correct className */}
           <p className="content1">
             This is not a real online service! You know you need something <br />
             like this in your life to help you realize your deepest dreams. <br />
