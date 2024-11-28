@@ -52,13 +52,13 @@ const Login = ({ setIsLoggedIn, setUser }) => {
     <div className="login-container">
       <div className="left-container">
         <div className="image">
-          <img src="./laptopncoffeebymeghanmosser.jpg" alt="laptop and coffee" />
+          <img src="/laptopncoffeebymeghanmosser.jpg" alt="laptop and coffee" />
           <div className="caption">
             Photo by <span>Meghan Mosser</span> on <span>Unsplash</span>
           </div>
         </div>
         <div className="bg-image">
-          <img src="./Jj-webdvlpr.png" alt="logo" />
+          <img src="/Jj-webdvlpr.png" alt="logo" />
         </div>
       </div>
   
