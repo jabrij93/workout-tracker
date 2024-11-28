@@ -75,7 +75,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         </div>
         
         <div className="second-content">
-          <h1>Let's do this!</h1>
+          <h1>Let's do this!</h1> <p> To login, use : username : root, password : salainen </p>
           <ul className="required-user-info">
             <div className="input-box">
               USERNAME
