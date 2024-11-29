@@ -149,8 +149,6 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
         </div>
       </div>
       
-      
-
       <div className="wo-track-main">
         <h1> Workout Tracker !</h1>
         

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
 import loginService from '../src/services/login.js'
 import workoutService from '../src/services/workouts.js'
+import Togglable from '../components/Togglable.jsx'
 
 const Login = ({ setIsLoggedIn, setUser }) => {
   const [username, setUsername] = useState('') 
@@ -75,7 +76,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         </div>
         
         <div className="second-content">
-          <h1>Let's do this!</h1> <p> To login, use : username : root, password : salainen </p>
+          <h1>Let's do this! <div className='show-info'> <Togglable buttonLabel='Show login info'> <p className='normal-text'> To login, use : username : 'root', password : 'salainen' </p> </Togglable> </div></h1> 
           <ul className="required-user-info">
             <div className="input-box">
               USERNAME
