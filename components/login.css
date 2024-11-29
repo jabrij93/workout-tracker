@@ -91,10 +91,29 @@ form .first-content {
 }
 
 h1 {
+    display: inline-flex;
     font-size: 30px;
     color: #212b39;
     padding-bottom: 5px;
+    gap: 10px;
 }
+
+.show-info {
+    margin-top: 8px;
+    font-size: 1px;
+}
+
+.togglable {
+    background-color: rgba(255, 255, 255, 0.8); /* Optional styling */
+    border-radius: 5px;
+    border-color: gray;
+    padding: 3px;
+}
+
+.normal-text {
+    color:grey;
+    font-size: 1rem; /* Or the desired size for normal paragraphs */
+}  
 
 .required-user-info {
     display: flex;
@@ -149,7 +168,6 @@ li {
     color: white;
     font-weight: bold;
 }
-
 
 p span {
     text-decoration: none;
