@@ -15,9 +15,7 @@ code {
 .App {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   border: 2px solid black;
 }
 
@@ -56,3 +54,60 @@ code {
   justify-content: flex-start; /* Align content to the top */
   align-items: center; /* Center horizontally */
 }
+
+/* Card project  */
+.main-content {
+  display: grid;
+  grid-column: 2/3;
+  grid-row: 3/4;
+  background-color: #e2e8f0;
+  grid-auto-flow: column;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  font-family: Roboto;
+  margin-top: -22px;
+}
+
+/* Article part */
+.article {
+  grid-column: 1/2;
+  margin: 0px 20px 0px 20px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(20px, 1fr));
+  grid-column: 2/3;
+  gap: 30px;
+}
+
+.card {
+  border: 0px solid gray;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 1px 1px lightgray;
+  padding: 18px;
+
+}
+
+.card .title {
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card p {
+  color: gray;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card .card-features {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 28px;
+}
+
+/* Article part finish */

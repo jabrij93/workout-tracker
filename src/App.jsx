@@ -9,17 +9,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null)
   const [workouts, setWorkouts] = useState([]);
-  const [notification, setNotification] = useState('');
-  const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    workoutService
-      .getAll()
-      .then(initialWorkouts => {
-        setWorkouts(initialWorkouts);
-      });
-  }, []);
+  // useEffect(() => {
+  //   workoutService
+  //     .getAll()
+  //     .then(initialWorkouts => {
+  //       setWorkouts(initialWorkouts);
+  //     });
+  // }, []);
 
   const addWorkout = (workoutObject) => {
     workoutService

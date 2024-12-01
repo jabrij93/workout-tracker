@@ -60,7 +60,7 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
     setNewWorkoutDate('');
     setNewWorkoutDetail('');
 
-    setNotification(`added ${newWorkout} !`)
+    setNotification(`successfully added ${newWorkout} !`)
     setNotificationType('success');
 
     // Clear notification after 5 seconds
@@ -115,40 +115,48 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <GridCalendar calendarData={calendarData} />
         <br/>
 
-        <form onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            value={newWorkout} 
-            onChange={(e)=>setNewWorkout(e.target.value)}   
-            placeholder='Insert your workout'
-          />
-          <ReactDatePicker 
-            selected={newWorkoutDate} 
-            onChange={(date) => setNewWorkoutDate(date)} 
-            dateFormat="dd-MM-yyyy" // Ensure consistent date format
-            placeholderText="Select a date" 
-          />
-          <input 
-            type="text" 
-            value={newWorkoutDetail} 
-            onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
-            placeholder='Details(optional)'
-          />
-          <button type="submit"> Add Workout </button>
-        </form>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              value={newWorkout} 
+              onChange={(e)=>setNewWorkout(e.target.value)}   
+              placeholder='Insert your workout'
+            />
+            <ReactDatePicker 
+              selected={newWorkoutDate} 
+              onChange={(date) => setNewWorkoutDate(date)} 
+              dateFormat="dd-MM-yyyy" // Ensure consistent date format
+              placeholderText="Select a date" 
+            />
+            <input 
+              type="text" 
+              value={newWorkoutDetail} 
+              onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
+              placeholder='Details(optional)'
+            />
+            <button type="submit"> Add Workout </button>
+          </form>
+        </div>
       </div>
 
       {workout.map((workoutItem, index) => {
 
       return (  
-        <div key={index} >
-          <p>WORKOUT : {workoutItem?.workouts } </p>
-          <p>LIKES : {workoutItem?.likes} </p> 
-            <span> 
-              <button onClick={()=>handleLike(workoutItem.id)}> 
-                LIKE 
-              </button> 
-            </span>
+        <div className="main-content" key={index}>
+            <div className="article">
+              <div className="card-container">
+                <div className="card">
+                  <p className="title"> WORKOUT : {workoutItem?.workouts } </p>
+                  <p>LIKES : {workoutItem?.likes} </p> 
+                    <span> 
+                      <button onClick={()=>handleLike(workoutItem.id)}> 
+                        LIKE 
+                      </button> 
+                    </span>
+                </div>    
+              </div>
+            </div>   
         </div>
       )})}
     </div>
