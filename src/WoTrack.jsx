@@ -59,6 +59,14 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
     setNewWorkout('');
     setNewWorkoutDate('');
     setNewWorkoutDetail('');
+
+    setNotification(`added ${newWorkout} !`)
+    setNotificationType('success');
+
+    // Clear notification after 5 seconds
+    setTimeout(() => {
+      setNotification('');
+    }, 5000); 
   }
 
   const handleLike = (id) => {

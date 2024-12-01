@@ -27,14 +27,6 @@ function App() {
       .then(returnedWorkout => {
         setWorkouts(workouts.concat(returnedWorkout))
       })
-  
-      setNotification(`added NEW WORKOUT !`)
-      setNotificationType('success');
-
-    // Clear notification after 5 seconds
-    setTimeout(() => {
-      setNotification('');
-    }, 5000); 
   }
 
   const loginForm = () => (
