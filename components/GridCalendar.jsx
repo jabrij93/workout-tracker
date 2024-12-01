@@ -4,7 +4,7 @@ const GridCalendar = ({calendarData}) => {
     const today = new Date()
     const startFromLastYear = new Date(today)
     startFromLastYear.setDate(today.getDate() - 364)
-    console.log("CalendarGrid2", startFromLastYear)
+    // console.log("CalendarGrid2", startFromLastYear)
     let days = []
 
     for (let i = 0; i < 364; i++) {
@@ -17,7 +17,7 @@ const GridCalendar = ({calendarData}) => {
         const formattedDate = `${day}-${month}-${year}`;
     
         const progressLevel = calendarData[formattedDate];
-        console.log("Checking date:", formattedDate, "Progress level:", progressLevel);
+        // console.log("Checking date:", formattedDate, "Progress level:", progressLevel);
     
         days.push(
             <div

@@ -12,14 +12,12 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
   const [newWorkout, setNewWorkout] = useState('');
-  const [newWorkoutDate, setNewWorkoutDate] = useState(''); // Default to today's date
+  const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log('userinWotrack', user)
 
   useEffect(() => {
     workoutService
@@ -46,7 +44,10 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   
     if (newWorkout.trim() === '') return;
   
-    const formattedDate = dayjs(newWorkoutDate).format('DD-MM-YYYY'); // Matches GridCalendar
+    // Default to today's date if no date is selected
+    const selectedDate = newWorkoutDate || new Date(); 
+
+    const formattedDate = dayjs(selectedDate).format('DD-MM-YYYY'); // Matches GridCalendar
   
     createWorkout({
       workouts: newWorkout,
