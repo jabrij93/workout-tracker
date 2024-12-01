@@ -8,7 +8,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
 
-const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
+const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
   const [newWorkout, setNewWorkout] = useState('');
@@ -48,45 +48,16 @@ const WoTrack = ({ user, isLoggedIn, setIsLoggedIn }) => {
   
     const formattedDate = dayjs(newWorkoutDate).format('DD-MM-YYYY'); // Matches GridCalendar
   
-    const newWorkoutData = {
+    createWorkout({
       workouts: newWorkout,
       date: formattedDate,
       detail: newWorkoutDetail,
       likes: 0,
-    }
+    })
   
-    // Optimistic UI update: Immediately update the workout state with the new data
-    setWorkout(prevWorkouts => [...prevWorkouts, newWorkoutData]);
-  
-    // Start loading state
-    setIsLoading(true);
-  
-    workoutService
-      .create(newWorkoutData)
-      .then(response => {
-        // After the successful creation of a workout, replace the local workout state with the real data
-        setWorkout(prevWorkouts =>
-          prevWorkouts.map(item => item.id === newWorkoutData.id ? response.data : item)
-        );
-        setNotification(`added ${newWorkout} !`)
-        setNotificationType('success');
-      })
-      .catch(error => {
-        setNotification(`Error: ${error.response.data.error}`);
-        setNotificationType('error');
-        console.log("Error creating workout:", error.response.data.error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-        setNewWorkout('');
-        setNewWorkoutDate('');
-        setNewWorkoutDetail('');
-      });
-  
-    // Clear notification after 5 seconds
-    setTimeout(() => {
-      setNotification('');
-    }, 5000);
+    setNewWorkout('');
+    setNewWorkoutDate('');
+    setNewWorkoutDetail('');
   }
 
   const handleLike = (id) => {
