@@ -11,7 +11,6 @@ import dayjs from 'dayjs';
 const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
-  console.log('workout', workout)
   const [newWorkout, setNewWorkout] = useState('');
   const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
@@ -19,6 +18,8 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log('user33', user)
 
   useEffect(() => {
     workoutService
@@ -143,17 +144,23 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <div className="main-content" >
             <div className="article">
               <div className="card-container">
-                {workout.map((workoutItem, index) => {
-                  console.log(`Rendering workout ${index + 1}:`, workoutItem);
-                    return (
-                      <div className="card" key={workoutItem.id || index}>
-                        <p className="title">WORKOUT: {workoutItem?.workouts}</p>
-                        <p>LIKES: {workoutItem?.likes}</p>
-                        <span>
-                          <button onClick={() => handleLike(workoutItem.id)}>LIKE</button>
-                        </span>
-                      </div>
-                    );
+                {workout
+                  .filter((workout) => workout.user.username === user.username) // Filter workouts by the current user
+                  .slice() // Create a copy of the blogs array to avoid mutating the original
+                  .sort((a, b) => b.date - a.date) // Sort the array based on likes in descending order
+                  .map((workoutItem, index) => {
+                    console.log(`Rendering workout ${index + 1}:`, workoutItem);
+                      return (
+                        
+                        <div className="card" key={workoutItem.id || index}>
+                          <div className="date"> <p> DATE: {workoutItem.date} </p></div>
+                          <p className="title">WORKOUT: {workoutItem?.workouts}</p>
+                          <p>LIKES: {workoutItem?.likes}</p>
+                          <span>
+                            <button onClick={() => handleLike(workoutItem.id)}>LIKE</button>
+                          </span>
+                        </div>
+                      );
                 })}
               </div>
             </div>   
