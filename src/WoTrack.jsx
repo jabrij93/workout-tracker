@@ -11,6 +11,7 @@ import dayjs from 'dayjs';
 const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
   const [workout, setWorkout] = useState([]);
+  console.log('workout', workout)
   const [newWorkout, setNewWorkout] = useState('');
   const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
   const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
@@ -95,7 +96,6 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   }
   
   return (
-
     <div className="App">
       {notification && <Notification notification={notification} type={notificationType}/> }
 
@@ -140,25 +140,24 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         </div>
       </div>
 
-      {workout.map((workoutItem, index) => {
-
-      return (  
-        <div className="main-content" key={index}>
+        <div className="main-content" >
             <div className="article">
               <div className="card-container">
-                <div className="card">
-                  <p className="title"> WORKOUT : {workoutItem?.workouts } </p>
-                  <p>LIKES : {workoutItem?.likes} </p> 
-                    <span> 
-                      <button onClick={()=>handleLike(workoutItem.id)}> 
-                        LIKE 
-                      </button> 
-                    </span>
-                </div>    
+                {workout.map((workoutItem, index) => {
+                  console.log(`Rendering workout ${index + 1}:`, workoutItem);
+                    return (
+                      <div className="card" key={workoutItem.id || index}>
+                        <p className="title">WORKOUT: {workoutItem?.workouts}</p>
+                        <p>LIKES: {workoutItem?.likes}</p>
+                        <span>
+                          <button onClick={() => handleLike(workoutItem.id)}>LIKE</button>
+                        </span>
+                      </div>
+                    );
+                })}
               </div>
             </div>   
         </div>
-      )})}
     </div>
   )
 }
