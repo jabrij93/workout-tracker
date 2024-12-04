@@ -27,6 +27,7 @@ code {
 
 .user-loggedIn {
   position: absolute; /* Position it relative to .wo-track-wrapper */
+  white-space: nowrap;
   top: 10px; /* Distance from the top */
   left: 10px; /* Distance from the left */
   padding: 5px 10px;
@@ -39,7 +40,8 @@ code {
 
 .user-logout {
   position: absolute;
-  top: 40px;
+  white-space: nowrap;
+  top: 45px;
   left: 10px;
   background-color: rgba(255, 255, 255, 0.8); /* Optional styling */
   border: 1px solid #ccc;
