@@ -21,6 +21,15 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
 
   console.log('user33', user)
 
+  const sortedWorkouts = workout.filter((workout) => workout.user.username === user.username)
+                .slice()
+                .sort((a, b) => {
+                  const dateA = new Date(a.date.split('-').reverse().join('-'));
+                  const dateB = new Date(b.date.split('-').reverse().join('-'));
+                  return dateB - dateA; // Sort descending
+                });
+             
+
   useEffect(() => {
     workoutService
       .getAll()
@@ -143,15 +152,11 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
 
         <div className="main-content" >
             <div className="article">
-              <div className="card-container">
-                {workout
-                  .filter((workout) => workout.user.username === user.username) // Filter workouts by the current user
-                  .slice() // Create a copy of the blogs array to avoid mutating the original
-                  .sort((a, b) => b.date - a.date) // Sort the array based on likes in descending order
+              <div className="card-container"> 
+                { sortedWorkouts
                   .map((workoutItem, index) => {
                     console.log(`Rendering workout ${index + 1}:`, workoutItem);
                       return (
-                        
                         <div className="card" key={workoutItem.id || index}>
                           <div className="date"> <p> DATE: {workoutItem.date} </p></div>
                           <p className="title">WORKOUT: {workoutItem?.workouts}</p>
