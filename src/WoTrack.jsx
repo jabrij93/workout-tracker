@@ -155,7 +155,6 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
               <div className="card-container"> 
                 { sortedWorkouts
                   .map((workoutItem, index) => {
-                    console.log(`Rendering workout ${index + 1}:`, workoutItem);
                       return (
                         <div className="card" key={workoutItem.id || index}>
                           <div className="date"> <p> DATE: {workoutItem.date} </p></div>

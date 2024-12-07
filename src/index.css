@@ -16,8 +16,7 @@ code {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 1fr 7fr;
-  max-height: 125vh; /* Set the maximum height to 58% of the viewport height */
-  overflow: hidden; /* This will hide any overflow beyond the specified height */
+  height: 100vh; /* Set the maximum height to 58% of the viewport height */\
 }
 
 .wo-track-container {
