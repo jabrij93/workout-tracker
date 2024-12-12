@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Hamburger button -->
+        <div class="wotrack-logo">
+            <button class="hamburger" id="hamburgerButton">☰</button>
+            <img src="images/wotrack-logo.jpeg" alt="" style="width: 48px; height: 48px; border-radius: 50%;">
+            <h4> Dashboard </h4>
+        </div>
+
+        <div class="leftbar">
+            <div class="first-header">
+                <h2> Workouts </h2>
+                <button class="new"> NEW + </button>
+            </div>
+            <div class="search-workout-bar">
+                <div class="search-workout-container">
+                    <input type="search-workout" class="search-workout" placeholder="Search workouts...">
+                </div>
+            </div>
+            <h5 style="margin-left: 20px;">Workouts / Activities </h5>
+            <div class="list-workouts">
+                <ul>
+                    <li> Test 1 </li>
+                    <li> Test 2 </li>
+                    <li> Test 3 </li>
+                    <li> Test 4 </li>
+                    <li> Test 5 </li>
+                    <li> Test 6 </li>
+                    <li> Test 7 </li>
+                </ul>
+                <p style="margin-left: 20px;">Show more...</p>
+            </div>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <button class="close" id="closeButton">✖</button>
+            <div class="dashboard">
+                <img src="images/dashboardlogo.svg" alt="" style="width: 48px">
+                <div class="dashboard-separate">
+                    <p>Dashboard</p>
+                </div>
+            </div>
+
+            <div class="feature-one">
+                <ul class="feature-one-gap">
+                    <div class="feature-one-logo">
+                        <img src="images/homelogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>Home</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-one-logo">
+                        <img src="images/profilelogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>Profile</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-one-logo">
+                        <img src="images/messagelogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>Messages</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-one-logo">
+                        <img src="images/historylogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>History</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-one-logo">
+                        <img src="images/tasklogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>Task</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-one-logo">
+                        <img src="images/communitylogo.svg" alt="" style="width: 20px">
+                        <div class="feature-one-separate">
+                            <li>Communities</li>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="feature-two">
+                <ul>
+                    <div class="feature-two-logo">
+                        <img src="images/settingslogo.svg" alt="" style="width: 20px">
+                        <div class="feature-two-separate">
+                            <li>Settings</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-two-logo">
+                        <img src="images/supportlogo.svg" alt="" style="width: 20px">
+                        <div class="feature-two-separate">
+                            <li>Support</li>
+                        </div>
+                    </div>
+
+                    <div class="feature-two-logo">
+                        <img src="images/privacylogo.svg" alt="" style="width: 20px">
+                        <div class="feature-two-separate">
+                            <li>Privacy</li>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="header-one">
+            <div class="search-bar">
+                <img src="images/searchlogo.svg" alt="" class="searchlogo" style="width: 25px; height: 25px; margin-top:2px;">
+                <div class="search-container">
+                    <input type="search" class="search">
+                </div>
+            </div>
+
+            <div class="user">
+                <div class="notification">
+                    <img src="images/notificationlogo.svg" alt="" style="width: 20px; margin-top:30px;">
+                </div>
+                <div class="profilephoto">
+                    <img src="images/profilephoto1.jpg" alt="" style="width: 40px; margin-top:10px; border-radius: 50%;">
+                </div>
+                <div class="username">
+                    <p style="font-size: 14px;"> Welcome back, </p>
+                    <p>Jane Doe</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="header-two">
+            <div class="welcome">
+                <div class="logo">
+                    <img src="images/profilephoto1.jpg" alt=""
+                        style="width: 40px; border-radius: 50%; margin-bottom:10px;">
+                </div>
+                <div class="welcome-banner">
+                    <p style="font-size: 14px;"> Hi there, </p>
+                    <p class="username"> Jane Doe (@jane) </p>
+                </div>
+            </div>
+
+            <div class="functionalities">
+                <div class="buttons">
+                    <button class="new">New</button>
+                </div>
+                <div class="buttons">
+                    <button class="upload">Upload</button>
+                </div>
+                <div class="buttons">
+                    <button class="share">Share</button>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="main-content">
+            <div class="article">
+                <h3 class="project-header">Your Projects</h3>
+
+                <div class="card-container">
+                    <div class="card">
+                        <p class="title">Super Cool Project</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="title">Less Cool Project</p>
+                        <p>Cras volutpat mattis sodales. Nunc scelerisque metus in odio scelerisque accumsan.
+                            Aliquam at
+                            efficitur turpis. Praesent vel nibh a sem rutrum aliquam sit amet quis enim. </p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class=" view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="title">Impossible App</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere neque tincidunt,
+                            consectetur elit sed, aliquet mi. Vivamus tempor varius egestas. Praesent mauris odio,
+                            luctus et ex a, semper euismod lacus.</p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class=" view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="title">Easy Peasy App</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut congue nibh.
+                            Pellentesque
+                            euismod sapien sit amet mi tincidunt malesuada. Ut vel tincidunt dolor. Proin accumsan,
+                            turpis id vestibulum pharetra, elit dui gravida nisi, sed facilisis mi ipsum in justo.
+                        </p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class=" view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="title">Ad Blocker</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in nunc nec lectus
+                            sollicitudin facilisis. Nunc ac ligula tempor, commodo nulla non, laoreet mi.
+                        </p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class=" view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="title">Money Maker</p>
+                        <p>Phasellus pellentesque, odio porttitor mattis scelerisque, tortor tortor cursus nisl, vel
+                            aliquam diam dolor hendrerit libero. Ut suscipit maximus leo, et dapibus ante tempus non.
+                            Nam bibendum ligula et hendrerit hendrerit. </p>
+
+                        <div class="card-features">
+                            <div class="favourite">
+                                <img src="images/favouritelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class=" view">
+                                <img src="images/viewlogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                            <div class="share">
+                                <img src="images/sharelogo.svg" alt="" style="width: 18px; height: 18px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="announcements">
+                    <h3 class="announcement-header"> Announcement</h3>
+
+                    <div class="announcement">
+                        <h4 class="announcement-title">Site Maintenance</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                        <hr>
+
+                        <h4 class="announcement-title">Community Share Day</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                        <hr>
+
+                        <h4 class="announcement-title">Updated Privacy Policy</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                    </div>
+                </div>
+
+                <div class="trending-container">
+                    <h3 class="trending-header">Trending</h3>
+                    <div class="trending">
+                        <div class="trending-title">
+                            <div class="profilephoto">
+                                <img src="images/profilephoto1.jpg" alt="#"
+                                    style="width: 48px; height: 48px; border-radius: 50%;">
+                            </div>
+                            <div class="users">
+                                <p class="bold"><strong>@regan</strong></p>
+                                <p>World Peace Builder</p>
+                            </div>
+                        </div>
+
+                        <div class="trending-title">
+                            <div class="profilephoto">
+                                <img src="images/profilephoto3.jpg" alt="#"
+                                    style="width: 48px; height: 48px; border-radius: 50%;">
+                            </div>
+                            <div class="users">
+                                <p class="bold"><strong>@morgan</strong></p>
+                                <p>Super Cool Project</p>
+                            </div>
+                        </div>
+
+                        <div class="trending-title">
+                            <div class="profilephoto">
+                                <img src="images/profilephoto4.jpg" alt="#"
+                                    style="width: 48px; height: 48px; border-radius: 50%;">
+                            </div>
+                            <div class="users">
+                                <p class="bold"><strong>@kendall</strong></p>
+                                <p>Life Changing App</p>
+                            </div>
+                        </div>
+
+                        <div class="trending-title">
+                            <div class="profilephoto">
+                                <img src="images/profilephoto5.jpg" alt="#"
+                                    style="width: 48px; height: 48px; border-radius: 50%;">
+                            </div>
+                            <div class="users">
+                                <p class="bold"><strong>@alex</strong></p>
+                                <p>No Traffic Maker</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
