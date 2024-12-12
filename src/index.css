@@ -16,7 +16,7 @@ code {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 1fr 7fr;
-  height: 100vh; /* Set the maximum height to 58% of the viewport height */\
+  height: 100vh; /* Set the maximum height to 58% of the viewport height */
 }
 
 .wo-track-container {
