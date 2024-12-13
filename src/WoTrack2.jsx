@@ -383,7 +383,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <div className="right-container">
           <div className="announcements">
             <h3 className="announcement-header">Announcement</h3>
-            <div className="announcement">
+            <div className="announcement" >
               {[
                 {
                   title: "Site Maintenance",
@@ -397,7 +397,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                 },
               ].map((announcement, index) => (
                 <div key={index}>
-                  <h4 className="announcement-title">{announcement.title}</h4>
+                  <h4 className="announcement-title" style={{ marginTop:"2px" }}>{announcement.title}</h4>
                   <p>{announcement.description}</p>
                   <hr />
                 </div>

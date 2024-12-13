@@ -21,7 +21,7 @@ body {
     gap: 10px; /* Spacing between elements */
     padding: 10px 20px; /* Horizontal padding */
     background-color: #f9f9f9; /* Optional: background for visibility */
-    position: fixed;
+    position:absolute;
     border-bottom: 1px solid #e2e8f0;
 }
 
@@ -381,7 +381,6 @@ ul li {
 
 .announcement p {
     font-size: 8px;
-    margin-top: -18px;
 }
 
 .announcement-title {
