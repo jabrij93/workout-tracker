@@ -38,6 +38,10 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
                 });
+  
+  const totalWorkouts = sortedWorkouts.length;
+
+  console.log("sortedWorkouts", sortedWorkouts)
 
   const handleHamburgerClick = () => {
     console.log("Hamburger clicked!");
@@ -303,7 +307,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
             {notification && (
                 <Notification notification={notification} type={notificationType} />
             )}
-            <p>6 Workouts/Activities this year..</p>
+            <p> {totalWorkouts} Workouts/Activities in the last year </p>
             <GridCalendar calendarData={calendarData} />
             <br/>
 
