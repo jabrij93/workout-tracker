@@ -294,6 +294,31 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <div style={{ marginLeft:"15px", marginTop:"-40px", paddingBottom:"20px" }}>
             <p >300 Workouts/Activities this year..</p>
             <GridCalendar calendarData={calendarData} />
+            <br/>
+
+            <div className="add-workout">
+                <form onSubmit={handleSubmit}>
+                    <input 
+                    type="text" 
+                    value={newWorkout} 
+                    onChange={(e)=>setNewWorkout(e.target.value)}   
+                    placeholder='Insert your workout'
+                    />
+                    <ReactDatePicker 
+                    selected={newWorkoutDate} 
+                    onChange={(date) => setNewWorkoutDate(date)} 
+                    dateFormat="dd-MM-yyyy" // Ensure consistent date format
+                    placeholderText="Select a date" 
+                    />
+                    <input 
+                    type="text" 
+                    value={newWorkoutDetail} 
+                    onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
+                    placeholder='Details(optional)'
+                    />
+                    <button type="submit"> Add Workout </button>
+                </form>
+            </div>
         </div>
       </div>
   
