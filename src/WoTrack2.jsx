@@ -297,7 +297,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
       </div>
 
       <div className="header-two">
-        <div style={{ marginLeft:"15px", marginTop:"-40px", paddingBottom:"20px" }}>
+        <div style={{ marginLeft:"15px", marginTop:"-20px", paddingBottom:"20px" }}>
             {notification && (
                 <Notification notification={notification} type={notificationType} />
             )}
