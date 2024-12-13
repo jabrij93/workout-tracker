@@ -161,7 +161,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
         <div className="list-workouts" style={{ marginLeft: "20px" }}>
           <ul>
-            {["Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Test 6", "Test 7"].map((item, index) => (
+            {["Workout 1", "Workout 2", "Workout 3", "Workout 4", "Workout 5", "Workout 6", "Workout 7"].map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
@@ -269,10 +269,17 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
               style={{ width: "40px", borderRadius: "50%" }}
             />
           </div>
-          <div className="username" style={{ marginTop:"-10px" }}>
+          <div className="username">
             <p style={{ fontSize: "14px" }}>Welcome back,</p>
             <p>Jane Doe</p>
           </div>
+        </div>
+      </div>
+
+      <div className="header-two">
+        <div style={{ marginLeft:"15px", marginTop:"-40px", paddingBottom:"20px" }}>
+            <p >300 Workouts/Activities this year..</p>
+            <GridCalendar calendarData={calendarData} />
         </div>
       </div>
   
