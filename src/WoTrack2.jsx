@@ -60,7 +60,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
       setWorkout(response.data);
 
       const workoutByDate = {};
-      response.data.forEach((item) => {
+      sortedWorkouts.forEach((item) => {
         const date = item.date; // Assuming each item has a 'date' field
         if (date) {
           workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
