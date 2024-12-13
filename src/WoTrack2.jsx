@@ -21,8 +21,11 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredX, setIsHoveredX] = useState(false);
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+  const handleMouseEnterX = () => setIsHoveredX(true);
+  const handleMouseLeaveX = () => setIsHoveredX(false);
 
   console.log('user33', user)
 
@@ -127,7 +130,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   
       {/* Hamburger Button */}
       <div className="wotrack-logo">
-        <button className="hamburger" id="hamburgerButton" onClick={handleHamburgerClick}> ☰ </button>
+        <button className="hamburger" id="hamburgerButton" onClick={handleHamburgerClick} > ☰ </button>
         <img
           src="images/wotrack-logo.jpeg"
           alt="Wotrack Logo"
@@ -175,7 +178,11 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`} id="sidebar">
-        <button className="close" onClick={handleCloseClick}> ✖ </button>
+        <button className="close" onClick={handleCloseClick} style={{
+                        transform: isHoveredX ? "scale(1.2)" : "scale(1)",
+                        transition: "transform 0.3s ease"
+                    }} onMouseEnter={handleMouseEnterX}
+                    onMouseLeave={handleMouseLeaveX} > ✖ </button>
         {/* Sidebar content */}
         <div className="dashboard">
                 <img src="images/dashboardlogo.svg" alt="" style={{ width: "48px" }} />
