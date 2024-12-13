@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [count, setCount] = useState(0);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [workout, setWorkout] = useState([]);
   const [newWorkout, setNewWorkout] = useState('');
   const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
