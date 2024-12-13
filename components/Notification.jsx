@@ -4,7 +4,7 @@ export const Notification = ({ notification, type }) => {
     
 
     return (
-        <div className="notification" style={{ border:`2px solid ${borderColor}`, borderRadius:'6px' }}>
+        <div className="notification" style={{ border:`1px solid ${borderColor}`, borderRadius:'6px', marginTop:'10px' }}>
             <p style={{ color: textColor}}> { notification } </p>
         </div>
     )
