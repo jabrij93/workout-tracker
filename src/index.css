@@ -257,6 +257,7 @@ ul li {
     grid-template-columns: 2fr 1fr;
     grid-column: 2/3;
     background-color: #f9f9f9;
+    gap:2px;
 }
 
 .header-two .welcome {

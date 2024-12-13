@@ -290,9 +290,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
             />
           </div>
           <div className="username" style={{ marginTop:"-10px" }} >
-            <p style={{ fontSize: "14px" }}>Welcome back,</p>
+            <p style={{ fontSize: "14px", lineHeight:"0" }}>Welcome back,</p>
             { isLoggedIn && <p>{user.name}</p> }
-            
           </div>
         </div>
       </div>
