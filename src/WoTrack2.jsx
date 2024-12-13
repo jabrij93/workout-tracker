@@ -20,6 +20,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log("workout", workout)
+
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredX, setIsHoveredX] = useState(false);
   const handleMouseEnter = () => setIsHovered(true);
@@ -168,8 +170,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
         <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
         <div className="list-workouts" style={{ marginLeft: "20px" }}>
           <ul>
-            {["Workout 1", "Workout 2", "Workout 3", "Workout 4", "Workout 5", "Workout 6", "Workout 7"].map((item, index) => (
-              <li key={index}>{item}</li>
+            {sortedWorkouts.map((item, index) => (
+              <li key={index}>{item.workouts}</li>
             ))}
           </ul>
           <p>Show more...</p>
@@ -301,7 +303,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
             {notification && (
                 <Notification notification={notification} type={notificationType} />
             )}
-            <p >300 Workouts/Activities this year..</p>
+            <p>6 Workouts/Activities this year..</p>
             <GridCalendar calendarData={calendarData} />
             <br/>
 
