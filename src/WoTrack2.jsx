@@ -20,6 +20,10 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+
   console.log('user33', user)
 
   const sortedWorkouts = workout.filter((workout) => workout.user.username === user.username)
@@ -223,10 +227,12 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                             <li>Communities</li>
                         </div>
                     </div>
+
+                    
                 </ul>
             </div>
 
-            <div className="feature-two">
+            <div className="feature-two" style={{ marginTop:"45px" }}>
                 <ul>
                     <div className="feature-two-logo">
                         <img src="images/settingslogo.svg" alt="" style={{ width: "20px" }} />
@@ -242,10 +248,17 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                         </div>
                     </div>
 
-                    <div className="feature-two-logo">
-                        <img src="images/privacylogo.svg" alt="" style={{ width: "20px" }} />
+                    <div className="feature-two-logo" style={{
+                        width: "20px",
+                        marginTop: "90px",
+                        transform: isHovered ? "scale(1.2)" : "scale(1)",
+                        transition: "transform 0.3s ease"
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave} >
+                        <img src="images/logout.svg" alt="" style={{ width: "20px" }}  />
                         <div className="feature-two-separate">
-                            <li>Privacy</li>
+                            <li onClick={handleLogout}>Logout</li>
                         </div>
                     </div>
                 </ul>
@@ -271,7 +284,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
           </div>
           <div className="username" style={{ marginTop:"-10px" }} >
             <p style={{ fontSize: "14px" }}>Welcome back,</p>
-            <p>Jane Doe</p>
+            { isLoggedIn && <p>{user.name}</p> }
+            
           </div>
         </div>
       </div>
