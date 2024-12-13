@@ -17,10 +17,12 @@ body {
 .wotrack-logo {
     display: flex;
     align-items: center; /* Aligns items vertically in the center */
+    justify-content: flex-start; /* Start elements on the left */
     gap: 10px; /* Spacing between elements */
     padding: 10px 20px; /* Horizontal padding */
     background-color: #f9f9f9; /* Optional: background for visibility */
     position: fixed;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 /* Style leftbar */
@@ -212,14 +214,19 @@ ul li {
 /* Header one search part*/
 .search-bar {
     display: flex;
+    align-items: center;
     grid-column: 1/2;
+    flex-grow: 1;
     gap: 18px;
+    margin-left: 50px;
+    justify-content: center;
 }
 
 .search-bar .search {
     background-color: #e2e8f0;
     border: 0px solid gray;
     border-radius: 12px;
+    padding: 5px 12px;
     width: 80%;
     max-width: 900px; 
     min-width: 600px;
@@ -235,6 +242,7 @@ ul li {
     grid-column: 2/3;
     padding: 5px;
     gap: 18px;
+    margin-top: -40px;
 }
 
 .header-one .username {

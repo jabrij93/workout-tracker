@@ -130,6 +130,18 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
           style={{ width: "48px", height: "48px", borderRadius: "50%" }}
         />
         <h4>Dashboard</h4>
+        
+        <div className="search-bar">
+          <img
+            src="images/searchlogo.svg"
+            alt="Search Icon"
+            className="searchlogo"
+            style={{ width: "25px", height: "25px" }}
+          />
+          <div className="search-container">
+            <input type="search" className="search" />
+          </div>
+        </div>
       </div>
   
       <div className="leftbar">
@@ -242,23 +254,12 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   
       {/* Header */}
       <div className="header-one">
-        <div className="search-bar">
-          <img
-            src="images/searchlogo.svg"
-            alt="Search Icon"
-            className="searchlogo"
-            style={{ width: "25px", height: "25px" }}
-          />
-          <div className="search-container">
-            <input type="search" className="search" />
-          </div>
-        </div>
         <div className="user">
           <div className="notification">
             <img
               src="images/notificationlogo.svg"
               alt="Notification Icon"
-              style={{ width: "20px" }}
+              style={{ width: "20px", marginTop:"15px" }}
             />
           </div>
           <div className="profilephoto">
@@ -268,7 +269,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
               style={{ width: "40px", borderRadius: "50%" }}
             />
           </div>
-          <div className="username">
+          <div className="username" style={{ marginTop:"-10px" }}>
             <p style={{ fontSize: "14px" }}>Welcome back,</p>
             <p>Jane Doe</p>
           </div>
