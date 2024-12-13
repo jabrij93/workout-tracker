@@ -106,7 +106,7 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   }
   
   return (
-    <div className="App">
+    <div className="container">
       {notification && <Notification notification={notification} type={notificationType}/> }
 
       {isLoading && <p>Loading...</p>}

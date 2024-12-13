@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import WoTrack from './WoTrack'; 
+import WoTrack2 from './WoTrack2'; 
 import Login from '../components/Login';
 import workoutService from '../src/services/workouts.js'
 
@@ -35,11 +36,13 @@ function App() {
     <WoTrack user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} /> 
   );
 
+  const mainApp2 = () => (
+    <WoTrack2 user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} /> 
+  );
+
   return (
     <div>
-      <h1>Workout Tracker</h1>
-      
-      {isLoggedIn ? mainApp() : loginForm()}
+      {isLoggedIn ? mainApp2() : loginForm()}
     </div>
   );
 }
