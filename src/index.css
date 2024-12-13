@@ -146,13 +146,13 @@ body {
 }
 
 .feature-one .feature-one-logo {
-    gap: 20px;
-    padding: 10px 10px 10px 0px;
+    gap: 12px;
+    padding: 10px 25px;
 }
 
 .feature-two .feature-two-logo {
-    gap: 20px;
-    padding: 10px 10px 10px 0px;
+    gap: 12px;
+    padding: 10px 25px;
 }
 
 .feature-one-logo {

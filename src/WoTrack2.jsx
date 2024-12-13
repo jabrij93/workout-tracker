@@ -147,21 +147,19 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
           </div>
         </div>
         <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
-        <div className="list-workouts">
+        <div className="list-workouts" style={{ marginLeft: "20px" }}>
           <ul>
             {["Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Test 6", "Test 7"].map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
-          <p style={{ marginLeft: "20px" }}>Show more...</p>
+          <p>Show more...</p>
         </div>
       </div>
   
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`} id="sidebar">
-        <button className="close" onClick={handleCloseClick}>
-          ✖
-        </button>
+        <button className="close" onClick={handleCloseClick}> ✖ </button>
         {/* Sidebar content */}
         <div className="dashboard">
                 <img src="images/dashboardlogo.svg" alt="" style={{ width: "48px" }} />
