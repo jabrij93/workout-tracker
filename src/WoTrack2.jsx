@@ -292,6 +292,9 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
 
       <div className="header-two">
         <div style={{ marginLeft:"15px", marginTop:"-40px", paddingBottom:"20px" }}>
+            {notification && (
+                <Notification notification={notification} type={notificationType} />
+            )}
             <p >300 Workouts/Activities this year..</p>
             <GridCalendar calendarData={calendarData} />
             <br/>
