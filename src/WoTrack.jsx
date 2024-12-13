@@ -19,8 +19,6 @@ const WoTrack = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log('user33', user)
-
   const sortedWorkouts = workout.filter((workout) => workout.user.username === user.username)
                 .slice()
                 .sort((a, b) => {

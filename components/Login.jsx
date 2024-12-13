@@ -21,7 +21,6 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       })
       window.localStorage.setItem('loggedInUser', JSON.stringify(user))
       workoutService.setToken(user.token)
-      console.log("user33", user)
       setUser(user)
       setUsername('')
       setPassword('')

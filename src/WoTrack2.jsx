@@ -19,17 +19,16 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  console.log('user', user)
 
-  console.log("workout", workout)
 
+  // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredX, setIsHoveredX] = useState(false);
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
   const handleMouseEnterX = () => setIsHoveredX(true);
   const handleMouseLeaveX = () => setIsHoveredX(false);
-
-  console.log('user33', user)
 
   const sortedWorkouts = workout.filter((workout) => workout.user.username === user.username)
                 .slice()
@@ -56,11 +55,12 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
     workoutService
       .getAll()
       .then(response=> {
-      console.log("backend response", response.data)
-      setWorkout(response.data);
-
+      const userWorkouts = response.data.filter((item) => item.user?.username === user.username);
+      setWorkout(userWorkouts);
+      
       const workoutByDate = {};
-      sortedWorkouts.forEach((item) => {
+  
+      userWorkouts.forEach((item) => {
         const date = item.date; // Assuming each item has a 'date' field
         if (date) {
           workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
