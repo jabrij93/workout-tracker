@@ -19,8 +19,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  console.log('user', user)
-
 
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
@@ -40,10 +38,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   
   const totalWorkouts = sortedWorkouts.length;
 
-  console.log("sortedWorkouts", sortedWorkouts)
-
   const handleHamburgerClick = () => {
-    console.log("Hamburger clicked!");
     setIsSidebarOpen(true); // Open the sidebar
   };
                 
