@@ -8,7 +8,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
+const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [workout, setWorkout] = useState([]);
@@ -19,6 +19,15 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const [visible, setVisible] = useState(false);
+
+  const hideWhenVisible = { display: visible ? 'none' : '' };
+  const showWhenVisible = { display: visible ? '' : 'none' };
+
+  const toggleVisibility = () => {
+    setVisible(!visible);
+  };
 
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
@@ -390,7 +399,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                         <p className="title" style={{ fontWeight: "bold", marginBottom: "5px" }}>
                           {item.workouts}
                         </p>
-                        <p style={{ fontSize: "0.9rem", color: "#555" }}>{item.detail}</p>
+                        <button onClick={toggleVisibility} >{buttonLabel}</button>
+                        <p style={{ visible ? blogContainer : showWhenVisible; fontSize: "0.9rem", color: "#555" }} style={} className='togglableContent'>{item.detail}</p>
                         {/* Features */}
                         <div className="card-features" style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
                           <div className="favourite">
