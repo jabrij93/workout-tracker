@@ -29,6 +29,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     setVisible(!visible);
   };
 
+  const workoutContainer = { display: 'flex', justifyContent: 'space-between', flexDirection: 'column' };
+
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredX, setIsHoveredX] = useState(false);
@@ -400,7 +402,12 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                           {item.workouts}
                         </p>
                         <button onClick={toggleVisibility} >{buttonLabel}</button>
-                        <p style={{ visible ? blogContainer : showWhenVisible; fontSize: "0.9rem", color: "#555" }} style={} className='togglableContent'>{item.detail}</p>
+                        <p style={{
+                            ...(visible ? workoutContainer : showWhenVisible),
+                            fontSize: "0.9rem",
+                            color: "#555"
+                          }} className='togglableContent'>{item.detail}
+                        </p>
                         {/* Features */}
                         <div className="card-features" style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
                           <div className="favourite">
