@@ -35,7 +35,31 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
                 });
+  console.log('sortedWorkouts', sortedWorkouts)
+
+  // Function to convert month numbers to month names
+  const getMonthName = (monthNumber) => {
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return monthNames[monthNumber - 1]; // Month is 0-indexed
+  };
+
+  // Function to group workouts by month and year
+  const groupByMonth = (workouts) => {
+    return workouts.reduce((groups, workout) => {
+      const [day, month, year] = workout.date.split('-'); // Extract day, month, year
+      const key = `${getMonthName(month)} ${year}`; // Format as 'Month Year'
+      
+      if (!groups[key]) groups[key] = []; // Initialize group
+      groups[key].push(workout);
+      return groups;
+    }, {});
+  };
   
+  const groupedWorkouts = groupByMonth(sortedWorkouts);
+
   const totalWorkouts = sortedWorkouts.length;
 
   const handleHamburgerClick = () => {
@@ -331,52 +355,59 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
             </div>
         </div>
       </div>
+
+      
   
       {/* Main Content */}
       <div className="main-content">
         <div className="article">
           <h3 className="project-header">Your Projects</h3>
-          <div className="card-container">
-            {[
-              {
-                title: "Super Cool Project",
-                description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...",
-              },
-              {
-                title: "Less Cool Project",
-                description:
-                  "Cras volutpat mattis sodales. Nunc scelerisque metus in odio scelerisque accumsan. Aliquam at efficitur turpis. Praesent vel nibh a sem rutrum aliquam sit amet quis enim.",
-              },
-            ].map((project, index) => (
-              <div className="card" key={index}>
-                <p className="title">{project.title}</p>
-                <p>{project.description}</p>
-                <div className="card-features">
-                  <div className="favourite">
-                    <img
-                      src="images/favouritelogo.svg"
-                      alt="Favourite"
-                      style={{ width: "18px", height: "18px" }}
-                    />
+            <div className="card-container">
+              {Object.entries(groupedWorkouts).map(([month, workouts]) => (
+                <div key={month} style={{ marginBottom: "30px" }}>
+                  {/* Month Title */}
+                  <div style={{ gridColumn: "1 / -1", marginBottom: "10px" }}>
+                    <h2 style={{ margin: "0", fontSize: "1.5rem", fontWeight: "bold" }}>
+                      {month}
+                    </h2>
                   </div>
-                  <div className="view">
-                    <img
-                      src="images/viewlogo.svg"
-                      alt="View"
-                      style={{ width: "18px", height: "18px" }}
-                    />
-                  </div>
-                  <div className="share">
-                    <img
-                      src="images/sharelogo.svg"
-                      alt="Share"
-                      style={{ width: "18px", height: "18px" }}
-                    />
+
+                  {/* Workouts */}
+                  <div className="workouts" style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                    {workouts.map((item, index) => (
+                      <div
+                        key={index}
+                        className="card"
+                        style={{
+                          flex: "0 1 calc(33.333% - 10px)", // 3 cards per row
+                          boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                          border: "1px solid #ddd",
+                          padding: "10px",
+                          borderRadius: "5px",
+                          background: "#fff"
+                        }}
+                      >
+                        <p className="title" style={{ fontWeight: "bold", marginBottom: "5px" }}>
+                          {item.workouts}
+                        </p>
+                        <p style={{ fontSize: "0.9rem", color: "#555" }}>{item.detail}</p>
+                        {/* Features */}
+                        <div className="card-features" style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+                          <div className="favourite">
+                            <img src="images/favouritelogo.svg" alt="Favourite" style={{ width: "18px", height: "18px" }} />
+                          </div>
+                          <div className="view">
+                            <img src="images/viewlogo.svg" alt="View" style={{ width: "18px", height: "18px" }} />
+                          </div>
+                          <div className="share">
+                            <img src="images/sharelogo.svg" alt="Share" style={{ width: "18px", height: "18px" }} />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
   
