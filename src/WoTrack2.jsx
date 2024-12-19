@@ -35,6 +35,38 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
                 });
+
+  // Function to convert month numbers to month names
+  const getMonthName = (monthNumber) => {
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return monthNames[monthNumber - 1]; // Month is 0-indexed
+  };
+
+  // Function to group workouts by month and year
+  const groupByMonth = (workouts) => {
+    return workouts.reduce((groups, workout) => {
+      const [day, month, year] = workout.date.split('-'); // Extract day, month, year
+      const key = `${getMonthName(month)} ${year}`; // Format as 'Month Year'
+      
+      if (!groups[key]) groups[key] = []; // Initialize group
+      groups[key].push(workout);
+      return groups;
+    }, {});
+  };
+  
+  const groupedWorkouts = groupByMonth(sortedWorkouts);
+  console.log('groupedWorkouts:', groupedWorkouts);
+
+  // Object.keys(groupedWorkouts).forEach((monthYear) => {
+  //   console.log(`${monthYear}:`);
+  //   groupedWorkouts[monthYear].forEach((workout) => {
+  //     console.log('workout', workout);
+  //   });
+  // });
+            
   
   const totalWorkouts = sortedWorkouts.length;
 
@@ -336,48 +368,42 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn }) => {
       <div className="main-content">
         <div className="article">
           <h3 className="project-header">Your Projects</h3>
-          <div className="card-container">
-            {[
-              {
-                title: "Super Cool Project",
-                description:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...",
-              },
-              {
-                title: "Less Cool Project",
-                description:
-                  "Cras volutpat mattis sodales. Nunc scelerisque metus in odio scelerisque accumsan. Aliquam at efficitur turpis. Praesent vel nibh a sem rutrum aliquam sit amet quis enim.",
-              },
-            ].map((project, index) => (
-              <div className="card" key={index}>
-                <p className="title">{project.title}</p>
-                <p>{project.description}</p>
-                <div className="card-features">
-                  <div className="favourite">
-                    <img
-                      src="images/favouritelogo.svg"
-                      alt="Favourite"
-                      style={{ width: "18px", height: "18px" }}
-                    />
+          {Object.keys(groupedWorkouts).map((monthYear) => (
+            <div className="card-container" key={monthYear}>
+              <div>
+                <h2>{monthYear}</h2>
+                {groupedWorkouts[monthYear].map((item, index) => (
+                  <div className="card" key={index}>
+                    <p className="title">{item.workouts}</p>
+                    <p className="detail">{item.detail}</p>
+                    <div className="card-features">
+                      <div className="favourite">
+                        <img
+                          src="images/favouritelogo.svg"
+                          alt="Favourite"
+                          style={{ width: "18px", height: "18px" }}
+                        />
+                      </div>
+                      <div className="view">
+                        <img
+                          src="images/viewlogo.svg"
+                          alt="View"
+                          style={{ width: "18px", height: "18px" }}
+                        />
+                      </div>
+                      <div className="share">
+                        <img
+                          src="images/sharelogo.svg"
+                          alt="Share"
+                          style={{ width: "18px", height: "18px" }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="view">
-                    <img
-                      src="images/viewlogo.svg"
-                      alt="View"
-                      style={{ width: "18px", height: "18px" }}
-                    />
-                  </div>
-                  <div className="share">
-                    <img
-                      src="images/sharelogo.svg"
-                      alt="Share"
-                      style={{ width: "18px", height: "18px" }}
-                    />
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
   
         <div className="right-container">
