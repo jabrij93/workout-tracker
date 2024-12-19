@@ -327,10 +327,10 @@ ul li {
     gap: 30px;
 }
 
+
 .card {
     background-color: #ffffff;
-    padding: 18px;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0px 1px 1px 1px lightgray;
 }
 
@@ -338,12 +338,17 @@ ul li {
     color: black;
     font-size: 18px;
     font-weight: 700;
+    padding: 8px 8px;
 }
 
 .card p {
     color: gray;
     font-size: 14px;
     line-height: 1.4;
+}
+
+.card .detail {
+    padding: 0px 8px;
 }
 
 .card .card-features {
