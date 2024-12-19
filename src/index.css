@@ -347,6 +347,10 @@ ul li {
     line-height: 1.4;
 }
 
+.card .detail {
+    padding: 0px 8px;
+}
+
 .card .card-features {
     display: flex;
     flex-direction: row;
