@@ -131,6 +131,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     setNewWorkout('');
     setNewWorkoutDate('');
     setNewWorkoutDetail('');
+    closeModal();
 
     setNotification(`successfully added ${newWorkout} !`)
     setNotificationType('success');
