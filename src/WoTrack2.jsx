@@ -141,6 +141,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     }, 5000); 
   }
 
+  /* Add Workout Modal */
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -148,6 +149,26 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    if (isModalOpen) {
+        window.addEventListener('keydown', handleKeyDown);
+    } else {
+        window.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+      
+  }, [isModalOpen]);
+  /* Modal */
 
   const handleLike = (id) => {
     // Find and update the specific item directly
@@ -173,6 +194,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     window.localStorage.removeItem('loggedInUser');
     setIsLoggedIn(false)
   }
+
+  
   
   return (
     <div className="App">
