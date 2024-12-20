@@ -20,6 +20,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const hideWhenVisible = { display: visible ? 'none' : '' };
@@ -140,6 +141,14 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     }, 5000); 
   }
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const handleLike = (id) => {
     // Find and update the specific item directly
     const updatedItem = workout.find((item) => item.id === id);
@@ -198,7 +207,38 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
       <div className="leftbar">
         <div className="first-header">
           <h2>Workouts</h2>
-          <button className="new">NEW +</button>
+          <button className="new" onClick={openModal}>NEW +</button>
+
+          {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                      <span className="close" onClick={closeModal}>&times;</span>
+                          <div className="add-workout">
+                              <form onSubmit={handleSubmit}>
+                                  <input 
+                                      type="text" 
+                                      value={newWorkout} 
+                                      onChange={(e) => setNewWorkout(e.target.value)}   
+                                      placeholder='Insert your workout'
+                                  />
+                                  <ReactDatePicker 
+                                      selected={newWorkoutDate} 
+                                      onChange={(date) => setNewWorkoutDate(date)} 
+                                      dateFormat="dd-MM-yyyy" 
+                                      placeholderText="Select a date" 
+                                  />
+                                  <input 
+                                      type="text" 
+                                      value={newWorkoutDetail} 
+                                      onChange={(e) => setNewWorkoutDetail(e.target.value)} 
+                                      placeholder='Details(optional)'
+                                  />
+                                  <button type="submit"> Add Workout </button>
+                              </form>
+                          </div>
+                    </div>
+                </div>
+            )}
         </div>
         <div className="search-workout-bar">
           <div className="search-workout-container">
@@ -345,33 +385,13 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
             {notification && (
                 <Notification notification={notification} type={notificationType} />
             )}
-            <p> {totalWorkouts} Workouts/Activities in the last year </p>
-            <GridCalendar calendarData={calendarData} />
-            <br/>
-
-            <div className="add-workout">
-                <form onSubmit={handleSubmit}>
-                    <input 
-                    type="text" 
-                    value={newWorkout} 
-                    onChange={(e)=>setNewWorkout(e.target.value)}   
-                    placeholder='Insert your workout'
-                    />
-                    <ReactDatePicker 
-                    selected={newWorkoutDate} 
-                    onChange={(date) => setNewWorkoutDate(date)} 
-                    dateFormat="dd-MM-yyyy" // Ensure consistent date format
-                    placeholderText="Select a date" 
-                    />
-                    <input 
-                    type="text" 
-                    value={newWorkoutDetail} 
-                    onChange={(e)=>setNewWorkoutDetail(e.target.value)} 
-                    placeholder='Details(optional)'
-                    />
-                    <button type="submit"> Add Workout </button>
-                </form>
+            <div className="header">
+              <p> {totalWorkouts} Workouts/Activities in the last year </p>
+              <button className="new" onClick={openModal}>NEW +</button>  
             </div>
+             
+            <GridCalendar calendarData={calendarData} />
+            <br/> 
         </div>
       </div>
 
