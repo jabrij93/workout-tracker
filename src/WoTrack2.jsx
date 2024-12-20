@@ -380,7 +380,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
       {/* Main Content */}
       <div className="main-content">
         <div className="article">
-          <h3 className="project-header">Your Projects</h3>
+          <h3 className="project-header">Your Activities/Workouts</h3>
           {Object.keys(groupedWorkouts).map((monthYear) => (
             <div className="card-container" key={monthYear}>
               <div>
