@@ -256,7 +256,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                                       onChange={(e) => setNewWorkoutDetail(e.target.value)} 
                                       placeholder='Details(optional)'
                                   />
-                                  <button type="submit"> Add Workout </button>
+                                  <button className="submit" type="submit"> Add Workout </button>
                               </form>
                           </div>
                     </div>

@@ -498,14 +498,13 @@ ul li {
 }
 
 .add-workout input,
-
 .add-workout .react-datepicker-wrapper {
     width: 100%; /* Ensure all inputs have the same width */
     max-width: 340px; /* Set a maximum width for all inputs */
     margin-bottom: 8px;
 }
 
-.add-workout button {
+.modal-content .add-workout .submit {
     background-color: #4AAFE2; /* A lighter shade of #1992d4 */
     border: none;
     color: white;
