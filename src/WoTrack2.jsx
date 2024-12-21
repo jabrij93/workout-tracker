@@ -7,6 +7,7 @@ import { Notification } from '../components/Notification';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
+import Togglable from '../components/Togglable.jsx'
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -419,8 +420,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
         </div>
       </div>
 
-      
-  
+    
       {/* Main Content */}
       <div className="main-content">
         <div className="article">
@@ -431,30 +431,35 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                 <h2>{monthYear}</h2>
                 {groupedWorkouts[monthYear].map((item, index) => (
                   <div className="card" key={index}>
-                    <p className="title">{item.workouts}</p>
-                    <p className="detail">{item.detail}</p>
-                    <div className="card-features">
-                      <div className="favourite">
-                        <img
-                          src="images/favouritelogo.svg"
-                          alt="Favourite"
-                          style={{ width: "18px", height: "18px" }}
-                        />
-                      </div>
-                      <div className="view">
-                        <img
-                          src="images/viewlogo.svg"
-                          alt="View"
-                          style={{ width: "18px", height: "18px" }}
-                        />
-                      </div>
-                      <div className="share">
-                        <img
-                          src="images/sharelogo.svg"
-                          alt="Share"
-                          style={{ width: "18px", height: "18px" }}
-                        />
-                      </div>
+                    <div className="title">
+                      <p>{item.workouts}</p>
+                      <button onClick={toggleVisibility}>{buttonLabel}</button>
+                  </div>
+                    <div style={visible ? workoutContainer : showWhenVisible} className='togglableContent'>
+                      <p className="detail">{item.detail}</p> 
+                        <div className="card-features">
+                          <div className="favourite">
+                            <img
+                              src="images/favouritelogo.svg"
+                              alt="Favourite"
+                              style={{ width: "18px", height: "18px" }}
+                            />
+                          </div>
+                          <div className="view">
+                            <img
+                              src="images/viewlogo.svg"
+                              alt="View"
+                              style={{ width: "18px", height: "18px" }}
+                            />
+                          </div>
+                          <div className="share">
+                            <img
+                              src="images/sharelogo.svg"
+                              alt="Share"
+                              style={{ width: "18px", height: "18px" }}
+                            />
+                          </div>
+                        </div>
                     </div>
                   </div>
                 ))}

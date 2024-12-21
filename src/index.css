@@ -356,10 +356,33 @@ ul li {
 }
 
 .card .title {
+    display: flex;
+    align-items: center;
     color: black;
     font-size: 18px;
     font-weight: 700;
     padding: 8px 8px;
+}
+
+.card .title p {
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 10px; /* Adjust the gap as needed */
+}
+
+.card .title button {
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;  /* Reduce font size if needed */
+    line-height: 1;   /* Ensure the text height doesn't add extra padding */
+    height: 30px;
+    border: 1px solid lightgray; /* Maintain the visible border */
+    transition: background-color 0.3s ease;
+}
+
+.card .title button:hover {
+    background-color: #f0f0f0; /* Change this to the desired hover color */
 }
 
 .card p {
