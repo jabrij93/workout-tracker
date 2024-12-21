@@ -4,6 +4,7 @@ import './login.css';  // Assume you have styles in Login.css or move your CSS h
 import loginService from '../src/services/login.js'
 import workoutService from '../src/services/workouts.js'
 import Togglable from '../components/Togglable.jsx'
+import PropTypes from 'prop-types'
 
 const Login = ({ setIsLoggedIn, setUser }) => {
   const [username, setUsername] = useState('') 
@@ -31,6 +32,14 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         setErrorMessage(null)
       }, 5000)
     }
+  }
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  }
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   }
 
   useEffect(() => {
@@ -83,7 +92,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
                 type="text"
                 name="username"
                 value={username}
-                onChange={({ target }) => setUsername(target.value)}
+                onChange={handleUsernameChange}
                 required
               />
             </div>
@@ -94,7 +103,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
                 type="password"
                 name="password"
                 value={password}
-                onChange={({ target }) => setPassword(target.value)}
+                onChange={handlePasswordChange}
                 required
               />
 
