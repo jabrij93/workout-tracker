@@ -556,7 +556,21 @@ ul li {
     cursor: pointer;
 }
 
-/* Modal */
+/* Modal Finish */
+
+/* See more button */
+
+.togglableContent.hidden {
+    display: none;
+  }
+  
+  .togglableContent.visible {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+/* See more button finish */  
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {

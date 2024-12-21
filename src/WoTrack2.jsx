@@ -22,13 +22,16 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const [isLoading, setIsLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState({});
 
   const hideWhenVisible = { display: visible ? 'none' : '' };
   const showWhenVisible = { display: visible ? '' : 'none' };
 
-  const toggleVisibility = () => {
-    setVisible(!visible);
+  const toggleVisibility = (key) => {
+    setVisible((prevVisible) => ({
+      ...prevVisible,
+      [key]: !prevVisible[key],
+    }));
   };
 
   const workoutContainer = { display: 'flex', justifyContent: 'space-between', flexDirection: 'column' };
@@ -71,15 +74,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   };
   
   const groupedWorkouts = groupByMonth(sortedWorkouts);
-  console.log('groupedWorkouts:', groupedWorkouts);
-
-  // Object.keys(groupedWorkouts).forEach((monthYear) => {
-  //   console.log(`${monthYear}:`);
-  //   groupedWorkouts[monthYear].forEach((workout) => {
-  //     console.log('workout', workout);
-  //   });
-  // });
-            
+  console.log('groupedWorkouts:', groupedWorkouts); 
   
   const totalWorkouts = sortedWorkouts.length;
 
@@ -433,9 +428,11 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                   <div className="card" key={index}>
                     <div className="title">
                       <p>{item.workouts}</p>
-                      <button onClick={toggleVisibility}>{buttonLabel}</button>
-                  </div>
-                    <div style={visible ? workoutContainer : showWhenVisible} className='togglableContent'>
+                      <button onClick={() => toggleVisibility(`${monthYear}-${index}`)}>{buttonLabel}</button>
+                    </div>
+                    <div style={visible[`${monthYear}-${index}`] ? workoutContainer : showWhenVisible } className={`togglableContent ${
+                      visible[`${monthYear}-${index}`] ? "visible" : "hidden"
+                    }`}>
                       <p className="detail">{item.detail}</p> 
                         <div className="card-features">
                           <div className="favourite">
