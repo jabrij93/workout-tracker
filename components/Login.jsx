@@ -128,9 +128,8 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 };
 
 Login.propTypes = {
-  handleLogin : PropTypes.func.isRequired,
-  handleUsernameChange : PropTypes.func.isRequired,
-  handlePasswordChange : PropTypes.func.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 }
 
 export default Login;
