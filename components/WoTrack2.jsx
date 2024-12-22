@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import workoutService from './services/workouts'
-import GridCalendar from '../components/GridCalendar.jsx';
-import { Notification } from '../components/Notification';
+import workoutService from '../src/services/workouts.js'
+import GridCalendar from './GridCalendar.jsx';
+import { Notification } from './Notification.jsx';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
-import Togglable from '../components/Togglable.jsx'
+import Togglable from './Togglable.jsx'
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -20,10 +19,10 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [visible, setVisible] = useState({});
 
+  // Show details button
   const hideWhenVisible = { display: visible ? 'none' : '' };
   const showWhenVisible = { display: visible ? '' : 'none' };
 
@@ -35,6 +34,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   };
 
   const workoutContainer = { display: 'flex', justifyContent: 'space-between', flexDirection: 'column' };
+
+  // Show details button finish
 
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
@@ -192,7 +193,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     setIsLoggedIn(false)
   }
 
-  
   
   return (
     <div className="App">
@@ -431,8 +431,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                       <button onClick={() => toggleVisibility(`${monthYear}-${index}`)}>{buttonLabel}</button>
                     </div>
                     <div style={visible[`${monthYear}-${index}`] ? workoutContainer : showWhenVisible } className={`togglableContent ${
-                      visible[`${monthYear}-${index}`] ? "visible" : "hidden"
-                    }`}>
+                      visible[`${monthYear}-${index}`] ? "visible" : "hidden"}`}>
                       <p className="detail">{item.detail}</p> 
                         <div className="card-features">
                           <div className="favourite">
