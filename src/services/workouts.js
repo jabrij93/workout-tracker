@@ -11,7 +11,7 @@ const getAll = () => {
   const config = {
     headers: { Authorization: token },
   }
-  
+
   return axios.get(baseUrl,config)
 }
 
@@ -28,9 +28,9 @@ const update = (id, newObject) => {
   return axios.put(`${baseUrl}/${id}`, newObject)
 }
 
-export default { 
-  getAll: getAll, 
-  create: create, 
+export default {
+  getAll: getAll,
+  create: create,
   update: update,
-  setToken 
+  setToken
 }

@@ -12,14 +12,6 @@ function App() {
   const [workouts, setWorkouts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   workoutService
-  //     .getAll()
-  //     .then(initialWorkouts => {
-  //       setWorkouts(initialWorkouts);
-  //     });
-  // }, []);
-
   const addWorkout = (workoutObject) => {
     workoutService
       .create(workoutObject)
