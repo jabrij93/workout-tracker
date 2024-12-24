@@ -246,12 +246,11 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                                       selected={newWorkoutDate} 
                                       onChange={(date) => setNewWorkoutDate(date)} 
                                       dateFormat="dd-MM-yyyy"
-                                      data-testid="calendar" 
+                                      data-testid="" 
                                       placeholderText="Select a date" 
                                   />
                                   <input 
                                       type="text" 
-                                      data-testid="details"
                                       value={newWorkoutDetail} 
                                       onChange={(e) => setNewWorkoutDetail(e.target.value)} 
                                       placeholder='Details(optional)'
