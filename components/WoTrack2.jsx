@@ -237,18 +237,21 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                               <form onSubmit={handleSubmit}>
                                   <input 
                                       type="text" 
-                                      value={newWorkout} 
+                                      value={newWorkout}
+                                      data-testid="workout" 
                                       onChange={(e) => setNewWorkout(e.target.value)}   
                                       placeholder='Insert your workout'
                                   />
                                   <ReactDatePicker 
                                       selected={newWorkoutDate} 
                                       onChange={(date) => setNewWorkoutDate(date)} 
-                                      dateFormat="dd-MM-yyyy" 
+                                      dateFormat="dd-MM-yyyy"
+                                      data-testid="calendar" 
                                       placeholderText="Select a date" 
                                   />
                                   <input 
                                       type="text" 
+                                      data-testid="details"
                                       value={newWorkoutDetail} 
                                       onChange={(e) => setNewWorkoutDetail(e.target.value)} 
                                       placeholder='Details(optional)'
