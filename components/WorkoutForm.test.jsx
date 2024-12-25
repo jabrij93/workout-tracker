@@ -1,0 +1,31 @@
+import { render, screen } from '@testing-library/react'
+import WorkoutForm from './WorkoutForm'
+import userEvent from '@testing-library/user-event'
+
+test('<WorkoutForm /> updates parent state and calls onSubmit', async () => {
+  const createWorkout = vi.fn();
+  const closeModal = vi.fn();
+  const setNotification = vi.fn();
+  const setNotificationType = vi.fn();
+  const user = userEvent.setup();
+
+  render(
+    <WorkoutForm 
+      createWorkout={createWorkout} 
+      closeModal={closeModal}
+      setNotification={setNotification}
+      setNotificationType={setNotificationType}
+    />)
+
+  const inputs = screen.getAllByRole('textbox')
+  const sendButton = screen.getByText('Add Workout')
+
+  await user.type(inputs[0], 'testing a form pull-ups...')
+  await user.click(sendButton)
+
+  expect(createWorkout.mock.calls).toHaveLength(1)
+  expect(createWorkout.mock.calls[0][0].workouts).toBe('testing a form pull-ups...')
+  expect(setNotification).toHaveBeenCalledWith('Successfully added testing a form pull-ups... !');
+  expect(setNotificationType).toHaveBeenCalledWith('success');
+  expect(closeModal).toHaveBeenCalled()
+})
