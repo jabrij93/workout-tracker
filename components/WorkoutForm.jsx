@@ -3,7 +3,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
 import dayjs from 'dayjs';
 
-const WorkoutForm = ( { createWorkout, user, closeModal, setNotification, setNotificationType }) => {
+const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNotificationType }) => {
     const [newWorkout, setNewWorkout] = useState('');
     const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
     const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
@@ -41,35 +41,35 @@ const WorkoutForm = ( { createWorkout, user, closeModal, setNotification, setNot
   
     return (
         <div className="modal">
-                         <div className="modal-content">
-                           <span className="close" onClick={closeModal}>&times;</span>
-                               <div className="add-workout">
-                                   <form onSubmit={handleSubmit}>
-                                       <input 
-                                           type="text" 
-                                           value={newWorkout}
-                                           data-testid="workout" 
-                                           onChange={(e) => setNewWorkout(e.target.value)}   
-                                           placeholder='Insert your workout'
-                                       />
-                                       <ReactDatePicker 
-                                           selected={newWorkoutDate} 
-                                           onChange={(date) => setNewWorkoutDate(date)} 
-                                           dateFormat="dd-MM-yyyy"
-                                           data-testid="" 
-                                           placeholderText="Select a date" 
-                                       />
-                                       <input 
-                                           type="text" 
-                                           value={newWorkoutDetail} 
-                                           onChange={(e) => setNewWorkoutDetail(e.target.value)} 
-                                           placeholder='Details(optional)'
-                                       />
-                                       <button className="submit" type="submit"> Add Workout </button>
-                                   </form>
-                               </div>
-                         </div>
+            <div className="modal-content">
+                <span className="close" onClick={closeModal}>&times;</span>
+                    <div className="add-workout">
+                        <form onSubmit={handleSubmit}>
+                            <input 
+                                type="text" 
+                                value={newWorkout}
+                                data-testid="workout" 
+                                onChange={(e) => setNewWorkout(e.target.value)}   
+                                placeholder='Insert your workout'
+                            />
+                            <ReactDatePicker 
+                                  selected={newWorkoutDate} 
+                                  onChange={(date) => setNewWorkoutDate(date)} 
+                                  dateFormat="dd-MM-yyyy"
+                                  data-testid="" 
+                                  placeholderText="Select a date" 
+                            />
+                            <input 
+                                type="text" 
+                                value={newWorkoutDetail} 
+                                onChange={(e) => setNewWorkoutDetail(e.target.value)} 
+                                placeholder='Details(optional)'
+                            />
+                            <button className="submit" type="submit"> Add Workout </button>
+                        </form>
                      </div>
+              </div>
+          </div>
     );
   };
   
