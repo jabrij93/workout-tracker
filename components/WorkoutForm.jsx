@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
+import dayjs from 'dayjs';
 
-const WorkoutForm = ( { createForm, user }) => {
+const WorkoutForm = ( { createWorkout, user, closeModal, setNotification, setNotificationType }) => {
     const [newWorkout, setNewWorkout] = useState('');
     const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
     const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
@@ -37,42 +40,37 @@ const WorkoutForm = ( { createForm, user }) => {
       }
   
     return (
-      <div>
-        <form onSubmit={addBlog}>
-          <div>
-                  title: <input
-              data-testid="title"
-              onChange={event => setNewTitles(event.target.value)}
-              value={newTitle}
-            />
-          </div>
-          <div>
-                  author: <input
-              data-testid="author"
-              onChange={event => setNewAuthors(event.target.value)}
-              value={newAuthor}
-            />
-          </div>
-          <div>
-                  url: <input
-              data-testid="url"
-              onChange={event => setNewUrls(event.target.value)}
-              value={newUrl}
-            />
-          </div>
-          <div>
-                  likes: <input
-              data-testid="likes"
-              onChange={event => setNewLikes(event.target.value)}
-              value={newLike}
-            />
-          </div>
-          <div>
-            <button type="submit">add</button>
-          </div>
-        </form>
-      </div>
+        <div className="modal">
+                         <div className="modal-content">
+                           <span className="close" onClick={closeModal}>&times;</span>
+                               <div className="add-workout">
+                                   <form onSubmit={handleSubmit}>
+                                       <input 
+                                           type="text" 
+                                           value={newWorkout}
+                                           data-testid="workout" 
+                                           onChange={(e) => setNewWorkout(e.target.value)}   
+                                           placeholder='Insert your workout'
+                                       />
+                                       <ReactDatePicker 
+                                           selected={newWorkoutDate} 
+                                           onChange={(date) => setNewWorkoutDate(date)} 
+                                           dateFormat="dd-MM-yyyy"
+                                           data-testid="" 
+                                           placeholderText="Select a date" 
+                                       />
+                                       <input 
+                                           type="text" 
+                                           value={newWorkoutDetail} 
+                                           onChange={(e) => setNewWorkoutDetail(e.target.value)} 
+                                           placeholder='Details(optional)'
+                                       />
+                                       <button className="submit" type="submit"> Add Workout </button>
+                                   </form>
+                               </div>
+                         </div>
+                     </div>
     );
   };
   
-  export default BlogForm;
+  export default WorkoutForm;

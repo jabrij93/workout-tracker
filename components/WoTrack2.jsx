@@ -3,10 +3,8 @@ import axios from 'axios';
 import workoutService from '../src/services/workouts.js'
 import GridCalendar from './GridCalendar.jsx';
 import { Notification } from './Notification.jsx';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'; // Import the styles
-import dayjs from 'dayjs';
-import Togglable from './Togglable.jsx'
+import Togglable from './Togglable.jsx';
+import WorkoutForm from "./WorkoutForm";
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -107,39 +105,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
       setCalendarData(workoutByDate);
   })}, []);
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    if (newWorkout.trim() === '') return;
-  
-    // Default to today's date if no date is selected
-    const selectedDate = newWorkoutDate || new Date(); 
-
-    const formattedDate = dayjs(selectedDate).format('DD-MM-YYYY'); // Matches GridCalendar
-  
-    createWorkout({
-      workouts: newWorkout,
-      date: formattedDate,
-      detail: newWorkoutDetail,
-      likes: 0,
-    })
-  
-    setNewWorkout('');
-    setNewWorkoutDate('');
-    setNewWorkoutDetail('');
-    closeModal();
-
-    setNotification(`Successfully added ${newWorkout} !`)
-    setNotificationType('success');
-
-    // Clear notification after 5 seconds
-    setTimeout(() => {
-      setNotification('');
-    }, 5000); 
-  }
-
-  /* Add Workout Modal */
+  /* Modal */
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -230,36 +196,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
           <button className="new" onClick={openModal}>NEW +</button>
 
           {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                      <span className="close" onClick={closeModal}>&times;</span>
-                          <div className="add-workout">
-                              <form onSubmit={handleSubmit}>
-                                  <input 
-                                      type="text" 
-                                      value={newWorkout}
-                                      data-testid="workout" 
-                                      onChange={(e) => setNewWorkout(e.target.value)}   
-                                      placeholder='Insert your workout'
-                                  />
-                                  <ReactDatePicker 
-                                      selected={newWorkoutDate} 
-                                      onChange={(date) => setNewWorkoutDate(date)} 
-                                      dateFormat="dd-MM-yyyy"
-                                      data-testid="" 
-                                      placeholderText="Select a date" 
-                                  />
-                                  <input 
-                                      type="text" 
-                                      value={newWorkoutDetail} 
-                                      onChange={(e) => setNewWorkoutDetail(e.target.value)} 
-                                      placeholder='Details(optional)'
-                                  />
-                                  <button className="submit" type="submit"> Add Workout </button>
-                              </form>
-                          </div>
-                    </div>
-                </div>
+                <WorkoutForm closeModal={ closeModal } createWorkout={ createWorkout } setNotification={ setNotification } setNotificationType={ setNotificationType } />
             )}
         </div>
         <div className="search-workout-bar">
