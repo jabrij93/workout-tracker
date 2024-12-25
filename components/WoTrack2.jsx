@@ -371,7 +371,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                     </div>
                     <div style={visible[`${monthYear}-${index}`] ? workoutContainer : showWhenVisible } className={`togglableContent ${
                       visible[`${monthYear}-${index}`] ? "visible" : "hidden"}`}>
-                      <p className="detail">{item.detail}</p> 
+                      <p className="detail">{item.date} - {item.detail}</p> 
                         <div className="card-features">
                           <div className="favourite">
                             <img
