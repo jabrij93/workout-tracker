@@ -20,7 +20,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
 
   // Show details button
   const hideWhenVisible = { display: visible ? 'none' : '' };
-  const showWhenVisible = { display: visible ? '' : 'none' };
+  const showWhenVisible = { display: 'none' };
 
   const toggleVisibility = (key) => {
     setVisible((prevVisible) => ({
