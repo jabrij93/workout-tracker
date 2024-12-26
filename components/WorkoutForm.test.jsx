@@ -20,12 +20,12 @@ test('<WorkoutForm /> updates parent state and calls onSubmit', async () => {
   const inputs = screen.getAllByRole('textbox')
   const sendButton = screen.getByText('Add Workout')
 
-  await user.type(inputs[0], 'testing a form pull-ups...')
+  await user.type(inputs[0], 'weighted pull-ups')
   await user.click(sendButton)
 
   expect(createWorkout.mock.calls).toHaveLength(1)
-  expect(createWorkout.mock.calls[0][0].workouts).toBe('testing a form pull-ups...')
-  expect(setNotification).toHaveBeenCalledWith('Successfully added testing a form pull-ups... !');
+  expect(createWorkout.mock.calls[0][0].workouts).toBe('weighted pull-ups')
+  expect(setNotification).toHaveBeenCalledWith('Successfully added weighted pull-ups !');
   expect(setNotificationType).toHaveBeenCalledWith('success');
   expect(closeModal).toHaveBeenCalled()
 })
