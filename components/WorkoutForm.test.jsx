@@ -17,10 +17,10 @@ test('<WorkoutForm /> updates parent state and calls onSubmit', async () => {
       setNotificationType={setNotificationType}
     />)
 
-  const inputs = screen.getAllByRole('textbox')
+  const input = screen.getByPlaceholderText('Insert your workout')
   const sendButton = screen.getByText('Add Workout')
 
-  await user.type(inputs[0], 'weighted pull-ups')
+  await user.type(input, 'weighted pull-ups')
   await user.click(sendButton)
 
   expect(createWorkout.mock.calls).toHaveLength(1)
