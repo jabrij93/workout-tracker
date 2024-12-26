@@ -6,7 +6,7 @@ test('renders workouts', async () => {
     const groupedWorkouts = {
         "January 2024": [
             {
-                workouts: 'chin up',
+                workouts: 'front lever',
                 date: '15-12-2024',
                 detail: '2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest',
                 likes: 0,
@@ -26,7 +26,7 @@ test('renders workouts', async () => {
     
     const buttonLabel = 'show details'
   
-    render(
+    const { container } = render(
       <MainWorkout 
         groupedWorkouts={groupedWorkouts}
         toggleVisibility={toggleVisibility}
@@ -36,6 +36,6 @@ test('renders workouts', async () => {
         buttonLabel={buttonLabel}
       />)
   
-    const element = screen.getByText('chin up')
-    expect(element).toBeDefined()
-  })
+    const div = container.querySelector('.title')
+    expect(div).toHaveTextContent('front lever')
+})
