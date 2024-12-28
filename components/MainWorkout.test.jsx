@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react'
 import MainWorkout from './MainWorkout'
 import userEvent from '@testing-library/user-event'
@@ -118,4 +119,60 @@ test('at start the children are not displayed', () => {
 
     const div = container.querySelector('.togglableContent');
     expect(div).toHaveClass('hidden');
+  });
+
+  test('after clicking the button, children are displayed', async () => {
+    // Mocked data
+    const groupedWorkouts = {
+        "January 2024": [
+            {
+                workouts: 'front lever',
+                date: '17-12-2024',
+                detail: '2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest',
+                likes: 0,
+                user: {
+                    username: 'root',
+                    name: 'Superuser',
+                    id: '6734a7c7be415b97d507c03a'
+                }
+            }
+        ]
+    }
+
+    // Mock visibility state
+    const mockHandler = vi.fn()
+    const MockMainWorkout = () => {
+        const [visible, setVisible] = useState(false) // Stateful visibility
+        const toggleVisibility = () => setVisible(!visible)
+
+        return (
+            <MainWorkout 
+              groupedWorkouts={groupedWorkouts}
+              toggleVisibility={toggleVisibility}
+              visible={visible}
+              workoutContainer={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
+              showWhenVisible={{ display: visible ? '' : 'none' }}
+              buttonLabel="show details"
+            />
+        )
+    }
+
+    // Render component with mock
+    const { container } = render(<MockMainWorkout />)
+
+    // Simulate button click
+    const button = screen.getByText('show details')
+    await userEvent.click(button)
+
+    // Check visibility class
+    const div = container.querySelector('.togglableContent')
+    expect(div).toHaveClass('visible') // Expect class to be visible
+
+    // Check if the date and details are displayed
+    expect(screen.findAllByText((content, element) => {
+      return element.textContent.includes('17-12-2024');
+    }));
+    expect(screen.findAllByText((content, element) => {
+      return element.textContent.includes('2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest');
+    }));
   });
