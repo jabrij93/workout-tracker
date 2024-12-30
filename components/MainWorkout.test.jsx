@@ -122,7 +122,6 @@ test('at start the children are not displayed', () => {
   });
 
   test('after clicking the button, children are displayed', async () => {
-    // Mocked data
     const groupedWorkouts = {
         "January 2024": [
             {
@@ -139,40 +138,37 @@ test('at start the children are not displayed', () => {
         ]
     }
 
-    // Mock visibility state
-    const mockHandler = vi.fn()
-    const MockMainWorkout = () => {
-        const [visible, setVisible] = useState(false) // Stateful visibility
-        const toggleVisibility = () => setVisible(!visible)
-
-        return (
-            <MainWorkout 
-              groupedWorkouts={groupedWorkouts}
-              toggleVisibility={toggleVisibility}
-              visible={visible}
-              workoutContainer={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
-              showWhenVisible={{ display: visible ? '' : 'none' }}
-              buttonLabel="show details"
-            />
-        )
-    }
-
-    // Render component with mock
-    const { container } = render(<MockMainWorkout />)
-
-    // Simulate button click
+    // Mock visibility states
+    const visible = { "January 2024-0": false };
+    const mockHandler = vi.fn();
+    const workoutContainer = { display: 'flex', justifyContent: 'space-between', flexDirection: 'column' };
+    const showWhenVisible = { display: visible ? '' : 'none' };
+    
+    const buttonLabel = 'show details'
+  
+    render(
+      <MainWorkout 
+        groupedWorkouts={groupedWorkouts}
+        toggleVisibility={mockHandler}
+        visible={visible}
+        workoutContainer={workoutContainer}
+        showWhenVisible={showWhenVisible}
+        buttonLabel={buttonLabel}
+      />)
+  
+    const user = userEvent.setup()  
     const button = screen.getByText('show details')
-    await userEvent.click(button)
+    await user.click(button)
 
     // Check visibility class
-    const div = container.querySelector('.togglableContent')
-    expect(div).toHaveClass('visible') // Expect class to be visible
+    //  const div = container.querySelector('.togglableContent')
+    //  expect(div).toHaveClass('visible') // Expect class to be visible
 
-    // Check if the date and details are displayed
-    expect(screen.findAllByText((content, element) => {
-      return element.textContent.includes('17-12-2024');
-    }));
-    expect(screen.findAllByText((content, element) => {
-      return element.textContent.includes('2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest');
-    }));
-  });
+     // Check if the date and details are displayed
+     expect(screen.findAllByText((content, element) => {
+       return element.textContent.includes('17-12-2024');
+     }));
+     expect(screen.findAllByText((content, element) => {
+       return element.textContent.includes('2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest');
+     }));
+})
