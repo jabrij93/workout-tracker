@@ -212,20 +212,16 @@ test('after clicking the button twice, children are displayed and close back', a
     const button = screen.getByText('show details')
     await user.click(button)
 
-    // Check visibility class
-    //  const div = container.querySelector('.togglableContent')
-    //  expect(div).toHaveClass('visible') // Expect class to be visible
-
-     // Check if the date and details are displayed
-     expect(screen.findAllByText((content, element) => {
+    // Check if the date and details are displayed
+    expect(screen.findAllByText((content, element) => {
        return element.textContent.includes('17-12-2024');
-     }));
-     expect(screen.findAllByText((content, element) => {
+    }));
+    expect(screen.findAllByText((content, element) => {
        return element.textContent.includes('2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest');
-     }));
+    }));
 
-     await user.click(button)
+    await user.click(button)
 
-     expect(screen.queryByText('17-12-2024')).not.toBeInTheDocument();
+    expect(screen.queryByText('17-12-2024')).not.toBeInTheDocument();
     expect(screen.queryByText('2 x 11 scapular pull-ups, 60s deadhang 60s, 6 minutes rest')).not.toBeInTheDocument();
 })
