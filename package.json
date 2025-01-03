@@ -24,6 +24,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest run",
+    "testp": "playwright test --project=chromium --project=firefox",
     "preview": "vite preview",
     "server": "json-server -p3001 --watch db.json"
   },
