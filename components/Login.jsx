@@ -118,7 +118,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
   
         <div className="third-content">
           <div className="submit-button">
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
             <p>Don't have an account? <span>Register</span></p>
           </div>
         </div>
