@@ -12,13 +12,28 @@ function App() {
   const [workouts, setWorkouts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    workoutService
+      .getAll()
+      .then((response) => {
+        console.log('Fetched workouts:', response.data); // Debugging log
+        setWorkouts(response.data); // Set the workouts state with fetched data
+      })
+      .catch((error) => {
+        console.error('Error fetching workouts:', error);
+      });
+  }, []); // Empty dependency array ensures this runs only once on mount
+
   const addWorkout = (workoutObject) => {
     workoutService
       .create(workoutObject)
-      .then(returnedWorkout => {
-        setWorkouts(workouts.concat(returnedWorkout))
+      .then((returnedWorkout) => {
+        setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]); // Update workouts state
       })
-  }
+      .catch((error) => {
+        console.error('Error adding workout:', error);
+      });
+  };
 
   const loginForm = () => (
     <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} /> 
@@ -29,7 +44,7 @@ function App() {
   );
 
   const mainApp2 = () => (
-    <WoTrack2 user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} buttonLabel="show details" /> 
+    <WoTrack2 user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} workouts={workouts} buttonLabel="show details" /> 
   );
 
   return (

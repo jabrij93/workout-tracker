@@ -7,10 +7,9 @@ import Togglable from './Togglable.jsx';
 import WorkoutForm from "./WorkoutForm";
 import MainWorkout from "./MainWorkout"; 
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
+const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts }) => {
   const [count, setCount] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [workout, setWorkout] = useState([]);
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
@@ -41,13 +40,17 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const handleMouseEnterX = () => setIsHoveredX(true);
   const handleMouseLeaveX = () => setIsHoveredX(false);
 
-  const sortedWorkouts = workout.filter((workout) => workout.user.username === user.username)
+  console.log('workouts', workouts)
+
+  const sortedWorkouts = workouts.filter((workout) => workout.user?.username === user.username)
                 .slice()
                 .sort((a, b) => {
                   const dateA = new Date(a.date.split('-').reverse().join('-'));
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
                 });
+
+  console.log('sorted Workouts', sortedWorkouts)
 
   // Function to convert month numbers to month names
   const getMonthName = (monthNumber) => {
@@ -81,27 +84,43 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                 
   const handleCloseClick = () => {
     setIsSidebarOpen(false); // Close the sidebar
-  };             
-           
-  useEffect(() => {
-    workoutService
-      .getAll()
-      .then(response=> {
-      const userWorkouts = response.data.filter((item) => item.user?.username === user.username);
-      setWorkout(userWorkouts);
-      
-      const workoutByDate = {};
+  };
   
-      userWorkouts.forEach((item) => {
-        const date = item.date; // Assuming each item has a 'date' field
-        if (date) {
-          workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
-        } else {
-          console.warn('Workout missing date:' , item)
-        }
-      });
-      setCalendarData(workoutByDate);
-  })}, []);
+  useEffect(() => {
+    const workoutByDate = {};
+  
+    workouts.forEach((item) => {
+      const date = item.date; // Assuming each item has a 'date' field
+      if (date) {
+        workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
+      } else {
+        console.warn('Workout missing date:', item);
+      }
+    });
+  
+    setCalendarData(workoutByDate);
+  }, [workouts]); // Re-run this effect when `workouts` changes
+           
+  // useEffect(() => {
+  //   workoutService
+  //     .getAll()
+  //     .then(response=> {
+  //     const userWorkouts = response.data.filter((item) => item.user?.username === user.username);
+  //     setWorkout(userWorkouts);
+  //     console.log('userWorkouts', userWorkouts)
+
+  //     const workoutByDate = {};
+  
+  //     userWorkouts.forEach((item) => {
+  //       const date = item.date; // Assuming each item has a 'date' field
+  //       if (date) {
+  //         workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
+  //       } else {
+  //         console.warn('Workout missing date:' , item)
+  //       }
+  //     });
+  //     setCalendarData(workoutByDate);
+  // })}, []);
 
   /* Modal */
   const openModal = () => {

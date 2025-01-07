@@ -91,6 +91,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
               <input
                 type="text"
                 name="username"
+                data-testid='username'
                 value={username}
                 onChange={handleUsernameChange}
                 required
@@ -102,6 +103,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
               <input
                 type="password"
                 name="password"
+                data-testid='password'
                 value={password}
                 onChange={handlePasswordChange}
                 required

@@ -54,18 +54,19 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
                             />
                             <ReactDatePicker 
                                   selected={newWorkoutDate} 
-                                  onChange={(date) => setNewWorkoutDate(date)} 
+                                  onChange={(date) => setNewWorkoutDate(date)}
+                                  data-testid="date"                                    
                                   dateFormat="dd-MM-yyyy"
-                                  data-testid="" 
                                   placeholderText="Select a date" 
                             />
                             <input 
-                                type="text" 
+                                type="text"
                                 value={newWorkoutDetail} 
+                                data-testid="detail" 
                                 onChange={(e) => setNewWorkoutDetail(e.target.value)} 
                                 placeholder='Details(optional)'
                             />
-                            <button className="submit" type="submit"> Add Workout </button>
+                            <button type="submit"> Add Workout </button>
                         </form>
                      </div>
               </div>
