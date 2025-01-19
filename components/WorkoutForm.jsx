@@ -54,10 +54,10 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
                             />
                             <ReactDatePicker 
                                   selected={newWorkoutDate} 
-                                  onChange={(date) => setNewWorkoutDate(date)}
-                                  data-testid="date"                                    
+                                  onChange={(date) => setNewWorkoutDate(date)}                                
                                   dateFormat="dd-MM-yyyy"
                                   placeholderText="Select a date" 
+                                  customInput={<input data-testid="date" />} // Apply data-testid to the input
                             />
                             <input 
                                 type="text"
