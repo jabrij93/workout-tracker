@@ -12,17 +12,19 @@ function App() {
   const [workouts, setWorkouts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    workoutService
-      .getAll()
-      .then((response) => {
-        console.log('Fetched workouts:', response.data); // Debugging log
-        setWorkouts(response.data); // Set the workouts state with fetched data
-      })
-      .catch((error) => {
-        console.error('Error fetching workouts:', error);
-      });
-  }, []); // Empty dependency array ensures this runs only once on mount
+  // useEffect(() => {
+  //   workoutService
+  //     .getAll()
+  //     .then((response) => {
+  //       console.log('Fetched workouts:', response.data); // Debugging log
+  //       setWorkouts(response.data); // Set the workouts state with fetched data
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching workouts:', error);
+  //     });
+  // }, []); // Empty dependency array ensures this runs only once on mount
+
+  // console.log('workoutsss', workouts)
 
   const addWorkout = (workoutObject) => {
     workoutService

@@ -7,8 +7,9 @@ import Togglable from './Togglable.jsx';
 import WorkoutForm from "./WorkoutForm";
 import MainWorkout from "./MainWorkout"; 
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts }) => {
+const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
+  const [workouts, setWorkouts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
@@ -20,6 +21,18 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel,
   // Show details button
   const hideWhenVisible = { display: visible ? 'none' : '' };
   const showWhenVisible = { display: 'none' };
+
+  useEffect(() => {
+    workoutService
+      .getAll()
+      .then((response) => {
+        console.log('Fetched workouts:', response.data); // Debugging log
+        setWorkouts(response.data); // Set the workouts state with fetched data
+      })
+      .catch((error) => {
+        console.error('Error fetching workouts:', error);
+      });
+  }, []);
 
   const toggleVisibility = (key) => {
     setVisible((prevVisible) => ({
@@ -40,7 +53,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel,
   const handleMouseEnterX = () => setIsHoveredX(true);
   const handleMouseLeaveX = () => setIsHoveredX(false);
 
-  console.log('workouts', workouts)
+  console.log('workoutsss', workouts)
 
   const sortedWorkouts = workouts.filter((workout) => workout.user?.username === user.username)
                 .slice()
