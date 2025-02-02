@@ -11,10 +11,10 @@ const MainWorkout = ({ groupedWorkouts, toggleVisibility, visible, workoutContai
             {groupedWorkouts[monthYear].map((item, index) => { 
               const isVisible = visible[`${monthYear}-${index}`];
               const style = isVisible ? workoutContainer : { display: 'none' };
-
+              console.log('item.id', item.id);
               return (
-                <div className="card" key={index} data-testid="workout-card">
-                  <div className="title">
+                <div className="card" key={index} >
+                  <div className="title" data-testid={`workout-card-${item.workouts}`} >
                     <p>{item.workouts}</p>
                     <button onClick={() => toggleVisibility(`${monthYear}-${index}`)}>
                       {buttonLabel}
