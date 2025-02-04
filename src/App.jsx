@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import WoTrack from './WoTrack'; 
-import WoTrack2 from '../components/WoTrack2'; 
-import Login from '../components/Login';
+import WoTrack2 from './WoTrack2.jsx'; 
+import Login from './Login.jsx';
 import workoutService from '../src/services/workouts.js'
 
 function App() {

@@ -1,8 +1,8 @@
 // src/Login.jsx
 import React, { useState, useEffect } from 'react';
 import './login.css';  // Assume you have styles in Login.css or move your CSS here
-import loginService from '../src/services/login.js'
-import workoutService from '../src/services/workouts.js'
+import loginService from './services/login.js'
+import workoutService from './services/workouts.js'
 import Togglable from '../components/Togglable.jsx'
 import PropTypes from 'prop-types'
 
