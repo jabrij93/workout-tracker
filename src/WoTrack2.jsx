@@ -26,8 +26,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     workoutService
       .getAll()
       .then((response) => {
-        console.log('Fetched workouts:', response.data); // Debugging log
-        setWorkouts(response.data); // Set the workouts state with fetched data
+        console.log('Fetched workouts:', response.data);
+        setWorkouts(response.data); 
       })
       .catch((error) => {
         console.error('Error fetching workouts:', error);
