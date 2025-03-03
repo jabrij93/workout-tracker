@@ -5,13 +5,20 @@ const MainWorkout = ({ groupedWorkouts, toggleVisibility, visible, workoutContai
   return (
     <div className="article">
       <h3 className="project-header">Your Activities/Workouts</h3>
-      <Workout
-        groupedWorkouts={groupedWorkouts}
-        toggleVisibility={toggleVisibility}
-        visible={visible}
-        workoutContainer={workoutContainer}
-        buttonLabel={buttonLabel}
-      />
+      {Object.keys(groupedWorkouts).map((monthYear) => (
+        <div className="card-container" key={monthYear}>
+          <div>
+            <h2>{monthYear}</h2>
+            <Workout
+              groupedWorkouts={groupedWorkouts[monthYear]}  // Pass only the workouts for the current monthYear
+              toggleVisibility={toggleVisibility}
+              visible={visible}
+              workoutContainer={workoutContainer}
+              buttonLabel={buttonLabel}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
