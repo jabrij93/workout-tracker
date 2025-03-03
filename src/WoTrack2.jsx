@@ -7,6 +7,7 @@ import Togglable from '../components/Togglable.jsx';
 import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
 import Announcement from '../components/Announcement.jsx';
+import Trending from '../components/Trending.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -399,44 +400,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   
         <div className="right-container">
           <Announcement />
-  
-          <div className="trending-container">
-            <h3 className="trending-header">Trending</h3>
-            <div className="trending">
-              {[
-                {
-                  username: "@regan",
-                  description: "World Peace Builder",
-                  img: "images/profilephoto1.jpg",
-                },
-                {
-                  username: "@morgan",
-                  description: "Super Cool Project",
-                  img: "images/profilephoto3.jpg",
-                },
-              ].map((user, index) => (
-                <div className="trending-title" key={index}>
-                  <div className="profilephoto">
-                    <img
-                      src={user.img}
-                      alt={user.username}
-                      style={{
-                        width: "48px",
-                        height: "48px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </div>
-                  <div className="users">
-                    <p className="bold">
-                      <strong>{user.username}</strong>
-                    </p>
-                    <p>{user.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Trending />        
         </div>
       </div>
     </div>
