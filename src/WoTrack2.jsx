@@ -6,6 +6,7 @@ import { Notification } from '../components/Notification.jsx';
 import Togglable from '../components/Togglable.jsx';
 import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
+import Announcement from '../components/Announcement.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -397,29 +398,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
         />
   
         <div className="right-container">
-          <div className="announcements">
-            <h3 className="announcement-header">Announcement</h3>
-            <div className="announcement" >
-              {[
-                {
-                  title: "Site Maintenance",
-                  description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...",
-                },
-                {
-                  title: "Community Share Day",
-                  description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...",
-                },
-              ].map((announcement, index) => (
-                <div key={index}>
-                  <h4 className="announcement-title" style={{ marginTop:"2px" }}>{announcement.title}</h4>
-                  <p>{announcement.description}</p>
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </div>
+          <Announcement />
   
           <div className="trending-container">
             <h3 className="trending-header">Trending</h3>
