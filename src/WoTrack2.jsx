@@ -8,6 +8,7 @@ import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
 import Announcement from '../components/Announcement.jsx';
 import Trending from '../components/Trending.jsx';
+import DashboardHeader from '../components/DashboardHeader.jsx';
 import DashboardOne from '../components/DashboardOne.jsx';
 import DashboardTwo from '../components/DashboardTwo.jsx';
 
@@ -255,21 +256,13 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`} id="sidebar">
-        <button className="close" onClick={handleCloseClick} style={{
-                        transform: isHoveredX ? "scale(1.2)" : "scale(1)",
-                        transition: "transform 0.3s ease"
-                    }} onMouseEnter={handleMouseEnterX}
-                    onMouseLeave={handleMouseLeaveX} > ✖ </button>
-        {/* Sidebar content */}
-        <div className="dashboard">
-                <img src="images/dashboardlogo.svg" alt="" style={{ width: "48px" }} />
-                <div className="dashboard-separate">
-                    <p>Dashboard</p>
-                </div>
-            </div>
-
+            <DashboardHeader
+              handleCloseClick={handleCloseClick}
+              isHoveredX={isHoveredX}
+              handleMouseEnterX={handleMouseEnterX}
+              handleMouseLeaveX={handleMouseLeaveX}
+            />
             <DashboardOne />
-
             <DashboardTwo 
               isHovered={isHovered} 
               handleMouseEnter={handleMouseEnter} 
