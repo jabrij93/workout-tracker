@@ -8,6 +8,7 @@ import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
 import Announcement from '../components/Announcement.jsx';
 import Trending from '../components/Trending.jsx';
+import DashboardOne from '../components/DashboardOne.jsx';
 import DashboardTwo from '../components/DashboardTwo.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
@@ -267,53 +268,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                 </div>
             </div>
 
-            <div className="feature-one">
-                <ul className="feature-one-gap">
-                    <div className="feature-one-logo">
-                        <img src="images/homelogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-one-separate">
-                            <li>Home</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-one-logo">
-                        <img src="images/profilelogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-one-separate">
-                            <li>Profile</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-one-logo">
-                        <img src="images/messagelogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-one-separate">
-                            <li>Messages</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-one-logo">
-                        <img src="images/historylogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-one-separate">
-                            <li>History</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-one-logo">
-                        <img src="images/tasklogo.svg" alt="" style={{ width: "20px" }}/>
-                        <div className="feature-one-separate">
-                            <li>Task</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-one-logo">
-                        <img src="images/communitylogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-one-separate">
-                            <li>Communities</li>
-                        </div>
-                    </div>
-
-                    
-                </ul>
-            </div>
+            <DashboardOne />
 
             <DashboardTwo 
               isHovered={isHovered} 
