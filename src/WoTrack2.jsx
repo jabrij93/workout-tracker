@@ -8,6 +8,7 @@ import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
 import Announcement from '../components/Announcement.jsx';
 import Trending from '../components/Trending.jsx';
+import DashboardTwo from '../components/DashboardTwo.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -314,37 +315,12 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                 </ul>
             </div>
 
-            <div className="feature-two" style={{ marginTop:"45px" }}>
-                <ul>
-                    <div className="feature-two-logo">
-                        <img src="images/settingslogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-two-separate">
-                            <li>Settings</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-two-logo">
-                        <img src="images/supportlogo.svg" alt="" style={{ width: "20px" }} />
-                        <div className="feature-two-separate">
-                            <li>Support</li>
-                        </div>
-                    </div>
-
-                    <div className="feature-two-logo" style={{
-                        width: "20px",
-                        marginTop: "90px",
-                        transform: isHovered ? "scale(1.2)" : "scale(1)",
-                        transition: "transform 0.3s ease"
-                    }}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave} >
-                        <img src="images/logout.svg" alt="" style={{ width: "20px" }}  />
-                        <div className="feature-two-separate">
-                            <li onClick={handleLogout}>Logout</li>
-                        </div>
-                    </div>
-                </ul>
-            </div>
+            <DashboardTwo 
+              isHovered={isHovered} 
+              handleMouseEnter={handleMouseEnter} 
+              handleMouseLeave={handleMouseLeave} 
+              handleLogout={handleLogout} 
+            />
       </div>
   
       {/* Header */}
