@@ -1,11 +1,9 @@
 const Workout = ({ groupedWorkouts, toggleVisibility, visible, workoutContainer, buttonLabel }) => {
-    console.log('groupedWorkouts', groupedWorkouts);
     return (
         <>
             {groupedWorkouts.map((item, index) => { 
                 const isVisible = visible[`${item.date}-${index}`];  // Adjusted the key for visibility
                 const style = isVisible ? workoutContainer : { display: 'none' };
-                console.log('item.id', item.id);
                 return (
                     <div className="card" key={index}>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>

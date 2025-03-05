@@ -36,7 +36,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
     workoutService
       .getAll()
       .then((response) => {
-        console.log('Fetched workouts:', response.data);
         setWorkouts(response.data); 
       })
       .catch((error) => {
@@ -63,8 +62,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const handleMouseEnterX = () => setIsHoveredX(true);
   const handleMouseLeaveX = () => setIsHoveredX(false);
 
-  console.log('workoutsss', workouts)
-
   const sortedWorkouts = workouts.filter((workout) => workout.user?.username === user.username)
                 .slice()
                 .sort((a, b) => {
@@ -72,8 +69,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
                 });
-
-  console.log('sorted Workouts', sortedWorkouts)
 
   // Function to convert month numbers to month names
   const getMonthName = (monthNumber) => {
@@ -97,7 +92,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   };
   
   const groupedWorkouts = groupByMonth(sortedWorkouts);
-  console.log('groupedWorkouts:', groupedWorkouts); 
   
   const totalWorkouts = sortedWorkouts.length;
 
