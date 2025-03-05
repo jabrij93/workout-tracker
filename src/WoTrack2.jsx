@@ -14,6 +14,7 @@ import DashboardHeader from '../components/DashboardHeader.jsx';
 import DashboardOne from '../components/DashboardOne.jsx';
 import DashboardTwo from '../components/DashboardTwo.jsx';
 import SearchBar from '../components/SearchBar.jsx';
+import HeaderOne from '../components/HeaderOne.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -239,28 +240,10 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
       </div>
   
       {/* Header */}
-      <div className="header-one">
-        <div className="user">
-          <div className="notification">
-            <img
-              src="images/notificationlogo.svg"
-              alt="Notification Icon"
-              style={{ width: "20px", marginTop:"15px" }}
-            />
-          </div>
-          <div className="profilephoto">
-            <img
-              src="images/profilephoto1.jpg"
-              alt="Profile"
-              style={{ width: "40px", borderRadius: "50%" }}
-            />
-          </div>
-          <div className="username" style={{ marginTop:"-10px" }} >
-            <p style={{ fontSize: "14px", lineHeight:"0" }}>Welcome back,</p>
-            { isLoggedIn && <p>{user.name}</p> }
-          </div>
-        </div>
-      </div>
+      <HeaderOne 
+        isLoggedIn={isLoggedIn} 
+        user={user} 
+      />
 
       <div className="header-two">
         <div style={{ marginLeft:"15px", marginTop:"-20px", paddingBottom:"20px" }}>
