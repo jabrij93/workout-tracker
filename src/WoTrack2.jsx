@@ -8,9 +8,12 @@ import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
 import Announcement from '../components/Announcement.jsx';
 import Trending from '../components/Trending.jsx';
+import TopLeftHeader from '../components/TopLeftHeader.jsx';
+import LeftSidebar from '../components/LeftSidebar.jsx';
 import DashboardHeader from '../components/DashboardHeader.jsx';
 import DashboardOne from '../components/DashboardOne.jsx';
 import DashboardTwo from '../components/DashboardTwo.jsx';
+import SearchBar from '../components/SearchBar.jsx';
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);
@@ -204,55 +207,19 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   
       {/* Hamburger Button */}
       <div className="wotrack-logo">
-        <button className="hamburger" id="hamburgerButton" onClick={handleHamburgerClick} > ☰ </button>
-        <img
-          src="images/wotrack-logo.jpeg"
-          alt="Wotrack Logo"
-          style={{ width: "48px", height: "48px", borderRadius: "50%" }}
-        />
-        <h4>Dashboard</h4>
-        
-        <div className="search-bar">
-          <img
-            src="images/searchlogo.svg"
-            alt="Search Icon"
-            className="searchlogo"
-            style={{ width: "25px", height: "25px" }}
-          />
-          <div className="search-container">
-            <input type="search" className="search" />
-          </div>
-        </div>
+          <TopLeftHeader handleHamburgerClick={handleHamburgerClick} />
+          <SearchBar />
       </div>
-  
-      <div className="leftbar">
-        <div className="first-header">
-          <h2>Workouts</h2>
-          <button className="new" onClick={openModal}>NEW +</button>
 
-          {isModalOpen && (
-                <WorkoutForm closeModal={ closeModal } createWorkout={ createWorkout } setNotification={ setNotification } setNotificationType={ setNotificationType } />
-            )}
-        </div>
-        <div className="search-workout-bar">
-          <div className="search-workout-container">
-            <input
-              type="text"
-              className="search-workout"
-              placeholder="Search workouts..."
-            />
-          </div>
-        </div>
-        <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
-        <div className="list-workouts" style={{ marginLeft: "20px" }}>
-          <ul>
-            {sortedWorkouts.map((item, index) => (
-              <li key={index}>{item.workouts}</li>
-            ))}
-          </ul>
-          <p>Show more...</p>
-        </div>
-      </div>
+      <LeftSidebar 
+        openModal={openModal}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        createWorkout={createWorkout}
+        setNotification={setNotification}
+        setNotificationType={setNotificationType}
+        sortedWorkouts={sortedWorkouts}
+      />
   
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`} id="sidebar">
