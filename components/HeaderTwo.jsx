@@ -1,4 +1,5 @@
 import GridCalendar from '../components/GridCalendar.jsx';
+import { Notification } from './Notification.jsx';
 
 const HeaderTwo = ({ notification, notificationType, totalWorkouts, openModal, calendarData }) => {
     return (
