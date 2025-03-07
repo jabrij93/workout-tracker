@@ -39,7 +39,14 @@ function App() {
   );
 
   const mainApp2 = () => (
-    <WoTrack2 user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} workouts={workouts} buttonLabel="show details" /> 
+    <WoTrack2 
+      user={user} 
+      isLoggedIn={isLoggedIn} 
+      setIsLoggedIn={setIsLoggedIn} 
+      createWorkout={addWorkout} 
+      workouts={workouts} 
+      buttonLabel="show details" 
+    /> 
   );
 
   return (
