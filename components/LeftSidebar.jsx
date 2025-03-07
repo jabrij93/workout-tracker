@@ -1,7 +1,40 @@
-import React from "react";
+import { useState, useEffect } from 'react';
 import WorkoutForm from "./WorkoutForm";
 
-const LeftSidebar = ({ openModal, isModalOpen, closeModal, createWorkout, setNotification, setNotificationType, sortedWorkouts }) => {
+const LeftSidebar = ({ createWorkout, setNotification, setNotificationType, sortedWorkouts }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  /* Modal */
+  const openModal = () => {
+   
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    if (isModalOpen) {
+        window.addEventListener('keydown', handleKeyDown);
+    } else {
+        window.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+      
+  }, [isModalOpen]);
+  /* Modal */
+
   return (
     <div className="leftbar">
       <div className="first-header">
