@@ -8,7 +8,7 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
     const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
     const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
       
         if (newWorkout.trim() === '') return;
@@ -18,12 +18,14 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
     
         const formattedDate = dayjs(selectedDate).format('DD-MM-YYYY'); // Matches GridCalendar
       
-        createWorkout({
+        const newWorkoutData = {
           workouts: newWorkout,
           date: formattedDate,
           detail: newWorkoutDetail,
           likes: 0,
-        })
+      };
+
+        await createWorkout(newWorkoutData); // Wait for the update before clearing state
       
         setNewWorkout('');
         setNewWorkoutDate('');

@@ -19,16 +19,26 @@ function App() {
       })
   }, []); // Empty dependency array ensures this runs only once on mount
 
-  const addWorkout = (workoutObject) => {
-    workoutService
-      .create(workoutObject)
-      .then((returnedWorkout) => {
-        setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]); // Update workouts state
-      })
-      .catch((error) => {
+  const addWorkout = async (workoutObject) => {
+    try {
+        const response = await workoutService.create(workoutObject);
+        const savedWorkout = response.data; // Ensure we get the correct data
+        setWorkouts((prevWorkouts) => [...prevWorkouts, savedWorkout]); // Update state
+    } catch (error) {
         console.error('Error adding workout:', error);
-      });
+    }
   };
+
+  // const addWorkout = (workoutObject) => {
+  //   workoutService
+  //     .create(workoutObject)
+  //     .then((returnedWorkout) => {
+  //       setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]); // Update workouts state
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error adding workout:', error);
+  //     });
+  // };
 
   const loginForm = () => (
     <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} /> 
