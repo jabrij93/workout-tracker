@@ -1,4 +1,8 @@
-const Workout = ({ groupedWorkouts, toggleVisibility, visible, workoutContainer, buttonLabel }) => {
+import { useState, useEffect } from 'react';
+
+const Workout = ({ groupedWorkouts, toggleVisibility, workoutContainer, buttonLabel }) => {
+    const [visible, setVisible] = useState({});
+
     return (
         <>
             {groupedWorkouts.map((item, index) => { 

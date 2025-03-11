@@ -25,12 +25,10 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visible, setVisible] = useState({});
 
   // Show details button
-  const hideWhenVisible = { display: visible ? 'none' : '' };
-  const showWhenVisible = { display: 'none' };
 
   useEffect(() => {
     workoutService
@@ -139,34 +137,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   //     setCalendarData(workoutByDate);
   // })}, []);
 
-  /* Modal */
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-        if (event.key === 'Escape') {
-            closeModal();
-        }
-    };
-
-    if (isModalOpen) {
-        window.addEventListener('keydown', handleKeyDown);
-    } else {
-        window.removeEventListener('keydown', handleKeyDown);
-    }
-
-    return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      };
-      
-  }, [isModalOpen]);
-  /* Modal */
+  
 
   const handleLike = (id) => {
     // Find and update the specific item directly
@@ -207,10 +178,8 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
           <SearchBar />
       </div>
 
-      <LeftSidebar 
-        openModal={openModal}
+      <LeftSidebar
         isModalOpen={isModalOpen}
-        closeModal={closeModal}
         createWorkout={createWorkout}
         setNotification={setNotification}
         setNotificationType={setNotificationType}
@@ -244,7 +213,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
         notification={notification}
         notificationType={notificationType}
         totalWorkouts={totalWorkouts}
-        openModal={openModal}
         calendarData={calendarData}
       />
 
@@ -254,9 +222,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
         <MainWorkout
           groupedWorkouts={groupedWorkouts}
           toggleVisibility={toggleVisibility}
-          visible={visible}
           workoutContainer={workoutContainer}
-          showWhenVisible={showWhenVisible}
           buttonLabel={buttonLabel}
         />
   

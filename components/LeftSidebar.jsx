@@ -7,7 +7,6 @@ const LeftSidebar = ({ createWorkout, setNotification, setNotificationType, sort
 
   /* Modal */
   const openModal = () => {
-   
     setIsModalOpen(true);
   };
 
