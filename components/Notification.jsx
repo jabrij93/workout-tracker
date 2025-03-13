@@ -1,4 +1,4 @@
-export const Notification = ({ notification, type }) => {
+const Notification = ({ notification, type }) => {
     const borderColor = type === 'error' ? 'red' : 'green'
     const textColor = type === 'error' ? 'red' : 'green'
     
@@ -9,3 +9,5 @@ export const Notification = ({ notification, type }) => {
         </div>
     )
 }
+
+export default Notification;

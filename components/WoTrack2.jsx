@@ -1,8 +1,7 @@
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import workoutService from "./services/workouts.js"
 import GridCalendar from '../components/GridCalendar.jsx';
-import { Notification } from '../components/Notification.jsx';
+import Notification from '../components/Notification.jsx';
 import Togglable from '../components/Togglable.jsx';
 import WorkoutForm from "../components/WorkoutForm.jsx";
 import MainWorkout from "../components/MainWorkout.jsx"; 
@@ -16,6 +15,8 @@ import DashboardTwo from '../components/DashboardTwo.jsx';
 import SearchBar from '../components/SearchBar.jsx';
 import HeaderOne from '../components/HeaderOne.jsx';
 import HeaderTwo from '../components/HeaderTwo.jsx';
+import workoutService from '../src/services/workouts.js'
+
 
 const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
   const [count, setCount] = useState(0);

@@ -1,69 +1,59 @@
-// src/App.jsx
-import { useState, useEffect } from 'react';
-import WoTrack from './WoTrack'; 
-import WoTrack2 from './WoTrack2.jsx'; 
-import Login from './Login.jsx';
-import workoutService from '../src/services/workouts.js'
+import { useState, useEffect, useRef } from 'react';
+import Login from '../components/Login.jsx';
+import WoTrack2 from '../components/WoTrack2.jsx';
+import Notification from '../components/Notification.jsx';
+import loginService from './services/login.js';
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null)
-  const [workouts, setWorkouts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
-    workoutService
-      .getAll()
-      .then((response) => {
-        setWorkouts(response.data); // Set the workouts state with fetched data
-      })
-  }, []); // Empty dependency array ensures this runs only once on mount
+    const loggedUserJSON = window.localStorage.getItem('loggedUser');
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
+  }, []);
 
-  const addWorkout = async (workoutObject) => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     try {
-        const response = await workoutService.create(workoutObject);
-        const savedWorkout = response.data; // Ensure we get the correct data
-        setWorkouts((prevWorkouts) => [...prevWorkouts, savedWorkout]); // Update state
-    } catch (error) {
-        console.error('Error adding workout:', error);
+      const user = await loginService.login({ username, password });
+      window.localStorage.setItem('loggedUser', JSON.stringify(user));
+      setUser(user);
+      setUsername('');
+      setPassword('');
+    } catch (exception) {
+      setErrorMessage('Wrong credentials');
+      setTimeout(() => setErrorMessage(null), 5000);
     }
   };
 
-  // const addWorkout = (workoutObject) => {
-  //   workoutService
-  //     .create(workoutObject)
-  //     .then((returnedWorkout) => {
-  //       setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]); // Update workouts state
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error adding workout:', error);
-  //     });
-  // };
-
-  const loginForm = () => (
-    <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} /> 
-  );
-
-  const mainApp = () => (
-    <WoTrack user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} createWorkout={addWorkout} /> 
-  );
-
-  const mainApp2 = () => (
-    <WoTrack2 
-      user={user} 
-      isLoggedIn={isLoggedIn} 
-      setIsLoggedIn={setIsLoggedIn} 
-      createWorkout={addWorkout} 
-      workouts={workouts} 
-      buttonLabel="show details" 
-    /> 
-  );
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedUser');
+    setUser(null);
+  };
 
   return (
     <div>
-      {isLoggedIn ? mainApp2() : loginForm()}
+      <h1>Workout Tracker</h1>
+      <Notification message={errorMessage} />
+      {!user ? (
+        <Login
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+        />
+      ) : (
+        <WoTrack2 user={user} handleLogout={handleLogout} />
+      )}
     </div>
   );
-}
+};
 
 export default App;

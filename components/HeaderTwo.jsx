@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import GridCalendar from '../components/GridCalendar.jsx';
-import { Notification } from './Notification.jsx';
+import Notification  from '../components/Notification.jsx';
 
 
 const HeaderTwo = ({ notification, notificationType, totalWorkouts, calendarData }) => {
