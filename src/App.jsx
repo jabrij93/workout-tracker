@@ -5,6 +5,7 @@ import Notification from '../components/Notification.jsx';
 import loginService from './services/login.js';
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [username, setUsername] = useState('');
@@ -48,6 +49,8 @@ const App = () => {
           handleUsernameChange={({ target }) => setUsername(target.value)}
           handlePasswordChange={({ target }) => setPassword(target.value)}
           handleSubmit={handleLogin}
+          setIsLoggedIn={setIsLoggedIn}
+          setUser={setUser}
         />
       ) : (
         <WoTrack2 user={user} handleLogout={handleLogout} />
