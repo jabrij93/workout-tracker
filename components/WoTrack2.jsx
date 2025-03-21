@@ -26,21 +26,23 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [visible, setVisible] = useState({});
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Show details button
 
-  // useEffect(() => {
-  //   workoutService
-  //     .getAll()
-  //     .then((response) => {
-  //       setWorkouts(response.data); 
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching workouts:', error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    workoutService
+      .getAll()
+      .then((response) => {
+        setWorkouts(response.data); 
+      })
+      .catch((error) => {
+        console.error('Error fetching workouts:', error);
+      });
+  }, []);
+  console.log("workouts-have data?", workouts)
 
   const toggleVisibility = (key) => {
     setVisible((prevVisible) => ({
@@ -67,7 +69,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
                   const dateA = new Date(a.date.split('-').reverse().join('-'));
                   const dateB = new Date(b.date.split('-').reverse().join('-'));
                   return dateB - dateA; // Sort descending
-                });
+  });
 
   // Function to convert month numbers to month names
   const getMonthName = (monthNumber) => {
@@ -116,46 +118,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
   
     setCalendarData(workoutByDate);
   }, [workouts]); // Re-run this effect when `workouts` changes
-           
-  // useEffect(() => {
-  //   workoutService
-  //     .getAll()
-  //     .then(response=> {
-  //     const userWorkouts = response.data.filter((item) => item.user?.username === user.username);
-  //     setWorkout(userWorkouts);
-  //     console.log('userWorkouts', userWorkouts)
-
-  //     const workoutByDate = {};
-  
-  //     userWorkouts.forEach((item) => {
-  //       const date = item.date; // Assuming each item has a 'date' field
-  //       if (date) {
-  //         workoutByDate[date] = (workoutByDate[date] || 0) + 1; // Count workouts for each date
-  //       } else {
-  //         console.warn('Workout missing date:' , item)
-  //       }
-  //     });
-  //     setCalendarData(workoutByDate);
-  // })}, []);
-
-  
-
-  const handleLike = (id) => {
-    // Find and update the specific item directly
-    const updatedItem = workout.find((item) => item.id === id);
-      if (updatedItem) {
-        const updatedItemWithLike = {...updatedItem, likes:Number(updatedItem.likes + 1)};
-
-      axios.put(`http://localhost:3001/workoutData/${id}`, updatedItemWithLike)
-        .then(response => {
-          // Update the workout array by replacing the liked item
-          const updatedWorkout = workout.map((item) => 
-            item.id === id ? updatedItemWithLike : item
-          );
-          setWorkout(updatedWorkout);
-      })
-    }
-  }
 
   const handleLogout = async (event) => {
     event.preventDefault()
@@ -216,8 +178,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
         totalWorkouts={totalWorkouts}
         calendarData={calendarData}
       />
-
-    
+  
       {/* Main Content */}
       <div className="main-content">
         <MainWorkout
