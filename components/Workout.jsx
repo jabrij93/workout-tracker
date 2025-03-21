@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CardFeatures from './CardFeatures';
 
 const Workout = ({ groupedWorkouts, toggleVisibility, workoutContainer, buttonLabel }) => {
     const [visible, setVisible] = useState({});
@@ -23,29 +24,7 @@ const Workout = ({ groupedWorkouts, toggleVisibility, workoutContainer, buttonLa
                             <p className="detail">
                                 {item.date} - {item.detail}
                             </p>
-                            <div className="card-features">
-                                <div className="favourite">
-                                    <img
-                                        src="images/favouritelogo.svg"
-                                        alt="Favourite"
-                                        style={{ width: "18px", height: "18px" }}
-                                    />
-                                </div>
-                                <div className="view">
-                                    <img
-                                        src="images/viewlogo.svg"
-                                        alt="View"
-                                        style={{ width: "18px", height: "18px" }}
-                                    />
-                                </div>
-                                <div className="share">
-                                    <img
-                                        src="images/sharelogo.svg"
-                                        alt="Share"
-                                        style={{ width: "18px", height: "18px" }}
-                                    />
-                                </div>
-                            </div>
+                            <CardFeatures />
                         </div>
                     </div>
                 );
