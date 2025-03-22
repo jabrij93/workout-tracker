@@ -3,6 +3,7 @@ import Login from '../components/Login.jsx';
 import WoTrack2 from '../components/WoTrack2.jsx';
 import Notification from '../components/Notification.jsx';
 import loginService from './services/login.js';
+import workoutService from '../src/services/workouts.js';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -10,13 +11,26 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser');
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      setIsLoggedIn(true);
     }
+  }, []);
+
+  useEffect(() => {
+    workoutService
+      .getAll()
+      .then((response) => {
+        setWorkouts(response.data); 
+      })
+      .catch((error) => {
+        console.error('Error fetching workouts:', error);
+      });
   }, []);
 
   const handleLogin = async (event) => {
@@ -25,6 +39,7 @@ const App = () => {
       const user = await loginService.login({ username, password });
       window.localStorage.setItem('loggedUser', JSON.stringify(user));
       setUser(user);
+      setIsLoggedIn(true);
       setUsername('');
       setPassword('');
     } catch (exception) {
@@ -37,36 +52,6 @@ const App = () => {
     window.localStorage.removeItem('loggedUser');
     setUser(null);
   };
-
-  // 
-  // Login form part starts here
-  // 
-  const loginForm = () => {
-    const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-    const showWhenVisible = { display: loginVisible ? '' : 'none' }
-
-    return (
-      <div>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setLoginVisible(true)}>log in</button>
-        </div>
-        <div style={showWhenVisible}>
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-          <button onClick={() => setLoginVisible(false)}>cancel</button>
-        </div>
-      </div>
-    )
-  }
-
-  // 
-  // Login form finishes here
-  // 
 
   return (
     <div>
@@ -83,7 +68,12 @@ const App = () => {
           setUser={setUser}
         />
       ) : (
-        <WoTrack2 user={user} handleLogout={handleLogout} />
+        <WoTrack2 
+          user={user} 
+          handleLogout={handleLogout}
+          workouts={workouts}   
+          isLoggedIn={isLoggedIn}
+        />
       )}
     </div>
   );

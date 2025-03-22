@@ -18,9 +18,8 @@ import HeaderTwo from '../components/HeaderTwo.jsx';
 import workoutService from '../src/services/workouts.js'
 
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel }) => {
+const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts }) => {
   const [count, setCount] = useState(0);
-  const [workouts, setWorkouts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [calendarData, setCalendarData] = useState({});
   const [notification, setNotification] = useState('');
@@ -32,16 +31,16 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
 
   // Show details button
 
-  useEffect(() => {
-    workoutService
-      .getAll()
-      .then((response) => {
-        setWorkouts(response.data); 
-      })
-      .catch((error) => {
-        console.error('Error fetching workouts:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   workoutService
+  //     .getAll()
+  //     .then((response) => {
+  //       setWorkouts(response.data); 
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching workouts:', error);
+  //     });
+  // }, []);
   console.log("workouts-have data?", workouts)
 
   const toggleVisibility = (key) => {
@@ -185,7 +184,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel 
           groupedWorkouts={groupedWorkouts}
           toggleVisibility={toggleVisibility}
           workoutContainer={workoutContainer}
-          buttonLabel={buttonLabel}
+          buttonLabel="See more"
         />
   
         <div className="right-container">
