@@ -18,7 +18,7 @@ import HeaderTwo from '../components/HeaderTwo.jsx';
 import workoutService from '../src/services/workouts.js'
 
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts }) => {
+const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts, handleLogout }) => {
   const [count, setCount] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [calendarData, setCalendarData] = useState({});
@@ -117,15 +117,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel,
   
     setCalendarData(workoutByDate);
   }, [workouts]); // Re-run this effect when `workouts` changes
-
-  const handleLogout = async (event) => {
-    event.preventDefault()
-    
-    console.log('logged-out')
-    window.localStorage.removeItem('loggedInUser');
-    setIsLoggedIn(false)
-  }
-
   
   return (
     <div className="App">
