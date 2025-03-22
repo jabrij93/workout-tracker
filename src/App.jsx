@@ -4,6 +4,7 @@ import WoTrack2 from '../components/WoTrack2.jsx';
 import Notification from '../components/Notification.jsx';
 import loginService from './services/login.js';
 import workoutService from '../src/services/workouts.js';
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,6 +13,7 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [workouts, setWorkouts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser');
@@ -21,6 +23,14 @@ const App = () => {
       setIsLoggedIn(true);
     }
   }, []);
+
+  // Logout 
+
+  useEffect(() => {
+    console.log("Updated user state:", user);
+  }, [user]);
+
+  // Logout
 
   useEffect(() => {
     workoutService
@@ -48,25 +58,29 @@ const App = () => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = (event) => {
+    event.preventDefault();
     window.localStorage.removeItem('loggedUser');
     setUser(null);
+    setIsLoggedIn(false);
+    console.log('User after logout:', user); // Debugging
+    navigate("/"); // Redirect to login page
   };
 
   return (
     <div>
       <h1>Workout Tracker</h1>
       <Notification message={errorMessage} />
-      {!user ? (
-        <Login
-          username={username}
-          password={password}
-          handleUsernameChange={({ target }) => setUsername(target.value)}
-          handlePasswordChange={({ target }) => setPassword(target.value)}
-          handleSubmit={handleLogin}
-          setIsLoggedIn={setIsLoggedIn}
-          setUser={setUser}
-        />
+      {!isLoggedIn || !user ? (  // Ensure both conditions are checked
+      <Login
+        username={username}
+        password={password}
+        handleUsernameChange={({ target }) => setUsername(target.value)}
+        handlePasswordChange={({ target }) => setPassword(target.value)}
+        handleSubmit={handleLogin}
+        setIsLoggedIn={setIsLoggedIn}
+        setUser={setUser}
+      />
       ) : (
         <WoTrack2 
           user={user} 
