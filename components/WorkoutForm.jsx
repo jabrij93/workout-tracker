@@ -18,14 +18,14 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
     
         const formattedDate = dayjs(selectedDate).format('DD-MM-YYYY'); // Matches GridCalendar
       
-        const newWorkoutData = {
+        createWorkout({
           workouts: newWorkout,
           date: formattedDate,
           detail: newWorkoutDetail,
           likes: 0,
-      };
+        })
 
-        await createWorkout(newWorkoutData); // Wait for the update before clearing state
+        // createWorkout(newWorkoutData); // Wait for the update before clearing state
       
         setNewWorkout('');
         setNewWorkoutDate('');

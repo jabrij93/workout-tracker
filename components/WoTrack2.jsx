@@ -18,7 +18,7 @@ import HeaderTwo from '../components/HeaderTwo.jsx';
 import workoutService from '../src/services/workouts.js'
 
 
-const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel, workouts, handleLogout }) => {
+const WoTrack2 = ({ user, isLoggedIn, addWorkout, workouts, handleLogout }) => {
   const [count, setCount] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [calendarData, setCalendarData] = useState({});
@@ -29,18 +29,6 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel,
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Show details button
-
-  // useEffect(() => {
-  //   workoutService
-  //     .getAll()
-  //     .then((response) => {
-  //       setWorkouts(response.data); 
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching workouts:', error);
-  //     });
-  // }, []);
   console.log("workouts-have data?", workouts)
 
   const toggleVisibility = (key) => {
@@ -133,7 +121,7 @@ const WoTrack2 = ({ createWorkout, user, isLoggedIn, setIsLoggedIn, buttonLabel,
 
       <LeftSidebar
         isModalOpen={isModalOpen}
-        createWorkout={createWorkout}
+        createWorkout={addWorkout}
         setNotification={setNotification}
         setNotificationType={setNotificationType}
         sortedWorkouts={sortedWorkouts}

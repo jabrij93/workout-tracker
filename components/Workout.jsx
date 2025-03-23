@@ -12,7 +12,7 @@ const Workout = ({ groupedWorkouts, toggleVisibility, workoutContainer, buttonLa
                 return (
                     <div className="card" key={index}>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>
-                            <p>{item.workouts}</p>
+                            <p>{item.workouts}, {item.date}</p>
                             <button onClick={() => toggleVisibility(`${item.date}-${index}`)}>
                                 {buttonLabel}
                             </button>

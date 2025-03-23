@@ -32,6 +32,14 @@ const App = () => {
     }
   };
 
+  const addWorkout = (workoutObject) => {
+    workoutService
+      .create(workoutObject)
+      .then(returnedWorkout => {
+        setWorkouts(workouts.concat(returnedWorkout))
+      })
+  }
+
   const handleLogout = (event) => {
     event.preventDefault();
     window.localStorage.removeItem('loggedInUser');
@@ -58,6 +66,7 @@ const App = () => {
           handleLogout={handleLogout}
           workouts={workouts}   
           isLoggedIn={isLoggedIn}
+          addWorkout={addWorkout}
         />
       )}
     </div>
