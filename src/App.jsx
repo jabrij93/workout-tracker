@@ -19,31 +19,16 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
       setIsLoggedIn(true);
+      fetchWorkouts();
     }
   }, []);
 
-  useEffect(() => {
-    workoutService
-      .getAll()
-      .then((response) => {
-        setWorkouts(response.data); 
-      })
-      .catch((error) => {
-        console.error('Error fetching workouts:', error);
-      });
-  }, []);
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const fetchWorkouts = async () => {
     try {
-      const user = await loginService.login({ username, password });
-      setUser(user);
-      setIsLoggedIn(true);
-      setUsername('');
-      setPassword('');
-    } catch (exception) {
-      setErrorMessage('Wrong credentials');
-      setTimeout(() => setErrorMessage(null), 5000);
+      const workouts = await workoutService.getAll();
+      setWorkouts(workouts.data);
+    } catch (error) {
+      console.error('Error fetching workouts:', error);
     }
   };
 
@@ -65,6 +50,7 @@ const App = () => {
         handlePasswordChange={({ target }) => setPassword(target.value)}
         setIsLoggedIn={setIsLoggedIn}
         setUser={setUser}
+        fetchWorkouts={fetchWorkouts}
       />
       ) : (
         <WoTrack2 

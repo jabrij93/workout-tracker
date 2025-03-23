@@ -6,7 +6,7 @@ import workoutService from '../src/services/workouts.js'
 import Togglable from '../components/Togglable.jsx'
 import PropTypes from 'prop-types'
 
-const Login = ({ setIsLoggedIn, setUser }) => {
+const Login = ({ setIsLoggedIn, setUser, fetchWorkouts }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState({ username: '', password: '' });
@@ -26,6 +26,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       setUsername('')
       setPassword('')
       setIsLoggedIn(true)
+      fetchWorkouts()
     } catch (exception) {
       setErrorMessage('Username or password is incorrect')
       setTimeout(() => {
