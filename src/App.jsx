@@ -12,6 +12,7 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [workouts, setWorkouts] = useState([]);
+  const [groupedWorkouts, setGroupedWorkouts] = useState({});
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser');
@@ -23,6 +24,8 @@ const App = () => {
     }
   }, []);
 
+  // Fetch workouts data by MonthYear
+
   const fetchWorkouts = async () => {
     try {
       const workouts = await workoutService.getAll();
@@ -31,6 +34,29 @@ const App = () => {
       console.error('Error fetching workouts:', error);
     }
   };
+
+  const groupWorkouts = workouts.reduce((acc, workout) => {
+    if (workout.date) {
+      const [day, month, year] = workout.date.split('-'); // Extract day, month, year
+      const monthYear = `${new Date(year, month - 1).toLocaleString('default', { month: 'long' })} ${year}`;
+      
+      if (!acc[monthYear]) {
+        acc[monthYear] = [];
+      }
+      acc[monthYear].push(workout);
+    }
+    return acc;
+  }, {});
+
+  const sortedMonths = Object.keys(groupWorkouts).sort((a, b) => {
+    const [monthA, yearA] = a.split(' ');
+    const [monthB, yearB] = b.split(' ');
+  
+    return new Date(`${monthB} 1, ${yearB}`) - new Date(`${monthA} 1, ${yearA}`);
+  });
+  
+  // Fetch workouts data by MonthYear
+  
 
   const addWorkout = (workoutObject) => {
     workoutService
@@ -61,13 +87,34 @@ const App = () => {
         fetchWorkouts={fetchWorkouts}
       />
       ) : (
-        <WoTrack2 
-          user={user} 
-          handleLogout={handleLogout}
-          workouts={workouts}   
-          isLoggedIn={isLoggedIn}
-          addWorkout={addWorkout}
-        />
+        <>
+          <WoTrack2
+            user={user}
+            workouts={workouts}
+            addWorkout={(newWorkout) => setWorkouts([...workouts, newWorkout])}
+            handleLogout={() => {
+              setIsLoggedIn(false);
+              setUser(null);
+            }}
+            setGroupedWorkouts={setGroupedWorkouts}
+          />
+
+          {/* Iterate over grouped workouts here */}
+          <div>
+            {sortedMonths.map(monthYear => (
+              <div key={monthYear}>
+                <h3>{monthYear}</h3>
+                <ul>
+                  {groupWorkouts[monthYear].map(workout => (
+                    <li key={workout.id}>
+                      {workout.date} - {workout.workouts}: {workout.detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
