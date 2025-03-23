@@ -37,7 +37,6 @@ const App = () => {
     event.preventDefault();
     try {
       const user = await loginService.login({ username, password });
-      window.localStorage.setItem('loggedUser', JSON.stringify(user));
       setUser(user);
       setIsLoggedIn(true);
       setUsername('');
@@ -64,7 +63,6 @@ const App = () => {
         password={password}
         handleUsernameChange={({ target }) => setUsername(target.value)}
         handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={handleLogin}
         setIsLoggedIn={setIsLoggedIn}
         setUser={setUser}
       />
