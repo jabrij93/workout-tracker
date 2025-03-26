@@ -15,8 +15,7 @@ import HeaderTwo from '../components/HeaderTwo.jsx';
 import Announcement from '../components/Announcement.jsx';
 import Trending from '../components/Trending.jsx';
 import Workout from '../components/Workout.jsx';
-
-
+import WorkoutForm from "../components/WorkoutForm";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,13 +26,13 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [workouts, setWorkouts] = useState([]);
+  const [sortedWorkoutLeftSidebar, setSortedWorkoutLeftSidebar] = useState([]);
   const [groupedWorkouts, setGroupedWorkouts] = useState({});
   const [notification, setNotification] = useState('');
   const [notificationType, setNotificationType] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [visible, setVisible] = useState({});
-
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser');
@@ -121,7 +120,7 @@ const App = () => {
     workoutService
       .create(workoutObject)
       .then(returnedWorkout => {
-        setWorkouts(workouts.concat(returnedWorkout))
+        setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]);
       })
   }
 
@@ -138,6 +137,35 @@ const App = () => {
   const handleCloseClick = () => {
     setIsSidebarOpen(false); // Close the sidebar
   };
+
+   /* Modal */
+   const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    if (isModalOpen) {
+        window.addEventListener('keydown', handleKeyDown);
+    } else {
+        window.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+      
+  }, [isModalOpen]);
+  /* Modal */
 
   return (
     <div>
@@ -165,13 +193,41 @@ const App = () => {
           <SearchBar />
       </div>
 
-      <LeftSidebar
-        isModalOpen={isModalOpen}
-        createWorkout={addWorkout}
-        setNotification={setNotification}
-        setNotificationType={setNotificationType}
-        sortedWorkouts={sortedWorkoutsLeftSidebar}
-      />
+      <div className="leftbar">
+      <div className="first-header">
+        <h2>Workouts</h2>
+        <button className="new" onClick={openModal}>NEW +</button>
+
+        {isModalOpen && (
+          <WorkoutForm 
+            closeModal={closeModal} 
+            createWorkout={addWorkout} 
+            setNotification={setNotification} 
+            setNotificationType={setNotificationType} 
+          />
+        )}
+      </div>
+
+      <div className="search-workout-bar">
+        <div className="search-workout-container">
+          <input
+            type="text"
+            className="search-workout"
+            placeholder="Search workouts..."
+          />
+        </div>
+      </div>
+
+      <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
+      <div className="list-workouts" style={{ marginLeft: "20px" }}>
+        <ul>
+          {sortedWorkoutsLeftSidebar.map((item, index) => (
+            <li key={index}>{item.workouts}</li>
+          ))}
+        </ul>
+        <p>Show more...</p>
+      </div>
+    </div>
   
       {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`} id="sidebar">

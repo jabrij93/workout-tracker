@@ -130,7 +130,9 @@ const WoTrack2 = ({ user, isLoggedIn, addWorkout, workouts, handleLogout }) => {
         createWorkout={addWorkout}
         setNotification={setNotification}
         setNotificationType={setNotificationType}
-        sortedWorkouts={sortedWorkouts}
+        sortedWorkouts={sortedWorkouts.map((item, index) => (
+          <li key={index}>{item.workouts}</li>
+        ))}
       />
   
       {/* Sidebar */}
