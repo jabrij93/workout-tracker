@@ -75,7 +75,7 @@ const App = () => {
   const handleMouseEnterX = () => setIsHoveredX(true);
   const handleMouseLeaveX = () => setIsHoveredX(false);
 
-  const sortedWorkouts = workouts.filter((workout) => workout.user?.username === user.username)
+  const sortedWorkoutsLeftSidebar = workouts.filter((workout) => workout.user?.username === user.username)
                 .slice()
                 .sort((a, b) => {
                   const dateA = new Date(a.date.split('-').reverse().join('-'));
@@ -96,14 +96,22 @@ const App = () => {
     return acc;
   }, {});
 
-  console.log('groupedWorkouts', groupWorkouts);
-
-  const sortedMonths = Object.keys(groupWorkouts).sort((a, b) => {
-    const [monthA, yearA] = a.split(' ');
-    const [monthB, yearB] = b.split(' ');
+  const sortGroupedWorkouts = (groupWorkouts) => {
+    return Object.keys(groupWorkouts)
+      .sort((a, b) => new Date(b) - new Date(a)) // Sort months in descending order
+      .reduce((sortedObj, month) => {
+        sortedObj[month] = groupWorkouts[month].sort((a, b) => {
+          const [dayA, monthA, yearA] = a.date.split("-").map(Number);
+          const [dayB, monthB, yearB] = b.date.split("-").map(Number);
+          return new Date(yearB, monthB - 1, dayB) - new Date(yearA, monthA - 1, dayA);
+        });
+        return sortedObj;
+      }, {});
+  };
   
-    return new Date(`${monthB} 1, ${yearB}`) - new Date(`${monthA} 1, ${yearA}`);
-  });
+  // Example usage
+  const sortedWorkouts = sortGroupedWorkouts(groupWorkouts);
+  console.log(sortedWorkouts);
   
   // Fetch workouts data by MonthYear
 
@@ -162,7 +170,7 @@ const App = () => {
         createWorkout={addWorkout}
         setNotification={setNotification}
         setNotificationType={setNotificationType}
-        sortedWorkouts={sortedWorkouts}
+        sortedWorkouts={sortedWorkoutsLeftSidebar}
       />
   
       {/* Sidebar */}
@@ -199,12 +207,12 @@ const App = () => {
       <div className="main-content">
         <div className="article">
             <h3 className="project-header">Your Activities/Workouts</h3>
-            {Object.keys(groupWorkouts).map((monthYear) => (
+            {Object.keys(sortedWorkouts).map((monthYear) => (
               <div className="card-container" key={monthYear}>
                 <div>
                   <h2>{monthYear}</h2>
                   <Workout
-                    groupedWorkouts={groupWorkouts[monthYear]}
+                    groupedWorkouts={sortedWorkouts[monthYear]}
                     toggleVisibility={toggleVisibility}
                     visible={visible}
                     workoutContainer={workoutContainer}
