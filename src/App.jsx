@@ -110,7 +110,7 @@ const App = () => {
   
   // Example usage
   const sortedWorkouts = sortGroupedWorkouts(groupWorkouts);
-  console.log(sortedWorkouts);
+  console.log("sortedWorkouts", sortedWorkouts);
   
   // Fetch workouts data by MonthYear
 
@@ -221,8 +221,15 @@ const App = () => {
       <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
       <div className="list-workouts" style={{ marginLeft: "20px" }}>
         <ul>
-          {sortedWorkoutsLeftSidebar.map((item, index) => (
-            <li key={index}>{item.workouts}</li>
+          {Object.entries(sortedWorkouts).map(([month, workouts]) => (
+            <li key={month}>
+              <strong>{month}</strong> {/* Display the month header */}
+              <ul>
+                {workouts.map((item, index) => (
+                  <li key={index}>{item.workouts}</li>
+                ))}
+              </ul>
+            </li>
           ))}
         </ul>
         <p>Show more...</p>
