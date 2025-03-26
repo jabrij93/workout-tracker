@@ -109,8 +109,6 @@ const App = () => {
 
   const totalWorkouts = sortedWorkouts.length;
 
-  
-
   const addWorkout = (workoutObject) => {
     workoutService
       .create(workoutObject)
