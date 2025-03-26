@@ -221,15 +221,8 @@ const App = () => {
       <h5 style={{ marginLeft: "20px" }}>Workouts / Activities</h5>
       <div className="list-workouts" style={{ marginLeft: "20px" }}>
         <ul>
-          {Object.entries(sortedWorkouts).map(([month, workouts]) => (
-            <li key={month}>
-              <strong>{month}</strong> {/* Display the month header */}
-              <ul>
-                {workouts.map((item, index) => (
-                  <li key={index}>{item.workouts}</li>
-                ))}
-              </ul>
-            </li>
+          {Object.values(sortedWorkouts).flat().map((item, index) => (
+            <li key={index}>{item.workouts}</li>
           ))}
         </ul>
         <p>Show more...</p>
