@@ -32,6 +32,7 @@ const App = () => {
   const [notificationType, setNotificationType] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [visible, setVisible] = useState({});
 
 
   useEffect(() => {
@@ -43,6 +44,17 @@ const App = () => {
       fetchWorkouts();
     }
   }, []);
+
+  console.log('workouts-data', workouts);
+
+  const toggleVisibility = (key) => {
+    setVisible((prevVisible) => ({
+      ...prevVisible,
+      [key]: !prevVisible[key],
+    }));
+  };
+
+  const workoutContainer = { display: 'flex', justifyContent: 'space-between', flexDirection: 'column' };
 
   // Fetch workouts data by MonthYear
 
@@ -83,6 +95,8 @@ const App = () => {
     }
     return acc;
   }, {});
+
+  console.log('groupedWorkouts', groupWorkouts);
 
   const sortedMonths = Object.keys(groupWorkouts).sort((a, b) => {
     const [monthA, yearA] = a.split(' ');
@@ -187,12 +201,12 @@ const App = () => {
       <div className="main-content">
         <div className="article">
             <h3 className="project-header">Your Activities/Workouts</h3>
-            {Object.keys(groupedWorkouts).map((monthYear) => (
+            {Object.keys(groupWorkouts).map((monthYear) => (
               <div className="card-container" key={monthYear}>
                 <div>
                   <h2>{monthYear}</h2>
                   <Workout
-                    groupedWorkouts={groupedWorkouts[monthYear]}
+                    groupedWorkouts={groupWorkouts[monthYear]}
                     toggleVisibility={toggleVisibility}
                     visible={visible}
                     workoutContainer={workoutContainer}
