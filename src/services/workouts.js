@@ -21,6 +21,8 @@ const create = async newObject => {
   }
 
   const response = await axios.post(baseUrl, newObject, config)
+  console.log('Workout API response:', response.data) // Debugging line ✅
+
   return response.data
 }
 
