@@ -120,6 +120,7 @@ const App = () => {
     workoutService
       .create(workoutObject)
       .then(returnedWorkout => {
+        console.log('Workout added:', returnedWorkout); // Debugging line ✅
         setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]);
       })
   }
@@ -183,9 +184,9 @@ const App = () => {
       />
       ) : (
         <div className="App">
-      {notification && (
+      {/* {notification && (
         <Notification notification={notification} type={notificationType} />
-      )}
+      )} */}
   
       {/* Hamburger Button */}
       <div className="wotrack-logo">
