@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import GridCalendar from '../components/GridCalendar.jsx';
 import Notification  from '../components/Notification.jsx';
+import WorkoutForm from "./WorkoutForm";
 
-
-const HeaderTwo = ({ notification, notificationType, totalWorkouts, calendarData }) => {
+const HeaderTwo = ({ createWorkout, setNotification, setNotificationType, notification, notificationType, totalWorkouts, calendarData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -44,7 +44,16 @@ const HeaderTwo = ({ notification, notificationType, totalWorkouts, calendarData
           
           <div className="header">
             <p>{totalWorkouts} Workouts/Activities in the last year</p>
-            <button className="new" onClick={openModal}>NEW +</button>  
+            <button className="new" onClick={openModal}>NEW +</button>
+
+            {isModalOpen && (
+              <WorkoutForm 
+                closeModal={closeModal} 
+                createWorkout={createWorkout} 
+                setNotification={setNotification} 
+                setNotificationType={setNotificationType} 
+              />
+            )}  
           </div>
   
           <GridCalendar calendarData={calendarData} />

@@ -171,7 +171,7 @@ const App = () => {
   return (
     <div>
       <h1>Workout Tracker</h1>
-      <Notification message={errorMessage} />
+      {/* <Notification message={errorMessage} /> */}
       {!isLoggedIn || !user ? (  // Ensure both conditions are checked
       <Login
         username={username}
@@ -256,8 +256,11 @@ const App = () => {
       <HeaderTwo
         notification={notification}
         notificationType={notificationType}
+        setNotification={setNotification} 
+        setNotificationType={setNotificationType} 
         totalWorkouts={totalWorkouts}
         calendarData={calendarData}
+        createWorkout={addWorkout}
       />
   
       {/* Main Content */}
