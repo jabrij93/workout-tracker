@@ -66,6 +66,12 @@ const App = () => {
     }
   };
 
+  // handle Like
+
+  
+  
+  // handle Like
+
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredX, setIsHoveredX] = useState(false);
@@ -124,6 +130,30 @@ const App = () => {
         setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]);
       })
   }
+
+  // Update like 
+  const addLike = async (id, workoutObject) => {
+    console.log('Before setWorkouts:', workouts);
+
+    try {
+      const returnedWorkout = await workoutService.update(id, workoutObject);
+      setLikes(returnedWorkout.likes);
+      console.log('Updated workout:', returnedWorkout);
+      // setBlogs(prevBlogs => prevBlogs.map(blog => (blog.id === id ? returnedBlog : blog)));
+      setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout))); // Update the state with the new blog data
+      console.log('After setWorkouts:', workouts);
+      setNotifications({ message: `sucessfully Liked !`, type: 'success' });
+      setTimeout(() => {
+        setNotifications(null);
+      }, 5000);
+    } catch (error) {
+      setNotifications({ message: error.response.data.error, type: 'error' });
+      setTimeout(() => {
+        setNotifications(null);
+      }, 5000);
+    }
+  };
+  // Update like
 
   const handleLogout = (event) => {
     event.preventDefault();
@@ -277,6 +307,7 @@ const App = () => {
                     visible={visible}
                     workoutContainer={workoutContainer}
                     buttonLabel="See more"
+                    updatedLike={addLike} 
                   />
                 </div>
               </div>

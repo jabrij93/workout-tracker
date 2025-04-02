@@ -356,7 +356,7 @@ ul li {
 }
 
 .card .title {
-    display: flex;
+    display: block;
     align-items: center;
     color: black;
     font-size: 18px;
