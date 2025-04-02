@@ -362,6 +362,7 @@ ul li {
     font-size: 18px;
     font-weight: 700;
     padding: 8px 8px;
+    gap: -4px;
 }
 
 .card .title p {
@@ -370,6 +371,17 @@ ul li {
     font-weight: 700;
     margin-right: 10px; /* Adjust the gap as needed */
 }
+
+.card .title p,
+.card .togglableContent p {
+    margin: 4px 0;  /* Adjust to your preference */
+    padding: 0;  /* Ensure no extra space */
+}
+
+.card .togglableContent div {
+    margin-bottom: 6px; /* Reduce space between divs */
+}
+
 
 .card .title button {
     border-radius: 5px;
@@ -558,19 +570,15 @@ ul li {
 
 /* Modal Finish */
 
-/* See more button */
 
-.togglableContent.hidden {
-    display: none;
-  }
-  
-  .togglableContent.visible {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-
-/* See more button finish */  
+/* Font when 'see more' is clicked */
+.card .title .togglableContent,
+.card .title .togglableContent p {
+    font-size: 16px;
+    font-weight: normal !important; /* Ensures override */
+    color: black;
+}
+/* Font when 'see more' is clicked */
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
