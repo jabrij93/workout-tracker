@@ -2,27 +2,25 @@ import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import CardFeatures from './CardFeatures';
 import workouts from '../src/services/workouts';
 
-const Workout = forwardRef(({ groupedWorkouts, updatedLike, workoutContainer, buttonLabel }, refs) => {
-    const [visible, setVisible] = useState(false);
+const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs) => {
+    const [visibleIndex, setVisibleIndex] = useState(null);  // Track which card is visible
     const [likes, setLikes] = useState(workouts.likes);
-
-    const hideWhenVisible = { display: visible ? 'none' : '' };
-    const showWhenVisible = { display: visible ? '' : 'none' };
-
-    const workoutFullDetail = { display: 'flex', flexDirection: 'column' };
 
     useEffect(() => {
         setLikes(groupedWorkouts.likes);
     }, [groupedWorkouts.likes]);
-    
-    const addLike = () => {
-        updatedLike(groupedWorkouts.id, { ...groupedWorkouts, likes: groupedWorkouts.likes + 1 });
+
+    const addLike = (id) => {
+        const workout = groupedWorkouts.find(item => item.id === id);
+        if (workout) {
+            updatedLike(id, { ...workout, likes: workout.likes + 1 });
+        }
     };
 
-    const toggleVisibility = () => {
-        setVisible(!visible);
+    const toggleVisibility = (index) => {
+        setVisibleIndex(visibleIndex === index ? null : index);
     };
-    
+
     useImperativeHandle(refs, () => ({
         toggleVisibility
     }));
@@ -31,21 +29,26 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, workoutContainer, bu
         <>
             {groupedWorkouts.map((item, index) => { 
                 return (
-                    <div className="card" key={index}>
+                    <div className="card" key={ item.id || item.date }>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>
                                 <p>{item.workouts}, {item.date}</p>
-                                {!visible ? (
-                                <button onClick={toggleVisibility} >{buttonLabel}</button>
+                                {visibleIndex !== index ? (
+                                    <button onClick={() => toggleVisibility(index)}>{buttonLabel}</button>
                                 ) : null}
-                            <div style={visible ? workoutFullDetail : showWhenVisible} className='togglableContent'>
+                            <div 
+                                style={{ display: visibleIndex === index ? 'flex' : 'none', flexDirection: 'column' }} 
+                                className='togglableContent'
+                            >
                                 <div className="detail2">
                                     <p> Detail : {item.detail} </p>
                                 </div>
                                 <div className="likes">
-                                    <p> Likes : {item.likes} <button onClick={addLike}>like</button> </p>
+                                    <p> Likes : {item.likes} 
+                                        <button onClick={() => addLike(item.id)}>like</button> 
+                                    </p>
                                 </div>
                                 <div>
-                                <button onClick={toggleVisibility}>hide</button>
+                                    <button onClick={() => toggleVisibility(index)}>hide</button>
                                 </div>
                                 <CardFeatures />
                             </div>

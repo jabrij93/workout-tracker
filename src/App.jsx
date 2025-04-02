@@ -142,14 +142,14 @@ const App = () => {
       // setBlogs(prevBlogs => prevBlogs.map(blog => (blog.id === id ? returnedBlog : blog)));
       setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout))); // Update the state with the new blog data
       console.log('After setWorkouts:', workouts);
-      setNotifications({ message: `sucessfully Liked !`, type: 'success' });
+      setNotification({ message: `sucessfully Liked !`, type: 'success' });
       setTimeout(() => {
-        setNotifications(null);
+        setNotification(null);
       }, 5000);
     } catch (error) {
-      setNotifications({ message: error.response.data.error, type: 'error' });
+      setNotification({ message: error.response.data.error, type: 'error' });
       setTimeout(() => {
-        setNotifications(null);
+        setNotification(null);
       }, 5000);
     }
   };
