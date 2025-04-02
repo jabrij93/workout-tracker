@@ -12,11 +12,11 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, workoutContainer, bu
     const workoutFullDetail = { display: 'flex', flexDirection: 'column' };
 
     useEffect(() => {
-        setLikes(workouts.likes);
-    }, [workouts.likes]);
+        setLikes(groupedWorkouts.likes);
+    }, [groupedWorkouts.likes]);
     
     const addLike = () => {
-        updatedLike(workouts.id, { ...workout, likes: likes + 1 });
+        updatedLike(groupedWorkouts.id, { ...groupedWorkouts, likes: groupedWorkouts.likes + 1 });
     };
 
     const toggleVisibility = () => {
