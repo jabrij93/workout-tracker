@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNotificationType }) => {
     const [newWorkout, setNewWorkout] = useState('');
     const [newWorkoutDate, setNewWorkoutDate] = useState(''); 
+    const [newWorkoutLike, setNewWorkoutLike] = useState('');
     const [newWorkoutDetail, setNewWorkoutDetail] = useState('');
   
     const handleSubmit = async (e) => {
@@ -22,7 +23,7 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
           workouts: newWorkout,
           date: formattedDate,
           detail: newWorkoutDetail,
-          likes: 0,
+          likes: newWorkoutLike === undefined ? 0 : Number(newWorkoutLike),
         })
 
         // createWorkout(newWorkoutData); // Wait for the update before clearing state
@@ -67,6 +68,13 @@ const WorkoutForm = ({ createWorkout, user, closeModal, setNotification, setNoti
                                 data-testid="detail" 
                                 onChange={(e) => setNewWorkoutDetail(e.target.value)} 
                                 placeholder='Details(optional)'
+                            />
+                            <input 
+                                type="number"
+                                value={newWorkoutLike} 
+                                data-testid="like" 
+                                onChange={(e) => setNewWorkoutLike(e.target.value)} 
+                                placeholder='Likes(optional)'
                             />
                             <button type="submit"> Add Workout </button>
                         </form>
