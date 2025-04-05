@@ -4,7 +4,7 @@ import workouts from '../src/services/workouts';
 
 const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs) => {
     const [visibleIndex, setVisibleIndex] = useState(null);  // Track which card is visible
-    const [likes, setLikes] = useState(workouts.likes);
+    const [likes, setLikes] = useState({});
 
     useEffect(() => {
         setLikes(groupedWorkouts.likes);
@@ -28,6 +28,7 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
     return (
         <>
             {groupedWorkouts.map((item, index) => { 
+            console.log('item.likes:', item.likes)
                 return (
                     <div className="card" key={ item.id || item.date }>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>

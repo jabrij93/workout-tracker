@@ -147,7 +147,10 @@ const App = () => {
         setNotification(null);
       }, 5000);
     } catch (error) {
-      setNotification({ message: error.response.data.error, type: 'error' });
+      const errorMessage =
+      error.response?.data?.error || error.message || 'Something went wrong';
+      setNotification({ message: errorMessage, type: 'error' });
+
       setTimeout(() => {
         setNotification(null);
       }, 5000);
@@ -201,7 +204,7 @@ const App = () => {
   return (
     <div>
       <h1>Workout Tracker</h1>
-      {/* <Notification message={errorMessage} /> */}
+      {notification && <Notification notification={notification} type={notificationType} />}
       {!isLoggedIn || !user ? (  // Ensure both conditions are checked
       <Login
         username={username}
@@ -214,9 +217,6 @@ const App = () => {
       />
       ) : (
         <div className="App">
-      {/* {notification && (
-        <Notification notification={notification} type={notificationType} />
-      )} */}
   
       {/* Hamburger Button */}
       <div className="wotrack-logo">

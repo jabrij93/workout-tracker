@@ -27,9 +27,10 @@ const create = async newObject => {
 }
 
 const update = async (id, newObject) => {
-  const token = localStorage.getItem('loggedInUser')  // Get token from storage
+  const config = {
+    headers: { Authorization: token },
+  }
 
-  const config = { headers: { Authorization: `Bearer ${token}` } }
   return axios.put(`${baseUrl}/${id}`, newObject, config)
 }
 

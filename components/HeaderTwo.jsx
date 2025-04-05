@@ -40,8 +40,8 @@ const HeaderTwo = ({ createWorkout, setNotification, setNotificationType, notifi
     return (
       <div className="header-two">
         <div style={{ marginLeft: "15px", marginTop: "-20px", paddingBottom: "20px" }}>
-          {notification && <Notification notification={notification} type={notificationType} />}
           
+          {notification && <Notification notification={notification} type={notificationType} />}
           <div className="header">
             <p>{totalWorkouts} Workouts/Activities in the last year</p>
             <button className="new" onClick={openModal}>NEW +</button>
