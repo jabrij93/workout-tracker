@@ -45,8 +45,6 @@ const App = () => {
     }
   }, []);
 
-  console.log('workouts-data', workouts);
-
   const toggleVisibility = (key) => {
     setVisible((prevVisible) => ({
       ...prevVisible,
@@ -66,12 +64,6 @@ const App = () => {
       console.error('Error fetching workouts:', error);
     }
   };
-
-  // handle Like
-
-  
-  
-  // handle Like
 
   // Hover over to X and Logout Button
   const [isHovered, setIsHovered] = useState(false);
@@ -117,7 +109,6 @@ const App = () => {
   
   // Example usage
   const sortedWorkouts = sortGroupedWorkouts(groupWorkouts);
-  console.log("sortedWorkouts", sortedWorkouts);
   
   // Fetch workouts data by MonthYear
 
@@ -140,8 +131,7 @@ const App = () => {
       const returnedWorkout = await workoutService.update(id, workoutObject);
       setLikes(returnedWorkout.likes);
       console.log('Updated workout:', returnedWorkout);
-      // setBlogs(prevBlogs => prevBlogs.map(blog => (blog.id === id ? returnedBlog : blog)));
-      setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout))); // Update the state with the new blog data
+      setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout)));
       console.log('After setWorkouts:', workouts);
       setNotification({ message: `Liked ${returnedWorkout.workouts} !`, type: 'success' });
       setTimeout(() => {

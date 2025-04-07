@@ -3,10 +3,8 @@ import CardFeatures from './CardFeatures';
 import workouts from '../src/services/workouts';
 
 const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs) => {
-    const [visibleIndex, setVisibleIndex] = useState(null);  // Track which card is visible
+    const [visibleIndex, setVisibleIndex] = useState(null);
     const [likes, setLikes] = useState(groupedWorkouts.likes);
-
-    console.log('likes:', likes);
 
     useEffect(() => {
         setLikes(groupedWorkouts.likes);
@@ -28,7 +26,6 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
                 updatedLike(item.id, { ...item, likes: item.likes + 1 });
             };
 
-            console.log('item.likes:', item.likes)
                 return (
                     <div className="card" key={ item.id || item.date }>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>
