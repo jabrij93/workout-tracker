@@ -4,18 +4,13 @@ import workouts from '../src/services/workouts';
 
 const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs) => {
     const [visibleIndex, setVisibleIndex] = useState(null);  // Track which card is visible
-    const [likes, setLikes] = useState({});
+    const [likes, setLikes] = useState(groupedWorkouts.likes);
+
+    console.log('likes:', likes);
 
     useEffect(() => {
         setLikes(groupedWorkouts.likes);
     }, [groupedWorkouts.likes]);
-
-    const addLike = (id) => {
-        const workout = groupedWorkouts.find(item => item.id === id);
-        if (workout) {
-            updatedLike(id, { ...workout, likes: workout.likes + 1 });
-        }
-    };
 
     const toggleVisibility = (index) => {
         setVisibleIndex(visibleIndex === index ? null : index);
@@ -28,6 +23,11 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
     return (
         <>
             {groupedWorkouts.map((item, index) => { 
+
+            const addLike = () => {
+                updatedLike(item.id, { ...item, likes: item.likes + 1 });
+            };
+
             console.log('item.likes:', item.likes)
                 return (
                     <div className="card" key={ item.id || item.date }>
@@ -45,7 +45,7 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
                                 </div>
                                 <div className="likes">
                                     <p> Likes : {item.likes} 
-                                        <button onClick={() => addLike(item.id)}>like</button> 
+                                        <button onClick={addLike}>like</button> 
                                     </p>
                                 </div>
                                 <div>

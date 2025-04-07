@@ -26,6 +26,7 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [workouts, setWorkouts] = useState([]);
+  const [likes, setLikes] = useState(workouts.likes);
   const [sortedWorkoutLeftSidebar, setSortedWorkoutLeftSidebar] = useState([]);
   const [groupedWorkouts, setGroupedWorkouts] = useState({});
   const [notification, setNotification] = useState('');
