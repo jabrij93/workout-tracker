@@ -125,14 +125,11 @@ const App = () => {
 
   // Update like 
   const addLike = async (id, workoutObject) => {
-    console.log('Before setWorkouts:', workouts);
 
     try {
       const returnedWorkout = await workoutService.update(id, workoutObject);
       setLikes(returnedWorkout.likes);
-      console.log('Updated workout:', returnedWorkout);
       setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout)));
-      console.log('After setWorkouts:', workouts);
       setNotification({ message: `Liked ${returnedWorkout.workouts} !`, type: 'success' });
       setTimeout(() => {
         setNotification(null);
