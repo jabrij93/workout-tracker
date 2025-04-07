@@ -143,7 +143,7 @@ const App = () => {
       // setBlogs(prevBlogs => prevBlogs.map(blog => (blog.id === id ? returnedBlog : blog)));
       setWorkouts(workouts.map(workout => (workout.id === id ? returnedWorkout : workout))); // Update the state with the new blog data
       console.log('After setWorkouts:', workouts);
-      setNotification({ message: `sucessfully Liked !`, type: 'success' });
+      setNotification({ message: `Liked ${returnedWorkout.workouts} !`, type: 'success' });
       setTimeout(() => {
         setNotification(null);
       }, 5000);
