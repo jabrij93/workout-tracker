@@ -192,7 +192,7 @@ const App = () => {
   return (
     <div>
       <h1>Workout Tracker</h1>
-      {notification && <Notification notification={notification} type={notificationType} />}
+      
       {!isLoggedIn || !user ? (  // Ensure both conditions are checked
       <Login
         username={username}
