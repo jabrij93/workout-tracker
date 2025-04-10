@@ -2,7 +2,7 @@ import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import CardFeatures from './CardFeatures';
 import workouts from '../src/services/workouts';
 
-const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs) => {
+const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel, onDelete }, refs) => {
     const [visibleIndex, setVisibleIndex] = useState(null);
     const [likes, setLikes] = useState(groupedWorkouts.likes);
 
@@ -29,10 +29,11 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
                 return (
                     <div className="card" key={ item.id || item.date }>
                         <div className="title" data-testid={`workout-card-${item.workouts}`}>
-                                <p>{item.workouts}, {item.date}</p>
+                                <p className="main-workout">{item.workouts}, {item.date}</p>
                                 {visibleIndex !== index ? (
                                     <button onClick={() => toggleVisibility(index)}>{buttonLabel}</button>
                                 ) : null}
+                                <button onClick={() => onDelete(item.id)}>Delete</button>
                             <div 
                                 style={{ display: visibleIndex === index ? 'flex' : 'none', flexDirection: 'column' }} 
                                 className='togglableContent'
@@ -47,6 +48,7 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel }, refs)
                                 </div>
                                 <div>
                                     <button onClick={() => toggleVisibility(index)}>hide</button>
+                                    <button onClick={() => onDelete(item.id)}>Delete</button>
                                 </div>
                                 <CardFeatures />
                             </div>

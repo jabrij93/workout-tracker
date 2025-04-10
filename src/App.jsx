@@ -22,7 +22,6 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [calendarData, setCalendarData] = useState({});
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [workouts, setWorkouts] = useState([]);
@@ -120,7 +119,25 @@ const App = () => {
       .then(returnedWorkout => {
         console.log('Workout added:', returnedWorkout); // Debugging line ✅
         setWorkouts((prevWorkouts) => [...prevWorkouts, returnedWorkout]);
+        setNotification({ message: `Added ${returnedWorkout.workouts} !`, type: 'success' });
+        setTimeout(() => {
+          setNotification(null);
+        }, 5000);
       })
+  }
+
+  const handleDelete = (id) => {
+      if (window.confirm('Are you sure you want to delete this workout?')) {
+      workoutService  
+        .delete(id)
+        .then(() => {
+          setWorkouts(workouts.filter(workout => workout.id !== id));
+          setNotification({ message: `Deleted workout!`, type: 'success' });
+          setTimeout(() => {
+            setNotification(null);
+          }, 5000);
+        })
+    }
   }
 
   // Update like 
@@ -294,6 +311,7 @@ const App = () => {
                     toggleVisibility={toggleVisibility}
                     visible={visible}
                     workoutContainer={workoutContainer}
+                    onDelete={handleDelete}
                     buttonLabel="See more"
                     updatedLike={addLike} 
                   />
