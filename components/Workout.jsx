@@ -33,10 +33,7 @@ const Workout = forwardRef(({ groupedWorkouts, updatedLike, buttonLabel, onDelet
                                 {visibleIndex !== index ? (
                                     <button onClick={() => toggleVisibility(index)}>{buttonLabel}</button>
                                 ) : null}
-                            <div 
-                                style={{ display: visibleIndex === index ? 'flex' : 'none', flexDirection: 'column' }} 
-                                className='togglableContent'
-                            >
+                            <div className='togglableContent' style={{ display: visibleIndex === index ? 'flex' : 'none', flexDirection: 'column' }} >
                                 <div className="detail2">
                                     <p> Detail : {item.detail} </p>
                                 </div>
